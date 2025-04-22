@@ -1,0 +1,26 @@
+---
+title: Installation
+# description:
+---
+
+API reference
+
+To use the `Tabs` and `Tab` components in your `.mdx` file, first import them at the top of your file:
+
+Then, you can use them in your MDX content like this:
+
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Pre, CodeBlock } from 'fumadocs-ui/components/codeblock';
+
+<Tabs groupId="pkg-mgr" items={['npm', 'pnpm', 'yarn', 'bun']} persist>
+  <Tab value="npm">
+    <CodeBlock lang="bash" keepBackground>
+      <Pre>npm install superdk</Pre>
+    </CodeBlock>
+  </Tab>
+  <Tab value="pnpm">Rust is fast</Tab>
+  <Tab value="yarn">Rust is fast</Tab>
+  <Tab value="bun">Rust is fast</Tab>
+</Tabs>
+
+The `items` prop defines the different tabs, and each `<Tab>` should have a matching `value` corresponding to one of these items.

@@ -35,7 +35,9 @@ const plugins = function(): Plugins {
       ]
     case "actions":
       return [
-        actions()
+        actions({
+            overridePackageName: "@wagmi/core"
+        })
       ]
     default:
       throw new Error(`Invalid type [${type}], use "wagmi" or "viem".`)

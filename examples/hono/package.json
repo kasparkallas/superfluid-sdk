@@ -1,6 +1,7 @@
 {
-  "name": "backend",
+  "name": "hono",
   "type": "module",
+  "private": true,
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "typecheck": "tsc --noEmit"

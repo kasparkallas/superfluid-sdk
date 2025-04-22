@@ -15,9 +15,14 @@
     "./actions": {
       "types": "./src/actions.ts",
       "default": "./src/actions.ts"
+    },
+    "./utils": {
+      "types": "./src/utils.ts",
+      "default": "./src/utils.ts"
     }
   },
   "scripts": {
+    "generate": "pnpm generate:abi && pnpm generate:wagmi && pnpm generate:actions",
     "generate:abi": "TYPE=abi wagmi generate",
     "generate:wagmi": "TYPE=wagmi wagmi generate",
     "generate:actions": "TYPE=actions wagmi generate"
@@ -36,13 +41,21 @@
   },
   "peerDependencies": {
     "wagmi": "^2",
-    "@wagmi/core": "^2"
+    "@wagmi/core": "^2",
+    "react": ">=18",
+    "viem": "^2"
   },
   "peerDependenciesMeta": {
     "wagmi": {
       "optional": true
     },
     "@wagmi/core": {
+      "optional": true
+    },
+    "react": {
+      "optional": true
+    },
+    "viem": {
       "optional": true
     }
   }
