@@ -7,6 +7,14 @@ import ConstantFlowAgreementV1 from "@superfluid-finance/ethereum-contracts/buil
 import CFAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
 import GeneralDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/GeneralDistributionAgreementV1.sol/GeneralDistributionAgreementV1.json" with { type: "json" }
 import GDAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/GDAv1Forwarder.sol/GDAv1Forwarder.json" with { type: "json" }
+import InstantDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/InstantDistributionAgreementV1.sol/InstantDistributionAgreementV1.json" with { type: "json" }
+import SuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperToken.sol/SuperToken.json" with { type: "json" }
+import PureSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/tokens/PureSuperToken.sol/PureSuperToken.json" with { type: "json" }
+import SuperTokenFactory from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperTokenFactory.sol/SuperTokenFactory.json" with { type: "json" }
+import NativeAssetSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/interfaces/tokens/ISETH.sol/ISETH.json" with { type: "json" }
+import Governance from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/gov/SuperfluidGovernanceII.sol/SuperfluidGovernanceII.json" with { type: "json" }
+import TOGA from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/TOGA.sol/TOGA.json" with { type: "json" }
+import BatchLiquidator from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/BatchLiquidator.sol/BatchLiquidator.json" with { type: "json" }
 
 import superfluidMetadata from "@superfluid-finance/metadata"
 
@@ -72,6 +80,43 @@ export default defineConfig({
       abi: GDAv1Forwarder.abi as any,
       name: "gdaForwarder",
       address: getAddressesFromMetadata(network => network.contractsV1.gdaV1Forwarder)
+    },
+    {
+      abi: InstantDistributionAgreementV1.abi as any,
+      name: "ida",
+      address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
+    },
+    {
+      abi: SuperToken.abi as any,
+      name: "superToken"
+    },
+    {
+      abi: PureSuperToken.abi as any,
+      name: "pureSuperToken"
+    },
+    {
+      abi: NativeAssetSuperToken.abi as any,
+      name: "nativeAssetSuperToken"
+    },
+    {
+      abi: SuperTokenFactory.abi as any,
+      name: "superTokenFactory",
+      address: getAddressesFromMetadata(network => network.contractsV1.superTokenFactory)
+    },
+    {
+      abi: Governance.abi as any,
+      name: "governance",
+      address: getAddressesFromMetadata(network => network.contractsV1.governance)
+    },
+    {
+      abi: TOGA.abi as any,
+      name: "toga",
+      address: getAddressesFromMetadata(network => network.contractsV1.toga)
+    },
+    {
+      abi: BatchLiquidator.abi as any,
+      name: "batchLiquidator",
+      address: getAddressesFromMetadata(network => network.contractsV1.superfluidLoader)
     }
   ]
 })

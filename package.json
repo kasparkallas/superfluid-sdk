@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-
+    "typecheck": "pnpm -r typecheck"
   },
   "keywords": [],
   "author": "",

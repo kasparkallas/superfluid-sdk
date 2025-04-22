@@ -25,7 +25,8 @@
     "generate": "pnpm generate:abi && pnpm generate:wagmi && pnpm generate:actions",
     "generate:abi": "TYPE=abi wagmi generate",
     "generate:wagmi": "TYPE=wagmi wagmi generate",
-    "generate:actions": "TYPE=actions wagmi generate"
+    "generate:actions": "TYPE=actions wagmi generate",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
