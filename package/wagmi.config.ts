@@ -87,23 +87,6 @@ export default defineConfig({
       address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
     },
     {
-      abi: SuperToken.abi as any,
-      name: "superToken"
-    },
-    {
-      abi: PureSuperToken.abi as any,
-      name: "pureSuperToken"
-    },
-    {
-      abi: NativeAssetSuperToken.abi as any,
-      name: "nativeAssetSuperToken"
-    },
-    {
-      abi: SuperTokenFactory.abi as any,
-      name: "superTokenFactory",
-      address: getAddressesFromMetadata(network => network.contractsV1.superTokenFactory)
-    },
-    {
       abi: Governance.abi as any,
       name: "governance",
       address: getAddressesFromMetadata(network => network.contractsV1.governance)
@@ -114,9 +97,26 @@ export default defineConfig({
       address: getAddressesFromMetadata(network => network.contractsV1.toga)
     },
     {
+      abi: SuperTokenFactory.abi as any,
+      name: "superTokenFactory",
+      address: getAddressesFromMetadata(network => network.contractsV1.superTokenFactory)
+    },
+    {
       abi: BatchLiquidator.abi as any,
       name: "batchLiquidator",
       address: getAddressesFromMetadata(network => network.contractsV1.superfluidLoader)
+    },
+    {
+      abi: SuperToken.abi as any,
+      name: "superToken"
+    },
+    {
+      abi: PureSuperToken.abi as any,
+      name: "pureSuperToken"
+    },
+    {
+      abi: NativeAssetSuperToken.abi as any,
+      name: "nativeAssetSuperToken"
     }
   ]
 })
