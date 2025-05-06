@@ -1106,6 +1106,64 @@ export const cfaForwarderAbi = [
     outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
     stateMutability: 'nonpayable',
   },
+  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
+  {
+    type: 'error',
+    inputs: [{ name: '_code', internalType: 'uint256', type: 'uint256' }],
+    name: 'APP_RULE',
+  },
+  { type: 'error', inputs: [], name: 'CFA_ACL_FLOW_RATE_ALLOWANCE_EXCEEDED' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_NEGATIVE_ALLOWANCE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_CREATE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_FLOW_OPERATOR' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_UPDATE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_CREATE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_DELETE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_UPDATE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_UNCLEAN_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_DEPOSIT_TOO_BIG' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_RATE_TOO_BIG' },
+  { type: 'error', inputs: [], name: 'CFA_HOOK_OUT_OF_GAS' },
+  { type: 'error', inputs: [], name: 'CFA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'CFA_INVALID_FLOW_RATE' },
+  { type: 'error', inputs: [], name: 'CFA_NON_CRITICAL_SENDER' },
+  { type: 'error', inputs: [], name: 'CFA_NO_SELF_FLOW' },
+  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_RECEIVER' },
+  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_SENDER' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
 ] as const
 
 /**
@@ -2295,6 +2353,68 @@ export const gdaForwarderAbi = [
     outputs: [{ name: 'success', internalType: 'bool', type: 'bool' }],
     stateMutability: 'nonpayable',
   },
+  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'GDA_ADMIN_CANNOT_BE_POOL' },
+  { type: 'error', inputs: [], name: 'GDA_DISTRIBUTE_FOR_OTHERS_NOT_ALLOWED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'GDA_DISTRIBUTE_FROM_ANY_ADDRESS_NOT_ALLOWED',
+  },
+  { type: 'error', inputs: [], name: 'GDA_FLOW_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'GDA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'GDA_NON_CRITICAL_SENDER' },
+  { type: 'error', inputs: [], name: 'GDA_NOT_POOL_ADMIN' },
+  { type: 'error', inputs: [], name: 'GDA_NO_NEGATIVE_FLOW_RATE' },
+  { type: 'error', inputs: [], name: 'GDA_NO_ZERO_ADDRESS_ADMIN' },
+  { type: 'error', inputs: [], name: 'GDA_ONLY_SUPER_TOKEN_POOL' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
+  },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
 ] as const
 
 /**
@@ -2356,6 +2476,479 @@ export const gdaForwarderConfig = {
   address: gdaForwarderAddress,
   abi: gdaForwarderAbi,
 } as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// gdaPool
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const gdaPoolAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      {
+        name: 'gda',
+        internalType: 'contract GeneralDistributionAgreementV1',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'spender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Approval',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'member',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'claimedAmount',
+        internalType: 'int256',
+        type: 'int256',
+        indexed: false,
+      },
+      {
+        name: 'totalClaimed',
+        internalType: 'int256',
+        type: 'int256',
+        indexed: false,
+      },
+    ],
+    name: 'DistributionClaimed',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'member',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'oldUnits',
+        internalType: 'uint128',
+        type: 'uint128',
+        indexed: false,
+      },
+      {
+        name: 'newUnits',
+        internalType: 'uint128',
+        type: 'uint128',
+        indexed: false,
+      },
+    ],
+    name: 'MemberUnitsUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Transfer',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'GDA',
+    outputs: [
+      {
+        name: '',
+        internalType: 'contract GeneralDistributionAgreementV1',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'admin',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+    ],
+    name: 'allowance',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'approve',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'castrate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'claimAll',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'claimAll',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'decreaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'distributionFromAnyAddress',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'memberAddr', internalType: 'address', type: 'address' },
+      { name: 'time', internalType: 'uint32', type: 'uint32' },
+    ],
+    name: 'getClaimable',
+    outputs: [{ name: '', internalType: 'int256', type: 'int256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getClaimableNow',
+    outputs: [
+      { name: 'claimableBalance', internalType: 'int256', type: 'int256' },
+      { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'time', internalType: 'uint32', type: 'uint32' }],
+    name: 'getDisconnectedBalance',
+    outputs: [{ name: 'balance', internalType: 'int256', type: 'int256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getMemberFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getTotalAmountReceivedByMember',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalConnectedFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalConnectedUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalDisconnectedFlowRate',
+    outputs: [{ name: 'flowRate', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalDisconnectedUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'admin_', internalType: 'address', type: 'address' },
+      {
+        name: 'superToken_',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      {
+        name: 'transferabilityForUnitsOwner_',
+        internalType: 'bool',
+        type: 'bool',
+      },
+      {
+        name: 'distributionFromAnyAddress_',
+        internalType: 'bool',
+        type: 'bool',
+      },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'memberAddr', internalType: 'address', type: 'address' },
+      { name: 'doConnect', internalType: 'bool', type: 'bool' },
+      { name: 'time', internalType: 'uint32', type: 'uint32' },
+    ],
+    name: 'operatorConnectMember',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'index',
+        internalType: 'struct PDPoolIndex',
+        type: 'tuple',
+        components: [
+          { name: 'total_units', internalType: 'Unit', type: 'int128' },
+          {
+            name: '_wrapped_particle',
+            internalType: 'struct BasicParticle',
+            type: 'tuple',
+            components: [
+              { name: '_settled_at', internalType: 'Time', type: 'uint32' },
+              { name: '_flow_rate', internalType: 'FlowRate', type: 'int128' },
+              { name: '_settled_value', internalType: 'Value', type: 'int256' },
+            ],
+          },
+        ],
+      },
+    ],
+    name: 'operatorSetIndex',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'poolOperatorGetIndex',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct SuperfluidPool.PoolIndexData',
+        type: 'tuple',
+        components: [
+          { name: 'totalUnits', internalType: 'uint128', type: 'uint128' },
+          { name: 'wrappedSettledAt', internalType: 'uint32', type: 'uint32' },
+          { name: 'wrappedFlowRate', internalType: 'int96', type: 'int96' },
+          {
+            name: 'wrappedSettledValue',
+            internalType: 'int256',
+            type: 'int256',
+          },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'superToken',
+    outputs: [
+      { name: '', internalType: 'contract ISuperfluidToken', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'transferabilityForUnitsOwner',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'memberAddr', internalType: 'address', type: 'address' },
+      { name: 'newUnits', internalType: 'uint128', type: 'uint128' },
+    ],
+    name: 'updateMemberUnits',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+] as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // governance
@@ -4031,6 +4624,97 @@ export const hostAbi = [
     outputs: [{ name: '', internalType: 'string', type: 'string' }],
     stateMutability: 'pure',
   },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_FLOW_RATE_ALLOWANCE_EXCEEDED' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_NEGATIVE_ALLOWANCE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_CREATE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_FLOW_OPERATOR' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_UPDATE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_CREATE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_DELETE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_UPDATE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_UNCLEAN_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_DEPOSIT_TOO_BIG' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_RATE_TOO_BIG' },
+  { type: 'error', inputs: [], name: 'CFA_HOOK_OUT_OF_GAS' },
+  { type: 'error', inputs: [], name: 'CFA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'CFA_INVALID_FLOW_RATE' },
+  { type: 'error', inputs: [], name: 'CFA_NON_CRITICAL_SENDER' },
+  { type: 'error', inputs: [], name: 'CFA_NO_SELF_FLOW' },
+  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_RECEIVER' },
+  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_SENDER' },
+  { type: 'error', inputs: [], name: 'GDA_ADMIN_CANNOT_BE_POOL' },
+  { type: 'error', inputs: [], name: 'GDA_DISTRIBUTE_FOR_OTHERS_NOT_ALLOWED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'GDA_DISTRIBUTE_FROM_ANY_ADDRESS_NOT_ALLOWED',
+  },
+  { type: 'error', inputs: [], name: 'GDA_FLOW_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'GDA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'GDA_NON_CRITICAL_SENDER' },
+  { type: 'error', inputs: [], name: 'GDA_NOT_POOL_ADMIN' },
+  { type: 'error', inputs: [], name: 'GDA_NO_NEGATIVE_FLOW_RATE' },
+  { type: 'error', inputs: [], name: 'GDA_NO_ZERO_ADDRESS_ADMIN' },
+  { type: 'error', inputs: [], name: 'GDA_ONLY_SUPER_TOKEN_POOL' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
+  },
+  { type: 'error', inputs: [], name: 'IDA_INDEX_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'IDA_INDEX_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'IDA_INDEX_SHOULD_GROW' },
+  { type: 'error', inputs: [], name: 'IDA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'IDA_OPERATION_NOT_ALLOWED' },
+  { type: 'error', inputs: [], name: 'IDA_SUBSCRIPTION_ALREADY_APPROVED' },
+  { type: 'error', inputs: [], name: 'IDA_SUBSCRIPTION_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'IDA_SUBSCRIPTION_IS_NOT_APPROVED' },
+  { type: 'error', inputs: [], name: 'IDA_ZERO_ADDRESS_SUBSCRIBER' },
 ] as const
 
 /**
@@ -12562,6 +13246,437 @@ export const simulateGdaForwarderUpdateMemberUnits =
     address: gdaForwarderAddress,
     functionName: 'updateMemberUnits',
   })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__
+ */
+export const readGdaPool = /*#__PURE__*/ createReadContract({ abi: gdaPoolAbi })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"GDA"`
+ */
+export const readGdaPoolGda = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'GDA',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"admin"`
+ */
+export const readGdaPoolAdmin = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'admin',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"allowance"`
+ */
+export const readGdaPoolAllowance = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'allowance',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"balanceOf"`
+ */
+export const readGdaPoolBalanceOf = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'balanceOf',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"distributionFromAnyAddress"`
+ */
+export const readGdaPoolDistributionFromAnyAddress =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'distributionFromAnyAddress',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getClaimable"`
+ */
+export const readGdaPoolGetClaimable = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'getClaimable',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getClaimableNow"`
+ */
+export const readGdaPoolGetClaimableNow = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'getClaimableNow',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getDisconnectedBalance"`
+ */
+export const readGdaPoolGetDisconnectedBalance =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'getDisconnectedBalance',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getMemberFlowRate"`
+ */
+export const readGdaPoolGetMemberFlowRate = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'getMemberFlowRate',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalAmountReceivedByMember"`
+ */
+export const readGdaPoolGetTotalAmountReceivedByMember =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'getTotalAmountReceivedByMember',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalConnectedFlowRate"`
+ */
+export const readGdaPoolGetTotalConnectedFlowRate =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'getTotalConnectedFlowRate',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalConnectedUnits"`
+ */
+export const readGdaPoolGetTotalConnectedUnits =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'getTotalConnectedUnits',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalDisconnectedFlowRate"`
+ */
+export const readGdaPoolGetTotalDisconnectedFlowRate =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'getTotalDisconnectedFlowRate',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalDisconnectedUnits"`
+ */
+export const readGdaPoolGetTotalDisconnectedUnits =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'getTotalDisconnectedUnits',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalFlowRate"`
+ */
+export const readGdaPoolGetTotalFlowRate = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'getTotalFlowRate',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getTotalUnits"`
+ */
+export const readGdaPoolGetTotalUnits = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'getTotalUnits',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"getUnits"`
+ */
+export const readGdaPoolGetUnits = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'getUnits',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"poolOperatorGetIndex"`
+ */
+export const readGdaPoolPoolOperatorGetIndex = /*#__PURE__*/ createReadContract(
+  { abi: gdaPoolAbi, functionName: 'poolOperatorGetIndex' },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"proxiableUUID"`
+ */
+export const readGdaPoolProxiableUuid = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'proxiableUUID',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"superToken"`
+ */
+export const readGdaPoolSuperToken = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'superToken',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"totalSupply"`
+ */
+export const readGdaPoolTotalSupply = /*#__PURE__*/ createReadContract({
+  abi: gdaPoolAbi,
+  functionName: 'totalSupply',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"transferabilityForUnitsOwner"`
+ */
+export const readGdaPoolTransferabilityForUnitsOwner =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaPoolAbi,
+    functionName: 'transferabilityForUnitsOwner',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__
+ */
+export const writeGdaPool = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"approve"`
+ */
+export const writeGdaPoolApprove = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'approve',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"castrate"`
+ */
+export const writeGdaPoolCastrate = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'castrate',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"claimAll"`
+ */
+export const writeGdaPoolClaimAll = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'claimAll',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"decreaseAllowance"`
+ */
+export const writeGdaPoolDecreaseAllowance = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'decreaseAllowance',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"increaseAllowance"`
+ */
+export const writeGdaPoolIncreaseAllowance = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'increaseAllowance',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"initialize"`
+ */
+export const writeGdaPoolInitialize = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'initialize',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"operatorConnectMember"`
+ */
+export const writeGdaPoolOperatorConnectMember =
+  /*#__PURE__*/ createWriteContract({
+    abi: gdaPoolAbi,
+    functionName: 'operatorConnectMember',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"operatorSetIndex"`
+ */
+export const writeGdaPoolOperatorSetIndex = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'operatorSetIndex',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"transfer"`
+ */
+export const writeGdaPoolTransfer = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'transfer',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const writeGdaPoolTransferFrom = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'transferFrom',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"updateMemberUnits"`
+ */
+export const writeGdaPoolUpdateMemberUnits = /*#__PURE__*/ createWriteContract({
+  abi: gdaPoolAbi,
+  functionName: 'updateMemberUnits',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__
+ */
+export const simulateGdaPool = /*#__PURE__*/ createSimulateContract({
+  abi: gdaPoolAbi,
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"approve"`
+ */
+export const simulateGdaPoolApprove = /*#__PURE__*/ createSimulateContract({
+  abi: gdaPoolAbi,
+  functionName: 'approve',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"castrate"`
+ */
+export const simulateGdaPoolCastrate = /*#__PURE__*/ createSimulateContract({
+  abi: gdaPoolAbi,
+  functionName: 'castrate',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"claimAll"`
+ */
+export const simulateGdaPoolClaimAll = /*#__PURE__*/ createSimulateContract({
+  abi: gdaPoolAbi,
+  functionName: 'claimAll',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"decreaseAllowance"`
+ */
+export const simulateGdaPoolDecreaseAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaPoolAbi,
+    functionName: 'decreaseAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"increaseAllowance"`
+ */
+export const simulateGdaPoolIncreaseAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaPoolAbi,
+    functionName: 'increaseAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"initialize"`
+ */
+export const simulateGdaPoolInitialize = /*#__PURE__*/ createSimulateContract({
+  abi: gdaPoolAbi,
+  functionName: 'initialize',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"operatorConnectMember"`
+ */
+export const simulateGdaPoolOperatorConnectMember =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaPoolAbi,
+    functionName: 'operatorConnectMember',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"operatorSetIndex"`
+ */
+export const simulateGdaPoolOperatorSetIndex =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaPoolAbi,
+    functionName: 'operatorSetIndex',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"transfer"`
+ */
+export const simulateGdaPoolTransfer = /*#__PURE__*/ createSimulateContract({
+  abi: gdaPoolAbi,
+  functionName: 'transfer',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"transferFrom"`
+ */
+export const simulateGdaPoolTransferFrom = /*#__PURE__*/ createSimulateContract(
+  { abi: gdaPoolAbi, functionName: 'transferFrom' },
+)
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaPoolAbi}__ and `functionName` set to `"updateMemberUnits"`
+ */
+export const simulateGdaPoolUpdateMemberUnits =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaPoolAbi,
+    functionName: 'updateMemberUnits',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaPoolAbi}__
+ */
+export const watchGdaPoolEvent = /*#__PURE__*/ createWatchContractEvent({
+  abi: gdaPoolAbi,
+})
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaPoolAbi}__ and `eventName` set to `"Approval"`
+ */
+export const watchGdaPoolApprovalEvent = /*#__PURE__*/ createWatchContractEvent(
+  { abi: gdaPoolAbi, eventName: 'Approval' },
+)
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaPoolAbi}__ and `eventName` set to `"DistributionClaimed"`
+ */
+export const watchGdaPoolDistributionClaimedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaPoolAbi,
+    eventName: 'DistributionClaimed',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaPoolAbi}__ and `eventName` set to `"Initialized"`
+ */
+export const watchGdaPoolInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaPoolAbi,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaPoolAbi}__ and `eventName` set to `"MemberUnitsUpdated"`
+ */
+export const watchGdaPoolMemberUnitsUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaPoolAbi,
+    eventName: 'MemberUnitsUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaPoolAbi}__ and `eventName` set to `"Transfer"`
+ */
+export const watchGdaPoolTransferEvent = /*#__PURE__*/ createWatchContractEvent(
+  { abi: gdaPoolAbi, eventName: 'Transfer' },
+)
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link governanceAbi}__

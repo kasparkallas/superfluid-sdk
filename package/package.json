@@ -31,7 +31,7 @@
     "generate:wagmi": "TYPE=wagmi wagmi generate",
     "generate:actions": "TYPE=actions wagmi generate",
     "typecheck": "tsc --noEmit",
-    "build": "tsc"
+    "build": "tsc --removeComments --declaration false && tsc --emitDeclarationOnly"
   },
   "keywords": [],
   "author": "",
