@@ -1,21 +1,22 @@
 import { cfaAbi, cfaAddress } from "sdk"
-import { createPublicClient, http } from 'viem'
+import { createPublicClient } from 'viem'
 import { mainnet } from 'viem/chains'
 
 import { app } from './app.js' // Does this have to be .js?
+import { superfluidMainnetTransports } from "sdk/config"
 
 const publicClient = createPublicClient({
   chain: mainnet,
-  transport: http()
+  transport: superfluidMainnetTransports[mainnet.id]
 })
 
 app.get('/abi', async (c) => {
-  const maximumDeposit = await publicClient.readContract({
+  const maximumFlowRate = await publicClient.readContract({
     address: cfaAddress[mainnet.id],
     abi: cfaAbi,
-    functionName: "CFA_HOOK_GAS_LIMIT"
+    functionName: "MAXIMUM_FLOW_RATE"
   })
-  return c.text(maximumDeposit.toString())
+  return c.text(maximumFlowRate.toString())
 })
 
 export const __esModule = true;

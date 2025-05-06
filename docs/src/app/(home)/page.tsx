@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default function HomePage() {
   return (
     <main className="flex flex-1 flex-col justify-center text-center">
-      <h1 className="mb-4 text-2xl font-bold">SuperDK</h1>
+      <h1 className="mb-4 text-2xl font-bold">@superfluid-finance/sdk</h1>
       <p className="text-fd-muted-foreground">
         You can open{' '}
         <Link

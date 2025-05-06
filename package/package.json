@@ -5,20 +5,24 @@
   "description": "",
   "exports": {
     ".": {
-      "types": "./src/abi.ts",
-      "default": "./src/abi.ts"
+      "types": "./src/abi.d.ts",
+      "default": "./src/abi.js"
     },
     "./wagmi": {
-      "types": "./src/wagmi.ts",
-      "default": "./src/wagmi.ts"
+      "types": "./src/wagmi.d.ts",
+      "default": "./src/wagmi.js"
     },
     "./actions": {
-      "types": "./src/actions.ts",
-      "default": "./src/actions.ts"
+      "types": "./src/actions.d.ts",
+      "default": "./src/actions.js"
     },
     "./utils": {
-      "types": "./src/utils.ts",
-      "default": "./src/utils.ts"
+      "types": "./src/utils.d.ts",
+      "default": "./src/utils.js"
+    },
+    "./config": {
+      "types": "./src/config.d.ts",
+      "default": "./src/config.js"
     }
   },
   "scripts": {
@@ -26,7 +30,8 @@
     "generate:abi": "TYPE=abi wagmi generate",
     "generate:wagmi": "TYPE=wagmi wagmi generate",
     "generate:actions": "TYPE=actions wagmi generate",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -35,16 +40,17 @@
   "devDependencies": {
     "@superfluid-finance/ethereum-contracts": "^1.12.0",
     "@superfluid-finance/metadata": "^1.5.2",
-    "@types/node": "^22.14.1",
-    "@wagmi/cli": "^2.2.1",
+    "@types/node": "^22.15.3",
+    "@wagmi/cli": "^2.3.0",
     "typescript": "^5.8.3",
-    "wagmi": "^2.14.16"
+    "viem": "^2.28.4",
+    "wagmi": "^2.15.2"
   },
   "peerDependencies": {
-    "wagmi": "^2",
     "@wagmi/core": "^2",
     "react": ">=18",
-    "viem": "^2"
+    "viem": "^2",
+    "wagmi": "^2"
   },
   "peerDependenciesMeta": {
     "wagmi": {

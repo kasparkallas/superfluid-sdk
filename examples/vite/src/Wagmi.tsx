@@ -1,14 +1,15 @@
 "use client"
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { http, createConfig, WagmiProvider } from 'wagmi'
-import { mainnet } from 'wagmi/chains'
+import { createConfig, WagmiProvider } from 'wagmi'
+import { superfluidMainnets, superfluidMainnetTransports, superfluidTestnets } from 'sdk/config'
 
 const config = createConfig({
-    chains: [mainnet],
+    chains: [...superfluidMainnets, ...superfluidTestnets],
     transports: {
-        [mainnet.id]: http()
-    },
+        ...superfluidMainnetTransports,
+        ...allDefaultTestnetTransports
+    }
 })
 
 declare module 'wagmi' {

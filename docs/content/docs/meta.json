@@ -1,0 +1,19 @@
+{
+    "title": "Name of Folder",
+    "pages": [
+        "---Basics---",
+        "index",
+        "installation",
+        "faq",
+        "---Framework guides---",
+        "framework-guides/nextjs",
+        "framework-guides/vite",
+        "framework-guides/hono",
+        "---Advanced---",
+        "batch-calls",
+        "comparisons",
+        "---API---",
+        "api-reference"
+    ],
+    "defaultOpen": true
+}

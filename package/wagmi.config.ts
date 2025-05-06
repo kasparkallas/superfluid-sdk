@@ -1,7 +1,7 @@
 import { type Config, defineConfig } from '@wagmi/cli'
 import { react, actions } from '@wagmi/cli/plugins'
 
-import Superfluid from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/Superfluid.sol/Superfluid.json" with { type: "json" }
+import Host from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/Superfluid.sol/Superfluid.json" with { type: "json" }
 
 import ConstantFlowAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/ConstantFlowAgreementV1.sol/ConstantFlowAgreementV1.json" with { type: "json" }
 import CFAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
@@ -57,7 +57,7 @@ export default defineConfig({
   plugins,
   contracts: [
     {
-      abi: Superfluid.abi as any,
+      abi: Host.abi as any,
       name: "host",
       address: getAddressesFromMetadata(network => network.contractsV1.host)
     },

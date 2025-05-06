@@ -1,10 +1,10 @@
 "use client"
 
-import { useReadCfaCfaHookGasLimit } from "sdk/wagmi"
+import { useReadCfaMaximumFlowRate } from "sdk/wagmi"
 import { mainnet } from "wagmi/chains";
 
 export default function Home() {
-    const { data, isLoading, isError } = useReadCfaCfaHookGasLimit({
+    const { data, isLoading, isError } = useReadCfaMaximumFlowRate({
         chainId: mainnet.id
     })
 
@@ -14,8 +14,8 @@ export default function Home() {
             {isError && <p>Error loading</p>}
             {data && (
                 <div>
-                    <h3>CFA Hook Gas Limit</h3>
-                    <p>Gas Limit: {data.toString()}</p>
+                    <h3>CFA Maximum Flow Rate:</h3>
+                    <p>{data.toString()}</p>
                 </div>
             )}
         </div>
