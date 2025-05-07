@@ -5,20 +5,20 @@
   "description": "",
   "exports": {
     ".": {
-      "types": "./src/abi.d.ts",
-      "default": "./src/abi.js"
+      "types": "./src/abi/index.d.ts",
+      "default": "./src/abi/index.js"
     },
     "./wagmi": {
-      "types": "./src/wagmi.d.ts",
-      "default": "./src/wagmi.js"
+      "types": "./src/wagmi/index.d.ts",
+      "default": "./src/wagmi/index.js"
     },
     "./actions": {
-      "types": "./src/actions.d.ts",
-      "default": "./src/actions.js"
+      "types": "./src/actions/index.d.ts",
+      "default": "./src/actions/index.js"
     },
     "./utils": {
-      "types": "./src/utils.d.ts",
-      "default": "./src/utils.js"
+      "types": "./src/utils/index.d.ts",
+      "default": "./src/utils/index.js"
     },
     "./config": {
       "types": "./src/config.d.ts",
@@ -35,7 +35,7 @@
     "generate:wagmi": "TYPE=wagmi wagmi generate",
     "generate:actions": "TYPE=actions wagmi generate",
     "typecheck": "tsc --noEmit",
-    "build": "tsc --removeComments --declaration false && tsc --emitDeclarationOnly",
+    "build": "rimraf dist && tsc --removeComments --declaration false && tsc --emitDeclarationOnly",
     "test": "vitest"
   },
   "keywords": [],
@@ -48,6 +48,7 @@
     "@types/node": "^22.15.3",
     "@wagmi/cli": "^2.3.0",
     "dotenv": "^16.5.0",
+    "rimraf": "^6.0.1",
     "typescript": "^5.8.3",
     "viem": "^2.28.4",
     "vitest": "^3.1.3",

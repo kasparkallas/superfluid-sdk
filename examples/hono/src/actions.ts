@@ -1,5 +1,5 @@
 import { createConfig } from "@wagmi/core"
-import { readCfaMaximumFlowRate } from "sdk/actions"
+import { readCfaV1MaximumFlowRate } from "sdk/actions"
 
 import { app } from './app.js' // Does this have to be .js?
 import { superfluidMainnets, superfluidMainnetTransports } from 'sdk/config'
@@ -12,7 +12,7 @@ const config = createConfig({
 })
 
 app.get('/actions', async (c) => {
-  const maximumFlowRate = await readCfaMaximumFlowRate(config, {
+  const maximumFlowRate = await readCfaV1MaximumFlowRate(config, {
       chainId: 1
   })
   return c.text(maximumFlowRate.toString())

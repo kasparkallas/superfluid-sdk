@@ -5,9 +5,9 @@ import { react, actions } from '@wagmi/cli/plugins'
 // # Core contracts
 import Host from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/Superfluid.sol/Superfluid.json" with { type: "json" }
 import ConstantFlowAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/ConstantFlowAgreementV1.sol/ConstantFlowAgreementV1.json" with { type: "json" }
-import CFAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
+import CFAForwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
 import GeneralDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/GeneralDistributionAgreementV1.sol/GeneralDistributionAgreementV1.json" with { type: "json" }
-import GDAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/GDAv1Forwarder.sol/GDAv1Forwarder.json" with { type: "json" }
+import GDAForwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/GDAv1Forwarder.sol/GDAv1Forwarder.json" with { type: "json" }
 import SuperfluidPool from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/SuperfluidPool.sol/SuperfluidPool.json" with { type: "json" }
 import InstantDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/InstantDistributionAgreementV1.sol/InstantDistributionAgreementV1.json" with { type: "json" }
 import SuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperToken.sol/SuperToken.json" with { type: "json" }
@@ -67,13 +67,13 @@ const allErrors = uniqErrors(
 const out = function (): string {
   switch (type) {
     case "abi":
-      return "src/abi.ts"
+      return "src/abi/index.ts"
     case "wagmi":
-      return "src/wagmi.ts"
+      return "src/wagmi/index.ts"
     case "actions":
-      return "src/actions.ts"
+      return "src/actions/index.ts"
     default:
-      throw new Error(`Invalid type [${type}], use "wagmi" or "viem".`)
+      throw new Error(`Invalid type [${type}], use "abi", "wagmi" or "actions".`)
   }
 }()
 
@@ -92,7 +92,7 @@ const plugins = function (): Plugins {
         })
       ]
     default:
-      throw new Error(`Invalid type [${type}], use "wagmi" or "viem".`)
+      throw new Error(`Invalid type [${type}], use "abi", "wagmi" or "actions".`)
   }
 }()
 
@@ -110,12 +110,12 @@ export default defineConfig({
     },
     {
       abi: ConstantFlowAgreementV1.abi as Abi,
-      name: "cfaAgreement",
+      name: "cfaV1",
       address: getAddressesFromMetadata(network => network.contractsV1.cfaV1)
     },
     {
       abi: uniqErrors(
-        (CFAv1Forwarder.abi as Abi)
+        (CFAForwarder.abi as Abi)
           .concat(cfaErrors)
       ),
       name: "cfa",
@@ -123,12 +123,12 @@ export default defineConfig({
     },
     {
       abi: GeneralDistributionAgreementV1.abi as Abi,
-      name: "gdaAgreement",
+      name: "gdaV1",
       address: getAddressesFromMetadata(network => network.contractsV1.gdaV1)
     },
     {
       abi: uniqErrors(
-        (GDAv1Forwarder.abi as Abi)
+        (GDAForwarder.abi as Abi)
           .concat(gdaErrors)
       ),
       name: "gda",
@@ -140,7 +140,7 @@ export default defineConfig({
     },
     {
       abi: InstantDistributionAgreementV1.abi as Abi,
-      name: "idaAgreement",
+      name: "idaV1",
       address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
     },
     {

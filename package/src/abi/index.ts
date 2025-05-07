@@ -1198,7 +1198,7 @@ export const cfaAddress = {
 export const cfaConfig = { address: cfaAddress, abi: cfaAbi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// cfaAgreement
+// cfaV1
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -1219,7 +1219,7 @@ export const cfaConfig = { address: cfaAddress, abi: cfaAbi } as const
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const cfaAgreementAbi = [
+export const cfaV1Abi = [
   {
     type: 'constructor',
     inputs: [
@@ -1900,7 +1900,7 @@ export const cfaAgreementAbi = [
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const cfaAgreementAddress = {
+export const cfaV1Address = {
   1: '0x2844c1BBdA121E9E43105630b9C8310e5c72744b',
   10: '0x204C6f131bb7F258b2Ea1593f5309911d8E458eD',
   56: '0x49c38108870e74Cb9420C0991a85D3edd6363F75',
@@ -1937,10 +1937,7 @@ export const cfaAgreementAddress = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const cfaAgreementConfig = {
-  address: cfaAgreementAddress,
-  abi: cfaAgreementAbi,
-} as const
+export const cfaV1Config = { address: cfaV1Address, abi: cfaV1Abi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // flowScheduler
@@ -2806,7 +2803,480 @@ export const gdaAddress = {
 export const gdaConfig = { address: gdaAddress, abi: gdaAbi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// gdaAgreement
+// gdaPool
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export const gdaPoolAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      {
+        name: 'gda',
+        internalType: 'contract GeneralDistributionAgreementV1',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'owner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'spender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Approval',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'member',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'claimedAmount',
+        internalType: 'int256',
+        type: 'int256',
+        indexed: false,
+      },
+      {
+        name: 'totalClaimed',
+        internalType: 'int256',
+        type: 'int256',
+        indexed: false,
+      },
+    ],
+    name: 'DistributionClaimed',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
+    ],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'member',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'oldUnits',
+        internalType: 'uint128',
+        type: 'uint128',
+        indexed: false,
+      },
+      {
+        name: 'newUnits',
+        internalType: 'uint128',
+        type: 'uint128',
+        indexed: false,
+      },
+    ],
+    name: 'MemberUnitsUpdated',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'value',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'Transfer',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'GDA',
+    outputs: [
+      {
+        name: '',
+        internalType: 'contract GeneralDistributionAgreementV1',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'admin',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'spender', internalType: 'address', type: 'address' },
+    ],
+    name: 'allowance',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'approve',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
+    name: 'balanceOf',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'castrate',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'claimAll',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'claimAll',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'decreaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'distributionFromAnyAddress',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'memberAddr', internalType: 'address', type: 'address' },
+      { name: 'time', internalType: 'uint32', type: 'uint32' },
+    ],
+    name: 'getClaimable',
+    outputs: [{ name: '', internalType: 'int256', type: 'int256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getClaimableNow',
+    outputs: [
+      { name: 'claimableBalance', internalType: 'int256', type: 'int256' },
+      { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'time', internalType: 'uint32', type: 'uint32' }],
+    name: 'getDisconnectedBalance',
+    outputs: [{ name: 'balance', internalType: 'int256', type: 'int256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getMemberFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getTotalAmountReceivedByMember',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalConnectedFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalConnectedUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalDisconnectedFlowRate',
+    outputs: [{ name: 'flowRate', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalDisconnectedUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getTotalUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
+    name: 'getUnits',
+    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'spender', internalType: 'address', type: 'address' },
+      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'increaseAllowance',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'admin_', internalType: 'address', type: 'address' },
+      {
+        name: 'superToken_',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      {
+        name: 'transferabilityForUnitsOwner_',
+        internalType: 'bool',
+        type: 'bool',
+      },
+      {
+        name: 'distributionFromAnyAddress_',
+        internalType: 'bool',
+        type: 'bool',
+      },
+    ],
+    name: 'initialize',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'memberAddr', internalType: 'address', type: 'address' },
+      { name: 'doConnect', internalType: 'bool', type: 'bool' },
+      { name: 'time', internalType: 'uint32', type: 'uint32' },
+    ],
+    name: 'operatorConnectMember',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'index',
+        internalType: 'struct PDPoolIndex',
+        type: 'tuple',
+        components: [
+          { name: 'total_units', internalType: 'Unit', type: 'int128' },
+          {
+            name: '_wrapped_particle',
+            internalType: 'struct BasicParticle',
+            type: 'tuple',
+            components: [
+              { name: '_settled_at', internalType: 'Time', type: 'uint32' },
+              { name: '_flow_rate', internalType: 'FlowRate', type: 'int128' },
+              { name: '_settled_value', internalType: 'Value', type: 'int256' },
+            ],
+          },
+        ],
+      },
+    ],
+    name: 'operatorSetIndex',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'poolOperatorGetIndex',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct SuperfluidPool.PoolIndexData',
+        type: 'tuple',
+        components: [
+          { name: 'totalUnits', internalType: 'uint128', type: 'uint128' },
+          { name: 'wrappedSettledAt', internalType: 'uint32', type: 'uint32' },
+          { name: 'wrappedFlowRate', internalType: 'int96', type: 'int96' },
+          {
+            name: 'wrappedSettledValue',
+            internalType: 'int256',
+            type: 'int256',
+          },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'pure',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'superToken',
+    outputs: [
+      { name: '', internalType: 'contract ISuperfluidToken', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'totalSupply',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transfer',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'address', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'transferFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'transferabilityForUnitsOwner',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'memberAddr', internalType: 'address', type: 'address' },
+      { name: 'newUnits', internalType: 'uint128', type: 'uint128' },
+    ],
+    name: 'updateMemberUnits',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+] as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// gdaV1
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -2827,7 +3297,7 @@ export const gdaConfig = { address: gdaAddress, abi: gdaAbi } as const
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const gdaAgreementAbi = [
+export const gdaV1Abi = [
   {
     type: 'constructor',
     inputs: [
@@ -3602,7 +4072,7 @@ export const gdaAgreementAbi = [
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const gdaAgreementAddress = {
+export const gdaV1Address = {
   1: '0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842',
   10: '0x68Ae17fa7a31b86F306c383277552fd4813b0d35',
   56: '0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2',
@@ -3639,483 +4109,7 @@ export const gdaAgreementAddress = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const gdaAgreementConfig = {
-  address: gdaAgreementAddress,
-  abi: gdaAgreementAbi,
-} as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// gdaPool
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-export const gdaPoolAbi = [
-  {
-    type: 'constructor',
-    inputs: [
-      {
-        name: 'gda',
-        internalType: 'contract GeneralDistributionAgreementV1',
-        type: 'address',
-      },
-    ],
-    stateMutability: 'nonpayable',
-  },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
-  },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'owner',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'spender',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'Approval',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'member',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'claimedAmount',
-        internalType: 'int256',
-        type: 'int256',
-        indexed: false,
-      },
-      {
-        name: 'totalClaimed',
-        internalType: 'int256',
-        type: 'int256',
-        indexed: false,
-      },
-    ],
-    name: 'DistributionClaimed',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
-    ],
-    name: 'Initialized',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'member',
-        internalType: 'address',
-        type: 'address',
-        indexed: true,
-      },
-      {
-        name: 'oldUnits',
-        internalType: 'uint128',
-        type: 'uint128',
-        indexed: false,
-      },
-      {
-        name: 'newUnits',
-        internalType: 'uint128',
-        type: 'uint128',
-        indexed: false,
-      },
-    ],
-    name: 'MemberUnitsUpdated',
-  },
-  {
-    type: 'event',
-    anonymous: false,
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address', indexed: true },
-      { name: 'to', internalType: 'address', type: 'address', indexed: true },
-      {
-        name: 'value',
-        internalType: 'uint256',
-        type: 'uint256',
-        indexed: false,
-      },
-    ],
-    name: 'Transfer',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'GDA',
-    outputs: [
-      {
-        name: '',
-        internalType: 'contract GeneralDistributionAgreementV1',
-        type: 'address',
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'admin',
-    outputs: [{ name: '', internalType: 'address', type: 'address' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'owner', internalType: 'address', type: 'address' },
-      { name: 'spender', internalType: 'address', type: 'address' },
-    ],
-    name: 'allowance',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'approve',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'castrate',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
-    name: 'claimAll',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'claimAll',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'subtractedValue', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'decreaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'distributionFromAnyAddress',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'memberAddr', internalType: 'address', type: 'address' },
-      { name: 'time', internalType: 'uint32', type: 'uint32' },
-    ],
-    name: 'getClaimable',
-    outputs: [{ name: '', internalType: 'int256', type: 'int256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
-    name: 'getClaimableNow',
-    outputs: [
-      { name: 'claimableBalance', internalType: 'int256', type: 'int256' },
-      { name: 'timestamp', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'time', internalType: 'uint32', type: 'uint32' }],
-    name: 'getDisconnectedBalance',
-    outputs: [{ name: 'balance', internalType: 'int256', type: 'int256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
-    name: 'getMemberFlowRate',
-    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
-    name: 'getTotalAmountReceivedByMember',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'getTotalConnectedFlowRate',
-    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'getTotalConnectedUnits',
-    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'getTotalDisconnectedFlowRate',
-    outputs: [{ name: 'flowRate', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'getTotalDisconnectedUnits',
-    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'getTotalFlowRate',
-    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'getTotalUnits',
-    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'memberAddr', internalType: 'address', type: 'address' }],
-    name: 'getUnits',
-    outputs: [{ name: '', internalType: 'uint128', type: 'uint128' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'spender', internalType: 'address', type: 'address' },
-      { name: 'addedValue', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'increaseAllowance',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'admin_', internalType: 'address', type: 'address' },
-      {
-        name: 'superToken_',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      {
-        name: 'transferabilityForUnitsOwner_',
-        internalType: 'bool',
-        type: 'bool',
-      },
-      {
-        name: 'distributionFromAnyAddress_',
-        internalType: 'bool',
-        type: 'bool',
-      },
-    ],
-    name: 'initialize',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'memberAddr', internalType: 'address', type: 'address' },
-      { name: 'doConnect', internalType: 'bool', type: 'bool' },
-      { name: 'time', internalType: 'uint32', type: 'uint32' },
-    ],
-    name: 'operatorConnectMember',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'index',
-        internalType: 'struct PDPoolIndex',
-        type: 'tuple',
-        components: [
-          { name: 'total_units', internalType: 'Unit', type: 'int128' },
-          {
-            name: '_wrapped_particle',
-            internalType: 'struct BasicParticle',
-            type: 'tuple',
-            components: [
-              { name: '_settled_at', internalType: 'Time', type: 'uint32' },
-              { name: '_flow_rate', internalType: 'FlowRate', type: 'int128' },
-              { name: '_settled_value', internalType: 'Value', type: 'int256' },
-            ],
-          },
-        ],
-      },
-    ],
-    name: 'operatorSetIndex',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'poolOperatorGetIndex',
-    outputs: [
-      {
-        name: '',
-        internalType: 'struct SuperfluidPool.PoolIndexData',
-        type: 'tuple',
-        components: [
-          { name: 'totalUnits', internalType: 'uint128', type: 'uint128' },
-          { name: 'wrappedSettledAt', internalType: 'uint32', type: 'uint32' },
-          { name: 'wrappedFlowRate', internalType: 'int96', type: 'int96' },
-          {
-            name: 'wrappedSettledValue',
-            internalType: 'int256',
-            type: 'int256',
-          },
-        ],
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'proxiableUUID',
-    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
-    stateMutability: 'pure',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'superToken',
-    outputs: [
-      { name: '', internalType: 'contract ISuperfluidToken', type: 'address' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'transfer',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'address', type: 'address' },
-      { name: 'amount', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'transferFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [],
-    name: 'transferabilityForUnitsOwner',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'memberAddr', internalType: 'address', type: 'address' },
-      { name: 'newUnits', internalType: 'uint128', type: 'uint128' },
-    ],
-    name: 'updateMemberUnits',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-] as const
+export const gdaV1Config = { address: gdaV1Address, abi: gdaV1Abi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // governance
@@ -5942,7 +5936,7 @@ export const hostAddress = {
 export const hostConfig = { address: hostAddress, abi: hostAbi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// idaAgreement
+// idaV1
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -5963,7 +5957,7 @@ export const hostConfig = { address: hostAddress, abi: hostAbi } as const
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const idaAgreementAbi = [
+export const idaV1Abi = [
   {
     type: 'constructor',
     inputs: [
@@ -6720,7 +6714,7 @@ export const idaAgreementAbi = [
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const idaAgreementAddress = {
+export const idaV1Address = {
   1: '0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d',
   10: '0xc4ce5118C3B20950ee288f086cb7FC166d222D4c',
   56: '0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d',
@@ -6757,10 +6751,7 @@ export const idaAgreementAddress = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const idaAgreementConfig = {
-  address: idaAgreementAddress,
-  abi: idaAgreementAbi,
-} as const
+export const idaV1Config = { address: idaV1Address, abi: idaV1Abi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // nativeAssetSuperToken
