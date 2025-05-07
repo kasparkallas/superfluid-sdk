@@ -27,7 +27,7 @@ export const superfluidMainnets: readonly [
 	scroll
 ]
 
-type MainnetChainIds = typeof superfluidMainnets[number]['id'];
+type MainnetChainId = typeof superfluidMainnets[number]['id'];
 
 export const superfluidTestnets: readonly [
     typeof baseSepolia,
@@ -43,9 +43,9 @@ export const superfluidTestnets: readonly [
     sepolia
 ]
 
-type TestnetChainIds = typeof superfluidTestnets[number]['id'];
+type TestnetChainId = typeof superfluidTestnets[number]['id'];
 
-export const superfluidMainnetTransports: Record<MainnetChainIds, Transport> = {
+export const superfluidMainnetTransports: Record<MainnetChainId, Transport> = {
     [base.id]: fallback([
         http(),
         http("https://rpc-endpoints.superfluid.dev/base-mainnet")
@@ -92,7 +92,7 @@ export const superfluidMainnetTransports: Record<MainnetChainIds, Transport> = {
     ])
 };
 
-export const superfluidTestnetTransports: Record<TestnetChainIds, Transport> = {
+export const superfluidTestnetTransports: Record<TestnetChainId, Transport> = {
     [baseSepolia.id]: fallback([
         http(),
         http("https://rpc-endpoints.superfluid.dev/base-sepolia")
