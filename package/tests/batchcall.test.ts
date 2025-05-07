@@ -3,7 +3,7 @@ import { createWalletClient, encodeAbiParameters, encodeFunctionData, parseAbiPa
 import { privateKeyToAccount } from 'viem/accounts';
 import { optimismSepolia } from 'viem/chains';
 import { superfluidTestnetTransports } from '../src/config';
-import { hostAbi, superTokenAbi, hostAddress, cfaAbi, cfaAddress, vestingSchedulerV2Abi, vestingSchedulerV2Address, vestingSchedulerV3Abi, vestingSchedulerV3Address } from '../src/abi';
+import { hostAbi, superTokenAbi, hostAddress, cfaAddress, vestingSchedulerV2Abi, vestingSchedulerV2Address, vestingSchedulerV3Abi, vestingSchedulerV3Address, cfaAgreementAbi } from '../src/abi';
 import { Operation, OPERATION_TYPE, prepareOperation, stripFunctionSelector } from '../src/constants';
 
 describe('Superfluid batch call tests', () => {
@@ -131,7 +131,7 @@ describe('Superfluid batch call tests', () => {
 
     // # SUPERFLUID_CALL_AGREEMENT
     const callAgreementCreateFlowInternal = encodeFunctionData({
-      abi: cfaAbi,
+      abi: cfaAgreementAbi,
       functionName: 'createFlow',
       args: [wrapperSuperTokenAddress, vitalikAddress, 1n, "0x"],
     });
@@ -324,7 +324,7 @@ describe('Superfluid batch call tests', () => {
       operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT,
       target: cfaAddress[chain.id],
       data: encodeFunctionData({
-        abi: cfaAbi,
+        abi: cfaAgreementAbi,
         functionName: 'createFlow',
         args: [wrapperSuperTokenAddress, vitalikAddress, 1n, "0x"],
       }),

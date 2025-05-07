@@ -890,6 +890,325 @@ export const batchLiquidatorConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const cfaAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      { name: 'host', internalType: 'contract ISuperfluid', type: 'address' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  { type: 'error', inputs: [], name: 'CFA_FWD_INVALID_FLOW_RATE' },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'createFlow',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'deleteFlow',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'account', internalType: 'address', type: 'address' },
+    ],
+    name: 'getAccountFlowInfo',
+    outputs: [
+      { name: 'lastUpdated', internalType: 'uint256', type: 'uint256' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+      { name: 'deposit', internalType: 'uint256', type: 'uint256' },
+      { name: 'owedDeposit', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'account', internalType: 'address', type: 'address' },
+    ],
+    name: 'getAccountFlowrate',
+    outputs: [{ name: 'flowrate', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+    ],
+    name: 'getBufferAmountByFlowrate',
+    outputs: [
+      { name: 'bufferAmount', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+    ],
+    name: 'getFlowInfo',
+    outputs: [
+      { name: 'lastUpdated', internalType: 'uint256', type: 'uint256' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+      { name: 'deposit', internalType: 'uint256', type: 'uint256' },
+      { name: 'owedDeposit', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'flowOperator', internalType: 'address', type: 'address' },
+    ],
+    name: 'getFlowOperatorPermissions',
+    outputs: [
+      { name: 'permissions', internalType: 'uint8', type: 'uint8' },
+      { name: 'flowrateAllowance', internalType: 'int96', type: 'int96' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+    ],
+    name: 'getFlowrate',
+    outputs: [{ name: 'flowrate', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'flowOperator', internalType: 'address', type: 'address' },
+    ],
+    name: 'grantPermissions',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'flowOperator', internalType: 'address', type: 'address' },
+    ],
+    name: 'revokePermissions',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+    ],
+    name: 'setFlowrate',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+    ],
+    name: 'setFlowrateFrom',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'sender', internalType: 'address', type: 'address' },
+      { name: 'receiver', internalType: 'address', type: 'address' },
+      { name: 'flowrate', internalType: 'int96', type: 'int96' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'updateFlow',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
+      { name: 'flowOperator', internalType: 'address', type: 'address' },
+      { name: 'permissions', internalType: 'uint8', type: 'uint8' },
+      { name: 'flowrateAllowance', internalType: 'int96', type: 'int96' },
+    ],
+    name: 'updateFlowOperatorPermissions',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
+  {
+    type: 'error',
+    inputs: [{ name: '_code', internalType: 'uint256', type: 'uint256' }],
+    name: 'APP_RULE',
+  },
+  { type: 'error', inputs: [], name: 'CFA_ACL_FLOW_RATE_ALLOWANCE_EXCEEDED' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_NEGATIVE_ALLOWANCE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_CREATE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_FLOW_OPERATOR' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_UPDATE' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_CREATE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_DELETE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_UPDATE_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_ACL_UNCLEAN_PERMISSIONS' },
+  { type: 'error', inputs: [], name: 'CFA_DEPOSIT_TOO_BIG' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'CFA_FLOW_RATE_TOO_BIG' },
+  { type: 'error', inputs: [], name: 'CFA_HOOK_OUT_OF_GAS' },
+  { type: 'error', inputs: [], name: 'CFA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'CFA_INVALID_FLOW_RATE' },
+  { type: 'error', inputs: [], name: 'CFA_NON_CRITICAL_SENDER' },
+  { type: 'error', inputs: [], name: 'CFA_NO_SELF_FLOW' },
+  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_RECEIVER' },
+  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_SENDER' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
+] as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const cfaAddress = {
+  1: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  10: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  56: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  100: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  137: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  8453: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  42161: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  42220: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  43113: '0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D',
+  43114: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  84532: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  534351: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  534352: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  11155111: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  11155420: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+  666666666: '0xcfA132E353cB4E398080B9700609bb008eceB125',
+} as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const cfaConfig = { address: cfaAddress, abi: cfaAbi } as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// cfaAgreement
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
  * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
@@ -907,7 +1226,7 @@ export const batchLiquidatorConfig = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const cfaAbi = [
+export const cfaAgreementAbi = [
   {
     type: 'constructor',
     inputs: [
@@ -1588,7 +1907,7 @@ export const cfaAbi = [
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const cfaAddress = {
+export const cfaAgreementAddress = {
   1: '0x2844c1BBdA121E9E43105630b9C8310e5c72744b',
   10: '0x204C6f131bb7F258b2Ea1593f5309911d8E458eD',
   56: '0x49c38108870e74Cb9420C0991a85D3edd6363F75',
@@ -1625,328 +1944,9 @@ export const cfaAddress = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const cfaConfig = { address: cfaAddress, abi: cfaAbi } as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// cfaForwarder
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const cfaForwarderAbi = [
-  {
-    type: 'constructor',
-    inputs: [
-      { name: 'host', internalType: 'contract ISuperfluid', type: 'address' },
-    ],
-    stateMutability: 'nonpayable',
-  },
-  { type: 'error', inputs: [], name: 'CFA_FWD_INVALID_FLOW_RATE' },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'createFlow',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'deleteFlow',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'account', internalType: 'address', type: 'address' },
-    ],
-    name: 'getAccountFlowInfo',
-    outputs: [
-      { name: 'lastUpdated', internalType: 'uint256', type: 'uint256' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-      { name: 'deposit', internalType: 'uint256', type: 'uint256' },
-      { name: 'owedDeposit', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'account', internalType: 'address', type: 'address' },
-    ],
-    name: 'getAccountFlowrate',
-    outputs: [{ name: 'flowrate', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-    ],
-    name: 'getBufferAmountByFlowrate',
-    outputs: [
-      { name: 'bufferAmount', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-    ],
-    name: 'getFlowInfo',
-    outputs: [
-      { name: 'lastUpdated', internalType: 'uint256', type: 'uint256' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-      { name: 'deposit', internalType: 'uint256', type: 'uint256' },
-      { name: 'owedDeposit', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'flowOperator', internalType: 'address', type: 'address' },
-    ],
-    name: 'getFlowOperatorPermissions',
-    outputs: [
-      { name: 'permissions', internalType: 'uint8', type: 'uint8' },
-      { name: 'flowrateAllowance', internalType: 'int96', type: 'int96' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-    ],
-    name: 'getFlowrate',
-    outputs: [{ name: 'flowrate', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'flowOperator', internalType: 'address', type: 'address' },
-    ],
-    name: 'grantPermissions',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'flowOperator', internalType: 'address', type: 'address' },
-    ],
-    name: 'revokePermissions',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-    ],
-    name: 'setFlowrate',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-    ],
-    name: 'setFlowrateFrom',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'receiver', internalType: 'address', type: 'address' },
-      { name: 'flowrate', internalType: 'int96', type: 'int96' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'updateFlow',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'token', internalType: 'contract ISuperToken', type: 'address' },
-      { name: 'flowOperator', internalType: 'address', type: 'address' },
-      { name: 'permissions', internalType: 'uint8', type: 'uint8' },
-      { name: 'flowrateAllowance', internalType: 'int96', type: 'int96' },
-    ],
-    name: 'updateFlowOperatorPermissions',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
-  {
-    type: 'error',
-    inputs: [{ name: '_code', internalType: 'uint256', type: 'uint256' }],
-    name: 'APP_RULE',
-  },
-  { type: 'error', inputs: [], name: 'CFA_ACL_FLOW_RATE_ALLOWANCE_EXCEEDED' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_NO_NEGATIVE_ALLOWANCE' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_CREATE' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_FLOW_OPERATOR' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_NO_SENDER_UPDATE' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_CREATE_PERMISSIONS' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_DELETE_PERMISSIONS' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_OPERATOR_NO_UPDATE_PERMISSIONS' },
-  { type: 'error', inputs: [], name: 'CFA_ACL_UNCLEAN_PERMISSIONS' },
-  { type: 'error', inputs: [], name: 'CFA_DEPOSIT_TOO_BIG' },
-  { type: 'error', inputs: [], name: 'CFA_FLOW_ALREADY_EXISTS' },
-  { type: 'error', inputs: [], name: 'CFA_FLOW_DOES_NOT_EXIST' },
-  { type: 'error', inputs: [], name: 'CFA_FLOW_RATE_TOO_BIG' },
-  { type: 'error', inputs: [], name: 'CFA_HOOK_OUT_OF_GAS' },
-  { type: 'error', inputs: [], name: 'CFA_INSUFFICIENT_BALANCE' },
-  { type: 'error', inputs: [], name: 'CFA_INVALID_FLOW_RATE' },
-  { type: 'error', inputs: [], name: 'CFA_NON_CRITICAL_SENDER' },
-  { type: 'error', inputs: [], name: 'CFA_NO_SELF_FLOW' },
-  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_RECEIVER' },
-  { type: 'error', inputs: [], name: 'CFA_ZERO_ADDRESS_SENDER' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
-  },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
-  },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
-  },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
-] as const
-
-/**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const cfaForwarderAddress = {
-  1: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  10: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  56: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  100: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  137: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  8453: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  42161: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  42220: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  43113: '0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D',
-  43114: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  84532: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  534351: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  534352: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  11155111: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  11155420: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-  666666666: '0xcfA132E353cB4E398080B9700609bb008eceB125',
-} as const
-
-/**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const cfaForwarderConfig = {
-  address: cfaForwarderAddress,
-  abi: cfaForwarderAbi,
+export const cfaAgreementConfig = {
+  address: cfaAgreementAddress,
+  abi: cfaAgreementAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2405,6 +2405,418 @@ export const flowSchedulerConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ */
+export const gdaAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      { name: 'host', internalType: 'contract ISuperfluid', type: 'address' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'memberAddress', internalType: 'address', type: 'address' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'claimAll',
+    outputs: [{ name: 'success', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'connectPool',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'admin', internalType: 'address', type: 'address' },
+      {
+        name: 'config',
+        internalType: 'struct PoolConfig',
+        type: 'tuple',
+        components: [
+          {
+            name: 'transferabilityForUnitsOwner',
+            internalType: 'bool',
+            type: 'bool',
+          },
+          {
+            name: 'distributionFromAnyAddress',
+            internalType: 'bool',
+            type: 'bool',
+          },
+        ],
+      },
+    ],
+    name: 'createPool',
+    outputs: [
+      { name: 'success', internalType: 'bool', type: 'bool' },
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'disconnectPool',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'from', internalType: 'address', type: 'address' },
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'requestedAmount', internalType: 'uint256', type: 'uint256' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'distribute',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'from', internalType: 'address', type: 'address' },
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'requestedFlowRate', internalType: 'int96', type: 'int96' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'distributeFlow',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'contract ISuperfluidPool', type: 'address' },
+      { name: 'requestedAmount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'estimateDistributionActualAmount',
+    outputs: [
+      { name: 'actualAmount', internalType: 'uint256', type: 'uint256' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'contract ISuperfluidPool', type: 'address' },
+      { name: 'requestedFlowRate', internalType: 'int96', type: 'int96' },
+    ],
+    name: 'estimateFlowDistributionActualFlowRate',
+    outputs: [
+      { name: 'actualFlowRate', internalType: 'int96', type: 'int96' },
+      {
+        name: 'totalDistributionFlowRate',
+        internalType: 'int96',
+        type: 'int96',
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'from', internalType: 'address', type: 'address' },
+      { name: 'to', internalType: 'contract ISuperfluidPool', type: 'address' },
+    ],
+    name: 'getFlowDistributionFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'account', internalType: 'address', type: 'address' },
+    ],
+    name: 'getNetFlow',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+    ],
+    name: 'getPoolAdjustmentFlowInfo',
+    outputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'bytes32', type: 'bytes32' },
+      { name: '', internalType: 'int96', type: 'int96' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'pool', internalType: 'address', type: 'address' }],
+    name: 'getPoolAdjustmentFlowRate',
+    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'member', internalType: 'address', type: 'address' },
+    ],
+    name: 'isMemberConnected',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'token',
+        internalType: 'contract ISuperfluidToken',
+        type: 'address',
+      },
+      { name: 'account', internalType: 'address', type: 'address' },
+    ],
+    name: 'isPool',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      {
+        name: 'pool',
+        internalType: 'contract ISuperfluidPool',
+        type: 'address',
+      },
+      { name: 'memberAddress', internalType: 'address', type: 'address' },
+      { name: 'newUnits', internalType: 'uint128', type: 'uint128' },
+      { name: 'userData', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'updateMemberUnits',
+    outputs: [{ name: 'success', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'nonpayable',
+  },
+  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'GDA_ADMIN_CANNOT_BE_POOL' },
+  { type: 'error', inputs: [], name: 'GDA_DISTRIBUTE_FOR_OTHERS_NOT_ALLOWED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'GDA_DISTRIBUTE_FROM_ANY_ADDRESS_NOT_ALLOWED',
+  },
+  { type: 'error', inputs: [], name: 'GDA_FLOW_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'GDA_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'GDA_NON_CRITICAL_SENDER' },
+  { type: 'error', inputs: [], name: 'GDA_NOT_POOL_ADMIN' },
+  { type: 'error', inputs: [], name: 'GDA_NO_NEGATIVE_FLOW_RATE' },
+  { type: 'error', inputs: [], name: 'GDA_NO_ZERO_ADDRESS_ADMIN' },
+  { type: 'error', inputs: [], name: 'GDA_ONLY_SUPER_TOKEN_POOL' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
+  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
+  },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
+  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
+  },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
+  {
+    type: 'error',
+    inputs: [],
+    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
+  },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
+  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
+] as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ */
+export const gdaAddress = {
+  1: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  10: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  56: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  100: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  137: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  8453: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  42161: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  42220: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  43113: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  43114: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  84532: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  534351: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  534352: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  11155111: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  11155420: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+  666666666: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
+} as const
+
+/**
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ */
+export const gdaConfig = { address: gdaAddress, abi: gdaAbi } as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// gdaAgreement
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
  * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
@@ -2422,7 +2834,7 @@ export const flowSchedulerConfig = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const gdaAbi = [
+export const gdaAgreementAbi = [
   {
     type: 'constructor',
     inputs: [
@@ -3197,7 +3609,7 @@ export const gdaAbi = [
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const gdaAddress = {
+export const gdaAgreementAddress = {
   1: '0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842',
   10: '0x68Ae17fa7a31b86F306c383277552fd4813b0d35',
   56: '0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2',
@@ -3234,421 +3646,9 @@ export const gdaAddress = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const gdaConfig = { address: gdaAddress, abi: gdaAbi } as const
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// gdaForwarder
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- */
-export const gdaForwarderAbi = [
-  {
-    type: 'constructor',
-    inputs: [
-      { name: 'host', internalType: 'contract ISuperfluid', type: 'address' },
-    ],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'memberAddress', internalType: 'address', type: 'address' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'claimAll',
-    outputs: [{ name: 'success', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'connectPool',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'admin', internalType: 'address', type: 'address' },
-      {
-        name: 'config',
-        internalType: 'struct PoolConfig',
-        type: 'tuple',
-        components: [
-          {
-            name: 'transferabilityForUnitsOwner',
-            internalType: 'bool',
-            type: 'bool',
-          },
-          {
-            name: 'distributionFromAnyAddress',
-            internalType: 'bool',
-            type: 'bool',
-          },
-        ],
-      },
-    ],
-    name: 'createPool',
-    outputs: [
-      { name: 'success', internalType: 'bool', type: 'bool' },
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-    ],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'disconnectPool',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'from', internalType: 'address', type: 'address' },
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'requestedAmount', internalType: 'uint256', type: 'uint256' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'distribute',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'from', internalType: 'address', type: 'address' },
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'requestedFlowRate', internalType: 'int96', type: 'int96' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'distributeFlow',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'contract ISuperfluidPool', type: 'address' },
-      { name: 'requestedAmount', internalType: 'uint256', type: 'uint256' },
-    ],
-    name: 'estimateDistributionActualAmount',
-    outputs: [
-      { name: 'actualAmount', internalType: 'uint256', type: 'uint256' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'contract ISuperfluidPool', type: 'address' },
-      { name: 'requestedFlowRate', internalType: 'int96', type: 'int96' },
-    ],
-    name: 'estimateFlowDistributionActualFlowRate',
-    outputs: [
-      { name: 'actualFlowRate', internalType: 'int96', type: 'int96' },
-      {
-        name: 'totalDistributionFlowRate',
-        internalType: 'int96',
-        type: 'int96',
-      },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'from', internalType: 'address', type: 'address' },
-      { name: 'to', internalType: 'contract ISuperfluidPool', type: 'address' },
-    ],
-    name: 'getFlowDistributionFlowRate',
-    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'account', internalType: 'address', type: 'address' },
-    ],
-    name: 'getNetFlow',
-    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-    ],
-    name: 'getPoolAdjustmentFlowInfo',
-    outputs: [
-      { name: '', internalType: 'address', type: 'address' },
-      { name: '', internalType: 'bytes32', type: 'bytes32' },
-      { name: '', internalType: 'int96', type: 'int96' },
-    ],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [{ name: 'pool', internalType: 'address', type: 'address' }],
-    name: 'getPoolAdjustmentFlowRate',
-    outputs: [{ name: '', internalType: 'int96', type: 'int96' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'member', internalType: 'address', type: 'address' },
-    ],
-    name: 'isMemberConnected',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'token',
-        internalType: 'contract ISuperfluidToken',
-        type: 'address',
-      },
-      { name: 'account', internalType: 'address', type: 'address' },
-    ],
-    name: 'isPool',
-    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'pool',
-        internalType: 'contract ISuperfluidPool',
-        type: 'address',
-      },
-      { name: 'memberAddress', internalType: 'address', type: 'address' },
-      { name: 'newUnits', internalType: 'uint128', type: 'uint128' },
-      { name: 'userData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'updateMemberUnits',
-    outputs: [{ name: 'success', internalType: 'bool', type: 'bool' }],
-    stateMutability: 'nonpayable',
-  },
-  { type: 'error', inputs: [], name: 'AGREEMENT_BASE_ONLY_HOST' },
-  { type: 'error', inputs: [], name: 'GDA_ADMIN_CANNOT_BE_POOL' },
-  { type: 'error', inputs: [], name: 'GDA_DISTRIBUTE_FOR_OTHERS_NOT_ALLOWED' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'GDA_DISTRIBUTE_FROM_ANY_ADDRESS_NOT_ALLOWED',
-  },
-  { type: 'error', inputs: [], name: 'GDA_FLOW_DOES_NOT_EXIST' },
-  { type: 'error', inputs: [], name: 'GDA_INSUFFICIENT_BALANCE' },
-  { type: 'error', inputs: [], name: 'GDA_NON_CRITICAL_SENDER' },
-  { type: 'error', inputs: [], name: 'GDA_NOT_POOL_ADMIN' },
-  { type: 'error', inputs: [], name: 'GDA_NO_NEGATIVE_FLOW_RATE' },
-  { type: 'error', inputs: [], name: 'GDA_NO_ZERO_ADDRESS_ADMIN' },
-  { type: 'error', inputs: [], name: 'GDA_ONLY_SUPER_TOKEN_POOL' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_INVALID_TIME' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_GDA' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NOT_POOL_ADMIN_OR_GDA' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_POOL_MEMBERS' },
-  { type: 'error', inputs: [], name: 'SUPERFLUID_POOL_NO_ZERO_ADDRESS' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPERFLUID_POOL_SELF_TRANSFER_NOT_ALLOWED',
-  },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPERFLUID_POOL_TRANSFER_UNITS_NOT_ALLOWED',
-  },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_ALREADY_EXISTS' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_AGREEMENT_DOES_NOT_EXIST' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_BURN_INSUFFICIENT_BALANCE' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_MOVE_INSUFFICIENT_BALANCE' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_HOST' },
-  { type: 'error', inputs: [], name: 'SF_TOKEN_ONLY_LISTED_AGREEMENT' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_FROM_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_APPROVE_TO_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_BURN_FROM_ZERO_ADDRESS' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPER_TOKEN_CALLER_IS_NOT_OPERATOR_FOR_HOLDER',
-  },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPER_TOKEN_INFLATIONARY_DEFLATIONARY_NOT_SUPPORTED',
-  },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_MINT_TO_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NFT_PROXY_ADDRESS_CHANGED' },
-  {
-    type: 'error',
-    inputs: [],
-    name: 'SUPER_TOKEN_NOT_ERC777_TOKENS_RECIPIENT',
-  },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_NO_UNDERLYING_TOKEN' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_ADMIN' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_GOV_OWNER' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_ONLY_SELF' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_FROM_ZERO_ADDRESS' },
-  { type: 'error', inputs: [], name: 'SUPER_TOKEN_TRANSFER_TO_ZERO_ADDRESS' },
-] as const
-
-/**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- */
-export const gdaForwarderAddress = {
-  1: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  10: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  56: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  100: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  137: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  8453: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  42161: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  42220: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  43113: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  43114: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  84532: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  534351: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  534352: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  11155111: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  11155420: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-  666666666: '0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08',
-} as const
-
-/**
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- */
-export const gdaForwarderConfig = {
-  address: gdaForwarderAddress,
-  abi: gdaForwarderAbi,
+export const gdaAgreementConfig = {
+  address: gdaAgreementAddress,
+  abi: gdaAgreementAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -5949,7 +5949,7 @@ export const hostAddress = {
 export const hostConfig = { address: hostAddress, abi: hostAbi } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// ida
+// idaAgreement
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
@@ -5970,7 +5970,7 @@ export const hostConfig = { address: hostAddress, abi: hostAbi } as const
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const idaAbi = [
+export const idaAgreementAbi = [
   {
     type: 'constructor',
     inputs: [
@@ -6727,7 +6727,7 @@ export const idaAbi = [
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const idaAddress = {
+export const idaAgreementAddress = {
   1: '0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d',
   10: '0xc4ce5118C3B20950ee288f086cb7FC166d222D4c',
   56: '0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d',
@@ -6764,7 +6764,10 @@ export const idaAddress = {
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const idaConfig = { address: idaAddress, abi: idaAbi } as const
+export const idaAgreementConfig = {
+  address: idaAgreementAddress,
+  abi: idaAgreementAbi,
+} as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // nativeAssetSuperToken
@@ -13564,22 +13567,22 @@ export const simulateBatchLiquidatorDeleteFlows =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const readCfa = /*#__PURE__*/ createReadContract({
   abi: cfaAbi,
@@ -13587,180 +13590,24 @@ export const readCfa = /*#__PURE__*/ createReadContract({
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"CFA_HOOK_GAS_LIMIT"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaCfaHookGasLimit = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'CFA_HOOK_GAS_LIMIT',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"DEFAULT_MINIMUM_DEPOSIT"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaDefaultMinimumDeposit = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'DEFAULT_MINIMUM_DEPOSIT',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"MAXIMUM_DEPOSIT"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaMaximumDeposit = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'MAXIMUM_DEPOSIT',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"MAXIMUM_FLOW_RATE"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaMaximumFlowRate = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'MAXIMUM_FLOW_RATE',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"addPermissions"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaAddPermissions = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'addPermissions',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"agreementType"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaAgreementType = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'agreementType',
-})
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getAccountFlowInfo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const readCfaGetAccountFlowInfo = /*#__PURE__*/ createReadContract({
   abi: cfaAbi,
@@ -13769,364 +13616,156 @@ export const readCfaGetAccountFlowInfo = /*#__PURE__*/ createReadContract({
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getCodeAddress"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getAccountFlowrate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const readCfaGetCodeAddress = /*#__PURE__*/ createReadContract({
+export const readCfaGetAccountFlowrate = /*#__PURE__*/ createReadContract({
   abi: cfaAbi,
   address: cfaAddress,
-  functionName: 'getCodeAddress',
+  functionName: 'getAccountFlowrate',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getDepositRequiredForFlowRate"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getBufferAmountByFlowrate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const readCfaGetDepositRequiredForFlowRate =
+export const readCfaGetBufferAmountByFlowrate =
   /*#__PURE__*/ createReadContract({
     abi: cfaAbi,
     address: cfaAddress,
-    functionName: 'getDepositRequiredForFlowRate',
+    functionName: 'getBufferAmountByFlowrate',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlow"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlowInfo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const readCfaGetFlow = /*#__PURE__*/ createReadContract({
+export const readCfaGetFlowInfo = /*#__PURE__*/ createReadContract({
   abi: cfaAbi,
   address: cfaAddress,
-  functionName: 'getFlow',
+  functionName: 'getFlowInfo',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlowByID"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlowOperatorPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const readCfaGetFlowById = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'getFlowByID',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlowOperatorData"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaGetFlowOperatorData = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'getFlowOperatorData',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlowOperatorDataByID"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaGetFlowOperatorDataById = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'getFlowOperatorDataByID',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getMaximumFlowRateFromDeposit"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaGetMaximumFlowRateFromDeposit =
+export const readCfaGetFlowOperatorPermissions =
   /*#__PURE__*/ createReadContract({
     abi: cfaAbi,
     address: cfaAddress,
-    functionName: 'getMaximumFlowRateFromDeposit',
+    functionName: 'getFlowOperatorPermissions',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getNetFlow"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"getFlowrate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const readCfaGetNetFlow = /*#__PURE__*/ createReadContract({
+export const readCfaGetFlowrate = /*#__PURE__*/ createReadContract({
   abi: cfaAbi,
   address: cfaAddress,
-  functionName: 'getNetFlow',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"isPatricianPeriod"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaIsPatricianPeriod = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'isPatricianPeriod',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"isPatricianPeriodNow"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaIsPatricianPeriodNow = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'isPatricianPeriodNow',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"proxiableUUID"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaProxiableUuid = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'proxiableUUID',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"realtimeBalanceOf"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaRealtimeBalanceOf = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'realtimeBalanceOf',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"removePermissions"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const readCfaRemovePermissions = /*#__PURE__*/ createReadContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'removePermissions',
+  functionName: 'getFlowrate',
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const writeCfa = /*#__PURE__*/ createWriteContract({
   abi: cfaAbi,
@@ -14134,77 +13773,24 @@ export const writeCfa = /*#__PURE__*/ createWriteContract({
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"authorizeFlowOperatorWithFullControl"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaAuthorizeFlowOperatorWithFullControl =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'authorizeFlowOperatorWithFullControl',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"castrate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaCastrate = /*#__PURE__*/ createWriteContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'castrate',
-})
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"createFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const writeCfaCreateFlow = /*#__PURE__*/ createWriteContract({
   abi: cfaAbi,
@@ -14213,104 +13799,24 @@ export const writeCfaCreateFlow = /*#__PURE__*/ createWriteContract({
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"createFlowByOperator"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaCreateFlowByOperator = /*#__PURE__*/ createWriteContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'createFlowByOperator',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"decreaseFlowRateAllowance"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaDecreaseFlowRateAllowance =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'decreaseFlowRateAllowance',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"decreaseFlowRateAllowanceWithPermissions"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaDecreaseFlowRateAllowanceWithPermissions =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'decreaseFlowRateAllowanceWithPermissions',
-  })
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"deleteFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const writeCfaDeleteFlow = /*#__PURE__*/ createWriteContract({
   abi: cfaAbi,
@@ -14319,157 +13825,128 @@ export const writeCfaDeleteFlow = /*#__PURE__*/ createWriteContract({
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"deleteFlowByOperator"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"grantPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const writeCfaDeleteFlowByOperator = /*#__PURE__*/ createWriteContract({
+export const writeCfaGrantPermissions = /*#__PURE__*/ createWriteContract({
   abi: cfaAbi,
   address: cfaAddress,
-  functionName: 'deleteFlowByOperator',
+  functionName: 'grantPermissions',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"increaseFlowRateAllowance"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"revokePermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const writeCfaIncreaseFlowRateAllowance =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'increaseFlowRateAllowance',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"increaseFlowRateAllowanceWithPermissions"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaIncreaseFlowRateAllowanceWithPermissions =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'increaseFlowRateAllowanceWithPermissions',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"revokeFlowOperatorWithFullControl"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaRevokeFlowOperatorWithFullControl =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'revokeFlowOperatorWithFullControl',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateCode"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaUpdateCode = /*#__PURE__*/ createWriteContract({
+export const writeCfaRevokePermissions = /*#__PURE__*/ createWriteContract({
   abi: cfaAbi,
   address: cfaAddress,
-  functionName: 'updateCode',
+  functionName: 'revokePermissions',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"setFlowrate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const writeCfaSetFlowrate = /*#__PURE__*/ createWriteContract({
+  abi: cfaAbi,
+  address: cfaAddress,
+  functionName: 'setFlowrate',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"setFlowrateFrom"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const writeCfaSetFlowrateFrom = /*#__PURE__*/ createWriteContract({
+  abi: cfaAbi,
+  address: cfaAddress,
+  functionName: 'setFlowrateFrom',
 })
 
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const writeCfaUpdateFlow = /*#__PURE__*/ createWriteContract({
   abi: cfaAbi,
@@ -14478,50 +13955,24 @@ export const writeCfaUpdateFlow = /*#__PURE__*/ createWriteContract({
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateFlowByOperator"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const writeCfaUpdateFlowByOperator = /*#__PURE__*/ createWriteContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'updateFlowByOperator',
-})
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateFlowOperatorPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const writeCfaUpdateFlowOperatorPermissions =
   /*#__PURE__*/ createWriteContract({
@@ -14533,22 +13984,22 @@ export const writeCfaUpdateFlowOperatorPermissions =
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const simulateCfa = /*#__PURE__*/ createSimulateContract({
   abi: cfaAbi,
@@ -14556,77 +14007,24 @@ export const simulateCfa = /*#__PURE__*/ createSimulateContract({
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"authorizeFlowOperatorWithFullControl"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaAuthorizeFlowOperatorWithFullControl =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'authorizeFlowOperatorWithFullControl',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"castrate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaCastrate = /*#__PURE__*/ createSimulateContract({
-  abi: cfaAbi,
-  address: cfaAddress,
-  functionName: 'castrate',
-})
-
-/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"createFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const simulateCfaCreateFlow = /*#__PURE__*/ createSimulateContract({
   abi: cfaAbi,
@@ -14635,105 +14033,24 @@ export const simulateCfaCreateFlow = /*#__PURE__*/ createSimulateContract({
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"createFlowByOperator"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaCreateFlowByOperator =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'createFlowByOperator',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"decreaseFlowRateAllowance"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaDecreaseFlowRateAllowance =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'decreaseFlowRateAllowance',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"decreaseFlowRateAllowanceWithPermissions"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaDecreaseFlowRateAllowanceWithPermissions =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'decreaseFlowRateAllowanceWithPermissions',
-  })
-
-/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"deleteFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const simulateCfaDeleteFlow = /*#__PURE__*/ createSimulateContract({
   abi: cfaAbi,
@@ -14742,158 +14059,127 @@ export const simulateCfaDeleteFlow = /*#__PURE__*/ createSimulateContract({
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"deleteFlowByOperator"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"grantPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const simulateCfaDeleteFlowByOperator =
+export const simulateCfaGrantPermissions = /*#__PURE__*/ createSimulateContract(
+  { abi: cfaAbi, address: cfaAddress, functionName: 'grantPermissions' },
+)
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"revokePermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const simulateCfaRevokePermissions =
   /*#__PURE__*/ createSimulateContract({
     abi: cfaAbi,
     address: cfaAddress,
-    functionName: 'deleteFlowByOperator',
+    functionName: 'revokePermissions',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"increaseFlowRateAllowance"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"setFlowrate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
-export const simulateCfaIncreaseFlowRateAllowance =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'increaseFlowRateAllowance',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"increaseFlowRateAllowanceWithPermissions"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaIncreaseFlowRateAllowanceWithPermissions =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'increaseFlowRateAllowanceWithPermissions',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"revokeFlowOperatorWithFullControl"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaRevokeFlowOperatorWithFullControl =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'revokeFlowOperatorWithFullControl',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateCode"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaUpdateCode = /*#__PURE__*/ createSimulateContract({
+export const simulateCfaSetFlowrate = /*#__PURE__*/ createSimulateContract({
   abi: cfaAbi,
   address: cfaAddress,
-  functionName: 'updateCode',
+  functionName: 'setFlowrate',
+})
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"setFlowrateFrom"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ */
+export const simulateCfaSetFlowrateFrom = /*#__PURE__*/ createSimulateContract({
+  abi: cfaAbi,
+  address: cfaAddress,
+  functionName: 'setFlowrateFrom',
 })
 
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const simulateCfaUpdateFlow = /*#__PURE__*/ createSimulateContract({
   abi: cfaAbi,
@@ -14902,51 +14188,24 @@ export const simulateCfaUpdateFlow = /*#__PURE__*/ createSimulateContract({
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateFlowByOperator"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const simulateCfaUpdateFlowByOperator =
-  /*#__PURE__*/ createSimulateContract({
-    abi: cfaAbi,
-    address: cfaAddress,
-    functionName: 'updateFlowByOperator',
-  })
-
-/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAbi}__ and `functionName` set to `"updateFlowOperatorPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
  */
 export const simulateCfaUpdateFlowOperatorPermissions =
   /*#__PURE__*/ createSimulateContract({
@@ -14956,7 +14215,7 @@ export const simulateCfaUpdateFlowOperatorPermissions =
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAbi}__
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
@@ -14975,13 +14234,13 @@ export const simulateCfaUpdateFlowOperatorPermissions =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const watchCfaEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: cfaAbi,
-  address: cfaAddress,
+export const readCfaAgreement = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
 })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAbi}__ and `eventName` set to `"CodeUpdated"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"CFA_HOOK_GAS_LIMIT"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
@@ -15000,14 +14259,16 @@ export const watchCfaEvent = /*#__PURE__*/ createWatchContractEvent({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const watchCfaCodeUpdatedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: cfaAbi,
-  address: cfaAddress,
-  eventName: 'CodeUpdated',
-})
+export const readCfaAgreementCfaHookGasLimit = /*#__PURE__*/ createReadContract(
+  {
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'CFA_HOOK_GAS_LIMIT',
+  },
+)
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAbi}__ and `eventName` set to `"FlowOperatorUpdated"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"DEFAULT_MINIMUM_DEPOSIT"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
@@ -15026,753 +14287,1505 @@ export const watchCfaCodeUpdatedEvent = /*#__PURE__*/ createWatchContractEvent({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const watchCfaFlowOperatorUpdatedEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: cfaAbi,
-    address: cfaAddress,
-    eventName: 'FlowOperatorUpdated',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAbi}__ and `eventName` set to `"FlowUpdated"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const watchCfaFlowUpdatedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: cfaAbi,
-  address: cfaAddress,
-  eventName: 'FlowUpdated',
-})
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAbi}__ and `eventName` set to `"FlowUpdatedExtension"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const watchCfaFlowUpdatedExtensionEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: cfaAbi,
-    address: cfaAddress,
-    eventName: 'FlowUpdatedExtension',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAbi}__ and `eventName` set to `"Initialized"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
- */
-export const watchCfaInitializedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: cfaAbi,
-  address: cfaAddress,
-  eventName: 'Initialized',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const readCfaForwarder = /*#__PURE__*/ createReadContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"getAccountFlowInfo"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const readCfaForwarderGetAccountFlowInfo =
+export const readCfaAgreementDefaultMinimumDeposit =
   /*#__PURE__*/ createReadContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'DEFAULT_MINIMUM_DEPOSIT',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"MAXIMUM_DEPOSIT"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementMaximumDeposit = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'MAXIMUM_DEPOSIT',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"MAXIMUM_FLOW_RATE"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementMaximumFlowRate = /*#__PURE__*/ createReadContract(
+  {
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'MAXIMUM_FLOW_RATE',
+  },
+)
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"addPermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementAddPermissions = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'addPermissions',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"agreementType"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementAgreementType = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'agreementType',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getAccountFlowInfo"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementGetAccountFlowInfo =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
     functionName: 'getAccountFlowInfo',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"getAccountFlowrate"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getCodeAddress"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const readCfaForwarderGetAccountFlowrate =
-  /*#__PURE__*/ createReadContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'getAccountFlowrate',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"getBufferAmountByFlowrate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const readCfaForwarderGetBufferAmountByFlowrate =
-  /*#__PURE__*/ createReadContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'getBufferAmountByFlowrate',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"getFlowInfo"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const readCfaForwarderGetFlowInfo = /*#__PURE__*/ createReadContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
-  functionName: 'getFlowInfo',
+export const readCfaAgreementGetCodeAddress = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'getCodeAddress',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"getFlowOperatorPermissions"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getDepositRequiredForFlowRate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const readCfaForwarderGetFlowOperatorPermissions =
+export const readCfaAgreementGetDepositRequiredForFlowRate =
   /*#__PURE__*/ createReadContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'getFlowOperatorPermissions',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'getDepositRequiredForFlowRate',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"getFlowrate"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const readCfaForwarderGetFlowrate = /*#__PURE__*/ createReadContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
-  functionName: 'getFlowrate',
+export const readCfaAgreementGetFlow = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'getFlow',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getFlowByID"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarder = /*#__PURE__*/ createWriteContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
+export const readCfaAgreementGetFlowById = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'getFlowByID',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"createFlow"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getFlowOperatorData"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderCreateFlow = /*#__PURE__*/ createWriteContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
+export const readCfaAgreementGetFlowOperatorData =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'getFlowOperatorData',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getFlowOperatorDataByID"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementGetFlowOperatorDataById =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'getFlowOperatorDataByID',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getMaximumFlowRateFromDeposit"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementGetMaximumFlowRateFromDeposit =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'getMaximumFlowRateFromDeposit',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"getNetFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementGetNetFlow = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'getNetFlow',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"isPatricianPeriod"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementIsPatricianPeriod =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'isPatricianPeriod',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"isPatricianPeriodNow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementIsPatricianPeriodNow =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'isPatricianPeriodNow',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"proxiableUUID"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementProxiableUuid = /*#__PURE__*/ createReadContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'proxiableUUID',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"realtimeBalanceOf"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementRealtimeBalanceOf =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'realtimeBalanceOf',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"removePermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const readCfaAgreementRemovePermissions =
+  /*#__PURE__*/ createReadContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'removePermissions',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreement = /*#__PURE__*/ createWriteContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"authorizeFlowOperatorWithFullControl"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementAuthorizeFlowOperatorWithFullControl =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'authorizeFlowOperatorWithFullControl',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"castrate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementCastrate = /*#__PURE__*/ createWriteContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'castrate',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"createFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementCreateFlow = /*#__PURE__*/ createWriteContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
   functionName: 'createFlow',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"deleteFlow"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"createFlowByOperator"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderDeleteFlow = /*#__PURE__*/ createWriteContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
+export const writeCfaAgreementCreateFlowByOperator =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'createFlowByOperator',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"decreaseFlowRateAllowance"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementDecreaseFlowRateAllowance =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'decreaseFlowRateAllowance',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"decreaseFlowRateAllowanceWithPermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementDecreaseFlowRateAllowanceWithPermissions =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'decreaseFlowRateAllowanceWithPermissions',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"deleteFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementDeleteFlow = /*#__PURE__*/ createWriteContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
   functionName: 'deleteFlow',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"grantPermissions"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"deleteFlowByOperator"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderGrantPermissions =
+export const writeCfaAgreementDeleteFlowByOperator =
   /*#__PURE__*/ createWriteContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'grantPermissions',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'deleteFlowByOperator',
   })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"revokePermissions"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"increaseFlowRateAllowance"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderRevokePermissions =
+export const writeCfaAgreementIncreaseFlowRateAllowance =
   /*#__PURE__*/ createWriteContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'revokePermissions',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'increaseFlowRateAllowance',
   })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"setFlowrate"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"increaseFlowRateAllowanceWithPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderSetFlowrate = /*#__PURE__*/ createWriteContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
-  functionName: 'setFlowrate',
+export const writeCfaAgreementIncreaseFlowRateAllowanceWithPermissions =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'increaseFlowRateAllowanceWithPermissions',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"revokeFlowOperatorWithFullControl"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementRevokeFlowOperatorWithFullControl =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'revokeFlowOperatorWithFullControl',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateCode"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementUpdateCode = /*#__PURE__*/ createWriteContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+  functionName: 'updateCode',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"setFlowrateFrom"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderSetFlowrateFrom =
-  /*#__PURE__*/ createWriteContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'setFlowrateFrom',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"updateFlow"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- */
-export const writeCfaForwarderUpdateFlow = /*#__PURE__*/ createWriteContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
+export const writeCfaAgreementUpdateFlow = /*#__PURE__*/ createWriteContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
   functionName: 'updateFlow',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"updateFlowOperatorPermissions"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateFlowByOperator"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const writeCfaForwarderUpdateFlowOperatorPermissions =
+export const writeCfaAgreementUpdateFlowByOperator =
   /*#__PURE__*/ createWriteContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'updateFlowByOperator',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateFlowOperatorPermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const writeCfaAgreementUpdateFlowOperatorPermissions =
+  /*#__PURE__*/ createWriteContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
     functionName: 'updateFlowOperatorPermissions',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarder = /*#__PURE__*/ createSimulateContract({
-  abi: cfaForwarderAbi,
-  address: cfaForwarderAddress,
+export const simulateCfaAgreement = /*#__PURE__*/ createSimulateContract({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"createFlow"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"authorizeFlowOperatorWithFullControl"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderCreateFlow =
+export const simulateCfaAgreementAuthorizeFlowOperatorWithFullControl =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'authorizeFlowOperatorWithFullControl',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"castrate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementCastrate =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'castrate',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"createFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementCreateFlow =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
     functionName: 'createFlow',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"deleteFlow"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"createFlowByOperator"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderDeleteFlow =
+export const simulateCfaAgreementCreateFlowByOperator =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'createFlowByOperator',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"decreaseFlowRateAllowance"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementDecreaseFlowRateAllowance =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'decreaseFlowRateAllowance',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"decreaseFlowRateAllowanceWithPermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementDecreaseFlowRateAllowanceWithPermissions =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'decreaseFlowRateAllowanceWithPermissions',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"deleteFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementDeleteFlow =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
     functionName: 'deleteFlow',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"grantPermissions"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"deleteFlowByOperator"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderGrantPermissions =
+export const simulateCfaAgreementDeleteFlowByOperator =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'grantPermissions',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'deleteFlowByOperator',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"revokePermissions"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"increaseFlowRateAllowance"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderRevokePermissions =
+export const simulateCfaAgreementIncreaseFlowRateAllowance =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'revokePermissions',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'increaseFlowRateAllowance',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"setFlowrate"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"increaseFlowRateAllowanceWithPermissions"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderSetFlowrate =
+export const simulateCfaAgreementIncreaseFlowRateAllowanceWithPermissions =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'setFlowrate',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'increaseFlowRateAllowanceWithPermissions',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"setFlowrateFrom"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"revokeFlowOperatorWithFullControl"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderSetFlowrateFrom =
+export const simulateCfaAgreementRevokeFlowOperatorWithFullControl =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
-    functionName: 'setFlowrateFrom',
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'revokeFlowOperatorWithFullControl',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"updateFlow"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateCode"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderUpdateFlow =
+export const simulateCfaAgreementUpdateCode =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'updateCode',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementUpdateFlow =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
     functionName: 'updateFlow',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaForwarderAbi}__ and `functionName` set to `"updateFlowOperatorPermissions"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateFlowByOperator"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x2CDd45c5182602a36d391F7F16DD9f8386C3bD8D)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xcfA132E353cB4E398080B9700609bb008eceB125)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
  */
-export const simulateCfaForwarderUpdateFlowOperatorPermissions =
+export const simulateCfaAgreementUpdateFlowByOperator =
   /*#__PURE__*/ createSimulateContract({
-    abi: cfaForwarderAbi,
-    address: cfaForwarderAddress,
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    functionName: 'updateFlowByOperator',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link cfaAgreementAbi}__ and `functionName` set to `"updateFlowOperatorPermissions"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const simulateCfaAgreementUpdateFlowOperatorPermissions =
+  /*#__PURE__*/ createSimulateContract({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
     functionName: 'updateFlowOperatorPermissions',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAgreementAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const watchCfaAgreementEvent = /*#__PURE__*/ createWatchContractEvent({
+  abi: cfaAgreementAbi,
+  address: cfaAgreementAddress,
+})
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAgreementAbi}__ and `eventName` set to `"CodeUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const watchCfaAgreementCodeUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    eventName: 'CodeUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAgreementAbi}__ and `eventName` set to `"FlowOperatorUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const watchCfaAgreementFlowOperatorUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    eventName: 'FlowOperatorUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAgreementAbi}__ and `eventName` set to `"FlowUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const watchCfaAgreementFlowUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    eventName: 'FlowUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAgreementAbi}__ and `eventName` set to `"FlowUpdatedExtension"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const watchCfaAgreementFlowUpdatedExtensionEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    eventName: 'FlowUpdatedExtension',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link cfaAgreementAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x2844c1BBdA121E9E43105630b9C8310e5c72744b)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x204C6f131bb7F258b2Ea1593f5309911d8E458eD)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x49c38108870e74Cb9420C0991a85D3edd6363F75)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6EeE6060f715257b970700bc2656De21dEdF074C)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x19ba78B9cDB05A877718841c574325fdB53601bb)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x731FdBB12944973B500518aea61942381d7e240D)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x9d369e78e1a682cE0F8d9aD849BeA4FE1c3bD3Ad)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x16843ac25Ccc58Aa7960ba05f61cBB17b36b130A)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6946c5B38Ffea373b0a2340b4AEf0De8F6782e58)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0xbc46B4Aa41c055578306820013d4B65fff42711E)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0xB3bcD6da1eeB6c97258B3806A853A6dcD3B6C00c)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6836F23d6171D74Ef62FcF776655aBcD2bcd62Ef)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x8a3170AdbC67233196371226141736E4151e7C26)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x82cc052d1b17aC554a22A88D5876B56c6b51e95c)
+ */
+export const watchCfaAgreementInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: cfaAgreementAbi,
+    address: cfaAgreementAddress,
+    eventName: 'Initialized',
   })
 
 /**
@@ -16328,22 +16341,22 @@ export const watchFlowSchedulerFlowScheduleDeletedEvent =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGda = /*#__PURE__*/ createReadContract({
   abi: gdaAbi,
@@ -16351,104 +16364,24 @@ export const readGda = /*#__PURE__*/ createReadContract({
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"SLOTS_BITMAP_LIBRARY_ADDRESS"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaSlotsBitmapLibraryAddress =
-  /*#__PURE__*/ createReadContract({
-    abi: gdaAbi,
-    address: gdaAddress,
-    functionName: 'SLOTS_BITMAP_LIBRARY_ADDRESS',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"SUPERFLUID_POOL_DEPLOYER_ADDRESS"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaSuperfluidPoolDeployerAddress =
-  /*#__PURE__*/ createReadContract({
-    abi: gdaAbi,
-    address: gdaAddress,
-    functionName: 'SUPERFLUID_POOL_DEPLOYER_ADDRESS',
-  })
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"agreementType"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaAgreementType = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'agreementType',
-})
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"estimateDistributionActualAmount"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaEstimateDistributionActualAmount =
   /*#__PURE__*/ createReadContract({
@@ -16460,22 +16393,22 @@ export const readGdaEstimateDistributionActualAmount =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"estimateFlowDistributionActualFlowRate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaEstimateFlowDistributionActualFlowRate =
   /*#__PURE__*/ createReadContract({
@@ -16485,128 +16418,51 @@ export const readGdaEstimateFlowDistributionActualFlowRate =
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getAccountFlowInfo"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getFlowDistributionFlowRate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
-export const readGdaGetAccountFlowInfo = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'getAccountFlowInfo',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getCodeAddress"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaGetCodeAddress = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'getCodeAddress',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getFlow"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaGetFlow = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'getFlow',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getFlowRate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaGetFlowRate = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'getFlowRate',
-})
+export const readGdaGetFlowDistributionFlowRate =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAbi,
+    address: gdaAddress,
+    functionName: 'getFlowDistributionFlowRate',
+  })
 
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getNetFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaGetNetFlow = /*#__PURE__*/ createReadContract({
   abi: gdaAbi,
@@ -16617,22 +16473,22 @@ export const readGdaGetNetFlow = /*#__PURE__*/ createReadContract({
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getPoolAdjustmentFlowInfo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaGetPoolAdjustmentFlowInfo =
   /*#__PURE__*/ createReadContract({
@@ -16644,22 +16500,22 @@ export const readGdaGetPoolAdjustmentFlowInfo =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"getPoolAdjustmentFlowRate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaGetPoolAdjustmentFlowRate =
   /*#__PURE__*/ createReadContract({
@@ -16671,22 +16527,22 @@ export const readGdaGetPoolAdjustmentFlowRate =
 /**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"isMemberConnected"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaIsMemberConnected = /*#__PURE__*/ createReadContract({
   abi: gdaAbi,
@@ -16695,76 +16551,24 @@ export const readGdaIsMemberConnected = /*#__PURE__*/ createReadContract({
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"isPatricianPeriod"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaIsPatricianPeriod = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'isPatricianPeriod',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"isPatricianPeriodNow"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaIsPatricianPeriodNow = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'isPatricianPeriodNow',
-})
-
-/**
  * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"isPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const readGdaIsPool = /*#__PURE__*/ createReadContract({
   abi: gdaAbi,
@@ -16773,128 +16577,24 @@ export const readGdaIsPool = /*#__PURE__*/ createReadContract({
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"proxiableUUID"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaProxiableUuid = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'proxiableUUID',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"realtimeBalanceOf"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaRealtimeBalanceOf = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'realtimeBalanceOf',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"realtimeBalanceOfNow"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaRealtimeBalanceOfNow = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'realtimeBalanceOfNow',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"superfluidPoolBeacon"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const readGdaSuperfluidPoolBeacon = /*#__PURE__*/ createReadContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'superfluidPoolBeacon',
-})
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGda = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -16902,77 +16602,24 @@ export const writeGda = /*#__PURE__*/ createWriteContract({
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"appendIndexUpdateByPool"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const writeGdaAppendIndexUpdateByPool =
-  /*#__PURE__*/ createWriteContract({
-    abi: gdaAbi,
-    address: gdaAddress,
-    functionName: 'appendIndexUpdateByPool',
-  })
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"castrate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const writeGdaCastrate = /*#__PURE__*/ createWriteContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'castrate',
-})
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"claimAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaClaimAll = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -16983,22 +16630,22 @@ export const writeGdaClaimAll = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"connectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaConnectPool = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -17009,22 +16656,22 @@ export const writeGdaConnectPool = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"createPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaCreatePool = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -17035,22 +16682,22 @@ export const writeGdaCreatePool = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"disconnectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaDisconnectPool = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -17061,22 +16708,22 @@ export const writeGdaDisconnectPool = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"distribute"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaDistribute = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -17087,22 +16734,22 @@ export const writeGdaDistribute = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"distributeFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaDistributeFlow = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -17111,76 +16758,24 @@ export const writeGdaDistributeFlow = /*#__PURE__*/ createWriteContract({
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"poolSettleClaim"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const writeGdaPoolSettleClaim = /*#__PURE__*/ createWriteContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'poolSettleClaim',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"updateCode"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const writeGdaUpdateCode = /*#__PURE__*/ createWriteContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'updateCode',
-})
-
-/**
  * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"updateMemberUnits"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const writeGdaUpdateMemberUnits = /*#__PURE__*/ createWriteContract({
   abi: gdaAbi,
@@ -17191,22 +16786,22 @@ export const writeGdaUpdateMemberUnits = /*#__PURE__*/ createWriteContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGda = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17214,77 +16809,24 @@ export const simulateGda = /*#__PURE__*/ createSimulateContract({
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"appendIndexUpdateByPool"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const simulateGdaAppendIndexUpdateByPool =
-  /*#__PURE__*/ createSimulateContract({
-    abi: gdaAbi,
-    address: gdaAddress,
-    functionName: 'appendIndexUpdateByPool',
-  })
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"castrate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const simulateGdaCastrate = /*#__PURE__*/ createSimulateContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'castrate',
-})
-
-/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"claimAll"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaClaimAll = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17295,22 +16837,22 @@ export const simulateGdaClaimAll = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"connectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaConnectPool = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17321,22 +16863,22 @@ export const simulateGdaConnectPool = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"createPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaCreatePool = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17347,22 +16889,22 @@ export const simulateGdaCreatePool = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"disconnectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaDisconnectPool = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17373,22 +16915,22 @@ export const simulateGdaDisconnectPool = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"distribute"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaDistribute = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17399,22 +16941,22 @@ export const simulateGdaDistribute = /*#__PURE__*/ createSimulateContract({
 /**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"distributeFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaDistributeFlow = /*#__PURE__*/ createSimulateContract({
   abi: gdaAbi,
@@ -17423,76 +16965,24 @@ export const simulateGdaDistributeFlow = /*#__PURE__*/ createSimulateContract({
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"poolSettleClaim"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const simulateGdaPoolSettleClaim = /*#__PURE__*/ createSimulateContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'poolSettleClaim',
-})
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"updateCode"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const simulateGdaUpdateCode = /*#__PURE__*/ createSimulateContract({
-  abi: gdaAbi,
-  address: gdaAddress,
-  functionName: 'updateCode',
-})
-
-/**
  * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAbi}__ and `functionName` set to `"updateMemberUnits"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
  */
 export const simulateGdaUpdateMemberUnits =
   /*#__PURE__*/ createSimulateContract({
@@ -17502,7 +16992,7 @@ export const simulateGdaUpdateMemberUnits =
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
@@ -17521,13 +17011,13 @@ export const simulateGdaUpdateMemberUnits =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const watchGdaEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: gdaAbi,
-  address: gdaAddress,
+export const readGdaAgreement = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
 })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"BufferAdjusted"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"SLOTS_BITMAP_LIBRARY_ADDRESS"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
@@ -17546,833 +17036,1369 @@ export const watchGdaEvent = /*#__PURE__*/ createWatchContractEvent({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const watchGdaBufferAdjustedEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: gdaAbi,
-    address: gdaAddress,
-    eventName: 'BufferAdjusted',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"CodeUpdated"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const watchGdaCodeUpdatedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: gdaAbi,
-  address: gdaAddress,
-  eventName: 'CodeUpdated',
-})
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"FlowDistributionUpdated"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const watchGdaFlowDistributionUpdatedEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: gdaAbi,
-    address: gdaAddress,
-    eventName: 'FlowDistributionUpdated',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"Initialized"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const watchGdaInitializedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: gdaAbi,
-  address: gdaAddress,
-  eventName: 'Initialized',
-})
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"InstantDistributionUpdated"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const watchGdaInstantDistributionUpdatedEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: gdaAbi,
-    address: gdaAddress,
-    eventName: 'InstantDistributionUpdated',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"PoolConnectionUpdated"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const watchGdaPoolConnectionUpdatedEvent =
-  /*#__PURE__*/ createWatchContractEvent({
-    abi: gdaAbi,
-    address: gdaAddress,
-    eventName: 'PoolConnectionUpdated',
-  })
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAbi}__ and `eventName` set to `"PoolCreated"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
- */
-export const watchGdaPoolCreatedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: gdaAbi,
-  address: gdaAddress,
-  eventName: 'PoolCreated',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- */
-export const readGdaForwarder = /*#__PURE__*/ createReadContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"estimateDistributionActualAmount"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- */
-export const readGdaForwarderEstimateDistributionActualAmount =
+export const readGdaAgreementSlotsBitmapLibraryAddress =
   /*#__PURE__*/ createReadContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'SLOTS_BITMAP_LIBRARY_ADDRESS',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"SUPERFLUID_POOL_DEPLOYER_ADDRESS"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementSuperfluidPoolDeployerAddress =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'SUPERFLUID_POOL_DEPLOYER_ADDRESS',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"agreementType"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementAgreementType = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'agreementType',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"estimateDistributionActualAmount"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementEstimateDistributionActualAmount =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'estimateDistributionActualAmount',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"estimateFlowDistributionActualFlowRate"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"estimateFlowDistributionActualFlowRate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderEstimateFlowDistributionActualFlowRate =
+export const readGdaAgreementEstimateFlowDistributionActualFlowRate =
   /*#__PURE__*/ createReadContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'estimateFlowDistributionActualFlowRate',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"getFlowDistributionFlowRate"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getAccountFlowInfo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderGetFlowDistributionFlowRate =
+export const readGdaAgreementGetAccountFlowInfo =
   /*#__PURE__*/ createReadContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
-    functionName: 'getFlowDistributionFlowRate',
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'getAccountFlowInfo',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"getNetFlow"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getCodeAddress"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderGetNetFlow = /*#__PURE__*/ createReadContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const readGdaAgreementGetCodeAddress = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'getCodeAddress',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementGetFlow = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'getFlow',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getFlowRate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementGetFlowRate = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'getFlowRate',
+})
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getNetFlow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementGetNetFlow = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
   functionName: 'getNetFlow',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"getPoolAdjustmentFlowInfo"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getPoolAdjustmentFlowInfo"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderGetPoolAdjustmentFlowInfo =
+export const readGdaAgreementGetPoolAdjustmentFlowInfo =
   /*#__PURE__*/ createReadContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'getPoolAdjustmentFlowInfo',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"getPoolAdjustmentFlowRate"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"getPoolAdjustmentFlowRate"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderGetPoolAdjustmentFlowRate =
+export const readGdaAgreementGetPoolAdjustmentFlowRate =
   /*#__PURE__*/ createReadContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'getPoolAdjustmentFlowRate',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"isMemberConnected"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"isMemberConnected"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderIsMemberConnected =
+export const readGdaAgreementIsMemberConnected =
   /*#__PURE__*/ createReadContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'isMemberConnected',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"isPool"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"isPatricianPeriod"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const readGdaForwarderIsPool = /*#__PURE__*/ createReadContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const readGdaAgreementIsPatricianPeriod =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'isPatricianPeriod',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"isPatricianPeriodNow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementIsPatricianPeriodNow =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'isPatricianPeriodNow',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"isPool"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementIsPool = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
   functionName: 'isPool',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"proxiableUUID"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarder = /*#__PURE__*/ createWriteContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const readGdaAgreementProxiableUuid = /*#__PURE__*/ createReadContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'proxiableUUID',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"claimAll"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"realtimeBalanceOf"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderClaimAll = /*#__PURE__*/ createWriteContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const readGdaAgreementRealtimeBalanceOf =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'realtimeBalanceOf',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"realtimeBalanceOfNow"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementRealtimeBalanceOfNow =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'realtimeBalanceOfNow',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"superfluidPoolBeacon"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const readGdaAgreementSuperfluidPoolBeacon =
+  /*#__PURE__*/ createReadContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'superfluidPoolBeacon',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const writeGdaAgreement = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"appendIndexUpdateByPool"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const writeGdaAgreementAppendIndexUpdateByPool =
+  /*#__PURE__*/ createWriteContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'appendIndexUpdateByPool',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"castrate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const writeGdaAgreementCastrate = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'castrate',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"claimAll"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const writeGdaAgreementClaimAll = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
   functionName: 'claimAll',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"connectPool"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"connectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderConnectPool = /*#__PURE__*/ createWriteContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const writeGdaAgreementConnectPool = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
   functionName: 'connectPool',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"createPool"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"createPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderCreatePool = /*#__PURE__*/ createWriteContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const writeGdaAgreementCreatePool = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
   functionName: 'createPool',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"disconnectPool"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"disconnectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderDisconnectPool =
+export const writeGdaAgreementDisconnectPool =
   /*#__PURE__*/ createWriteContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'disconnectPool',
   })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"distribute"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"distribute"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderDistribute = /*#__PURE__*/ createWriteContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const writeGdaAgreementDistribute = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
   functionName: 'distribute',
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"distributeFlow"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"distributeFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderDistributeFlow =
+export const writeGdaAgreementDistributeFlow =
   /*#__PURE__*/ createWriteContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'distributeFlow',
   })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"updateMemberUnits"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"poolSettleClaim"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const writeGdaForwarderUpdateMemberUnits =
+export const writeGdaAgreementPoolSettleClaim =
   /*#__PURE__*/ createWriteContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'poolSettleClaim',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"updateCode"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const writeGdaAgreementUpdateCode = /*#__PURE__*/ createWriteContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+  functionName: 'updateCode',
+})
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"updateMemberUnits"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const writeGdaAgreementUpdateMemberUnits =
+  /*#__PURE__*/ createWriteContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'updateMemberUnits',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarder = /*#__PURE__*/ createSimulateContract({
-  abi: gdaForwarderAbi,
-  address: gdaForwarderAddress,
+export const simulateGdaAgreement = /*#__PURE__*/ createSimulateContract({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"claimAll"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"appendIndexUpdateByPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderClaimAll =
+export const simulateGdaAgreementAppendIndexUpdateByPool =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'appendIndexUpdateByPool',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"castrate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const simulateGdaAgreementCastrate =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'castrate',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"claimAll"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const simulateGdaAgreementClaimAll =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'claimAll',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"connectPool"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"connectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderConnectPool =
+export const simulateGdaAgreementConnectPool =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'connectPool',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"createPool"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"createPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderCreatePool =
+export const simulateGdaAgreementCreatePool =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'createPool',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"disconnectPool"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"disconnectPool"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderDisconnectPool =
+export const simulateGdaAgreementDisconnectPool =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'disconnectPool',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"distribute"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"distribute"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderDistribute =
+export const simulateGdaAgreementDistribute =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'distribute',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"distributeFlow"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"distributeFlow"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderDistributeFlow =
+export const simulateGdaAgreementDistributeFlow =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'distributeFlow',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaForwarderAbi}__ and `functionName` set to `"updateMemberUnits"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"poolSettleClaim"`
  *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x6DA13Bde224A05a288748d857b9e7DDEffd1dE08)
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
  */
-export const simulateGdaForwarderUpdateMemberUnits =
+export const simulateGdaAgreementPoolSettleClaim =
   /*#__PURE__*/ createSimulateContract({
-    abi: gdaForwarderAbi,
-    address: gdaForwarderAddress,
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'poolSettleClaim',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"updateCode"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const simulateGdaAgreementUpdateCode =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    functionName: 'updateCode',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link gdaAgreementAbi}__ and `functionName` set to `"updateMemberUnits"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const simulateGdaAgreementUpdateMemberUnits =
+  /*#__PURE__*/ createSimulateContract({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
     functionName: 'updateMemberUnits',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementEvent = /*#__PURE__*/ createWatchContractEvent({
+  abi: gdaAgreementAbi,
+  address: gdaAgreementAddress,
+})
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"BufferAdjusted"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementBufferAdjustedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'BufferAdjusted',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"CodeUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementCodeUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'CodeUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"FlowDistributionUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementFlowDistributionUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'FlowDistributionUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"InstantDistributionUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementInstantDistributionUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'InstantDistributionUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"PoolConnectionUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementPoolConnectionUpdatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'PoolConnectionUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link gdaAgreementAbi}__ and `eventName` set to `"PoolCreated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xAAdBB3Eee3Bd080f5353d86DdF1916aCA3fAC842)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0x68Ae17fa7a31b86F306c383277552fd4813b0d35)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x3bbFA4C406719424C7f66CD97A8Fe27Af383d3e2)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0xd7992D358A20478c82dDEd98B3D8A9da46e99b82)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x961dd5A052741B49B6CBf6759591f9D8576fCFb0)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0xfE6c87BE05feDB2059d2EC41bA0A09826C9FD7aa)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x1e299701792a2aF01408B122419d65Fd2dF0Ba02)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x308b7405272d11494716e30C6E972DbF6fb89555)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x51f571D934C59185f13d17301a36c07A2268B814)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0xA7b197cD5b0cEF6d62c4A0a851E3581f5E62e4D2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x53F4f44C813Dc380182d0b2b67fe5832A12B97f8)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x93fA9B627eE016990Fe5e654F923aaE8a480a75b)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x97a9f293d7eD13f3fbD499cE684Ed4F103295a28)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9823364056BcA85Dc3c4a3b96801314D082C8Eb9)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xd453d38A001B47271488886532f1CCeAbf0c7eF3)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0x210a01ad187003603B2287F78579ec103Eb70D9B)
+ */
+export const watchGdaAgreementPoolCreatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: gdaAgreementAbi,
+    address: gdaAgreementAddress,
+    eventName: 'PoolCreated',
   })
 
 /**
@@ -22914,7 +22940,7 @@ export const watchHostSuperTokenLogicUpdatedEvent =
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -22933,13 +22959,13 @@ export const watchHostSuperTokenLogicUpdatedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIda = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const readIdaAgreement = /*#__PURE__*/ createReadContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"MAX_NUM_SUBSCRIPTIONS"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"MAX_NUM_SUBSCRIPTIONS"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -22958,41 +22984,42 @@ export const readIda = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaMaxNumSubscriptions = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'MAX_NUM_SUBSCRIPTIONS',
-})
-
-/**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"SLOTS_BITMAP_LIBRARY_ADDRESS"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const readIdaSlotsBitmapLibraryAddress =
+export const readIdaAgreementMaxNumSubscriptions =
   /*#__PURE__*/ createReadContract({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'MAX_NUM_SUBSCRIPTIONS',
+  })
+
+/**
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"SLOTS_BITMAP_LIBRARY_ADDRESS"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const readIdaAgreementSlotsBitmapLibraryAddress =
+  /*#__PURE__*/ createReadContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     functionName: 'SLOTS_BITMAP_LIBRARY_ADDRESS',
   })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"agreementType"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"agreementType"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23011,14 +23038,14 @@ export const readIdaSlotsBitmapLibraryAddress =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaAgreementType = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const readIdaAgreementAgreementType = /*#__PURE__*/ createReadContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'agreementType',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"calculateDistribution"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"calculateDistribution"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23037,14 +23064,15 @@ export const readIdaAgreementType = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaCalculateDistribution = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'calculateDistribution',
-})
+export const readIdaAgreementCalculateDistribution =
+  /*#__PURE__*/ createReadContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'calculateDistribution',
+  })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"getCodeAddress"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"getCodeAddress"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23063,14 +23091,14 @@ export const readIdaCalculateDistribution = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaGetCodeAddress = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const readIdaAgreementGetCodeAddress = /*#__PURE__*/ createReadContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'getCodeAddress',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"getIndex"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"getIndex"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23089,14 +23117,14 @@ export const readIdaGetCodeAddress = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaGetIndex = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const readIdaAgreementGetIndex = /*#__PURE__*/ createReadContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'getIndex',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"getSubscription"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"getSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23115,14 +23143,16 @@ export const readIdaGetIndex = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaGetSubscription = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'getSubscription',
-})
+export const readIdaAgreementGetSubscription = /*#__PURE__*/ createReadContract(
+  {
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'getSubscription',
+  },
+)
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"getSubscriptionByID"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"getSubscriptionByID"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23141,14 +23171,15 @@ export const readIdaGetSubscription = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaGetSubscriptionById = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'getSubscriptionByID',
-})
+export const readIdaAgreementGetSubscriptionById =
+  /*#__PURE__*/ createReadContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'getSubscriptionByID',
+  })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"listSubscriptions"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"listSubscriptions"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23167,14 +23198,15 @@ export const readIdaGetSubscriptionById = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaListSubscriptions = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'listSubscriptions',
-})
+export const readIdaAgreementListSubscriptions =
+  /*#__PURE__*/ createReadContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'listSubscriptions',
+  })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"proxiableUUID"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"proxiableUUID"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23193,14 +23225,14 @@ export const readIdaListSubscriptions = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaProxiableUuid = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const readIdaAgreementProxiableUuid = /*#__PURE__*/ createReadContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'proxiableUUID',
 })
 
 /**
- * Wraps __{@link readContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"realtimeBalanceOf"`
+ * Wraps __{@link readContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"realtimeBalanceOf"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23219,14 +23251,40 @@ export const readIdaProxiableUuid = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const readIdaRealtimeBalanceOf = /*#__PURE__*/ createReadContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'realtimeBalanceOf',
+export const readIdaAgreementRealtimeBalanceOf =
+  /*#__PURE__*/ createReadContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'realtimeBalanceOf',
+  })
+
+/**
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const writeIdaAgreement = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
 })
 
 /**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"approveSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23245,325 +23303,15 @@ export const readIdaRealtimeBalanceOf = /*#__PURE__*/ createReadContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const writeIda = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"approveSubscription"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaApproveSubscription = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'approveSubscription',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"castrate"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaCastrate = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'castrate',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"claim"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaClaim = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'claim',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"createIndex"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaCreateIndex = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'createIndex',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"deleteSubscription"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaDeleteSubscription = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'deleteSubscription',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"distribute"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaDistribute = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'distribute',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"revokeSubscription"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaRevokeSubscription = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'revokeSubscription',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"updateCode"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaUpdateCode = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'updateCode',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"updateIndex"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaUpdateIndex = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'updateIndex',
-})
-
-/**
- * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"updateSubscription"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const writeIdaUpdateSubscription = /*#__PURE__*/ createWriteContract({
-  abi: idaAbi,
-  address: idaAddress,
-  functionName: 'updateSubscription',
-})
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const simulateIda = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
-})
-
-/**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"approveSubscription"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const simulateIdaApproveSubscription =
-  /*#__PURE__*/ createSimulateContract({
-    abi: idaAbi,
-    address: idaAddress,
+export const writeIdaAgreementApproveSubscription =
+  /*#__PURE__*/ createWriteContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     functionName: 'approveSubscription',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"castrate"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"castrate"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23582,14 +23330,14 @@ export const simulateIdaApproveSubscription =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaCastrate = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const writeIdaAgreementCastrate = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'castrate',
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"claim"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"claim"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23608,14 +23356,14 @@ export const simulateIdaCastrate = /*#__PURE__*/ createSimulateContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaClaim = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const writeIdaAgreementClaim = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'claim',
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"createIndex"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"createIndex"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23634,14 +23382,14 @@ export const simulateIdaClaim = /*#__PURE__*/ createSimulateContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaCreateIndex = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const writeIdaAgreementCreateIndex = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'createIndex',
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"deleteSubscription"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"deleteSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23660,15 +23408,15 @@ export const simulateIdaCreateIndex = /*#__PURE__*/ createSimulateContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaDeleteSubscription =
-  /*#__PURE__*/ createSimulateContract({
-    abi: idaAbi,
-    address: idaAddress,
+export const writeIdaAgreementDeleteSubscription =
+  /*#__PURE__*/ createWriteContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     functionName: 'deleteSubscription',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"distribute"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"distribute"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23687,14 +23435,14 @@ export const simulateIdaDeleteSubscription =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaDistribute = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const writeIdaAgreementDistribute = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'distribute',
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"revokeSubscription"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"revokeSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23713,15 +23461,15 @@ export const simulateIdaDistribute = /*#__PURE__*/ createSimulateContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaRevokeSubscription =
-  /*#__PURE__*/ createSimulateContract({
-    abi: idaAbi,
-    address: idaAddress,
+export const writeIdaAgreementRevokeSubscription =
+  /*#__PURE__*/ createWriteContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     functionName: 'revokeSubscription',
   })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"updateCode"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"updateCode"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23740,14 +23488,14 @@ export const simulateIdaRevokeSubscription =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaUpdateCode = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const writeIdaAgreementUpdateCode = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'updateCode',
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"updateIndex"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"updateIndex"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23766,14 +23514,14 @@ export const simulateIdaUpdateCode = /*#__PURE__*/ createSimulateContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaUpdateIndex = /*#__PURE__*/ createSimulateContract({
-  abi: idaAbi,
-  address: idaAddress,
+export const writeIdaAgreementUpdateIndex = /*#__PURE__*/ createWriteContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
   functionName: 'updateIndex',
 })
 
 /**
- * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAbi}__ and `functionName` set to `"updateSubscription"`
+ * Wraps __{@link writeContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"updateSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23792,15 +23540,15 @@ export const simulateIdaUpdateIndex = /*#__PURE__*/ createSimulateContract({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const simulateIdaUpdateSubscription =
-  /*#__PURE__*/ createSimulateContract({
-    abi: idaAbi,
-    address: idaAddress,
+export const writeIdaAgreementUpdateSubscription =
+  /*#__PURE__*/ createWriteContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     functionName: 'updateSubscription',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23819,13 +23567,13 @@ export const simulateIdaUpdateSubscription =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: idaAbi,
-  address: idaAddress,
+export const simulateIdaAgreement = /*#__PURE__*/ createSimulateContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
 })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"CodeUpdated"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"approveSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23844,14 +23592,68 @@ export const watchIdaEvent = /*#__PURE__*/ createWatchContractEvent({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaCodeUpdatedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: idaAbi,
-  address: idaAddress,
-  eventName: 'CodeUpdated',
+export const simulateIdaAgreementApproveSubscription =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'approveSubscription',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"castrate"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementCastrate =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'castrate',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"claim"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementClaim = /*#__PURE__*/ createSimulateContract({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
+  functionName: 'claim',
 })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"IndexCreated"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"createIndex"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23870,12 +23672,15 @@ export const watchIdaCodeUpdatedEvent = /*#__PURE__*/ createWatchContractEvent({
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaIndexCreatedEvent = /*#__PURE__*/ createWatchContractEvent(
-  { abi: idaAbi, address: idaAddress, eventName: 'IndexCreated' },
-)
+export const simulateIdaAgreementCreateIndex =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'createIndex',
+  })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"IndexDistributionClaimed"`
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"deleteSubscription"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23894,15 +23699,256 @@ export const watchIdaIndexCreatedEvent = /*#__PURE__*/ createWatchContractEvent(
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaIndexDistributionClaimedEvent =
+export const simulateIdaAgreementDeleteSubscription =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'deleteSubscription',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"distribute"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementDistribute =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'distribute',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"revokeSubscription"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementRevokeSubscription =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'revokeSubscription',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"updateCode"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementUpdateCode =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'updateCode',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"updateIndex"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementUpdateIndex =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'updateIndex',
+  })
+
+/**
+ * Wraps __{@link simulateContract}__ with `abi` set to __{@link idaAgreementAbi}__ and `functionName` set to `"updateSubscription"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const simulateIdaAgreementUpdateSubscription =
+  /*#__PURE__*/ createSimulateContract({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    functionName: 'updateSubscription',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const watchIdaAgreementEvent = /*#__PURE__*/ createWatchContractEvent({
+  abi: idaAgreementAbi,
+  address: idaAgreementAddress,
+})
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"CodeUpdated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const watchIdaAgreementCodeUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    eventName: 'CodeUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"IndexCreated"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const watchIdaAgreementIndexCreatedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    eventName: 'IndexCreated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"IndexDistributionClaimed"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const watchIdaAgreementIndexDistributionClaimedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'IndexDistributionClaimed',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"IndexSubscribed"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"IndexSubscribed"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23921,15 +23967,15 @@ export const watchIdaIndexDistributionClaimedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaIndexSubscribedEvent =
+export const watchIdaAgreementIndexSubscribedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'IndexSubscribed',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"IndexUnitsUpdated"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"IndexUnitsUpdated"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23948,15 +23994,15 @@ export const watchIdaIndexSubscribedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaIndexUnitsUpdatedEvent =
+export const watchIdaAgreementIndexUnitsUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'IndexUnitsUpdated',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"IndexUnsubscribed"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"IndexUnsubscribed"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -23975,15 +24021,15 @@ export const watchIdaIndexUnitsUpdatedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaIndexUnsubscribedEvent =
+export const watchIdaAgreementIndexUnsubscribedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'IndexUnsubscribed',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"IndexUpdated"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"IndexUpdated"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -24002,65 +24048,69 @@ export const watchIdaIndexUnsubscribedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaIndexUpdatedEvent = /*#__PURE__*/ createWatchContractEvent(
-  { abi: idaAbi, address: idaAddress, eventName: 'IndexUpdated' },
-)
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"Initialized"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const watchIdaInitializedEvent = /*#__PURE__*/ createWatchContractEvent({
-  abi: idaAbi,
-  address: idaAddress,
-  eventName: 'Initialized',
-})
-
-/**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"SubscriptionApproved"`
- *
- * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
- * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
- * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
- * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
- * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
- * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
- * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
- * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
- * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
- * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
- * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
- * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
- * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
- */
-export const watchIdaSubscriptionApprovedEvent =
+export const watchIdaAgreementIndexUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    eventName: 'IndexUpdated',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"Initialized"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const watchIdaAgreementInitializedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
+    eventName: 'Initialized',
+  })
+
+/**
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"SubscriptionApproved"`
+ *
+ * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
+ * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
+ * - [__View Contract on Bnb Smart Chain Bsc Scan__](https://bscscan.com/address/0x594ed9Cd773584B645aC1F5B11020d3b32cDF07d)
+ * - [__View Contract on Gnosis Gnosisscan__](https://gnosisscan.io/address/0x7888ac96F987Eb10E291F34851ae0266eF912081)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xB0aABBA4B2783A72C52956CDEF62d438ecA2d7a1)
+ * - [__View Contract on Base Basescan__](https://basescan.org/address/0x66DF3f8e14CF870361378d8F61356D15d9F425C4)
+ * - [__View Contract on Arbitrum One Arbiscan__](https://arbiscan.io/address/0x2319C7e07EB063340D2a0E36709B0D65fda75986)
+ * - [__View Contract on Celo Celo Explorer__](https://celoscan.io/address/0x26747Fe93fAC8bF28E1e24A558a2bC7E4d9846cA)
+ * - [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xA44dEC7A0Dde1a56AeDe4143C1ef89cf5d956782)
+ * - [__View Contract on Avalanche Snow Trace__](https://snowtrace.io/address/0x1fA9fFe8Db73F701454B195151Db4Abb18423cf2)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Scroll Sepolia Scrollscan__](https://sepolia.scrollscan.com/address/0x296556422F44F19E5d216CBf98348A03BDc445E7)
+ * - [__View Contract on Scroll Scrollscan__](https://scrollscan.com/address/0x4112557F0F228A18654d3C39599421DE9F61144d)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9358C7dCCc6B8CA6F526311e8ac266F8C861B7ea)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
+ * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
+ */
+export const watchIdaAgreementSubscriptionApprovedEvent =
+  /*#__PURE__*/ createWatchContractEvent({
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'SubscriptionApproved',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"SubscriptionDistributionClaimed"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"SubscriptionDistributionClaimed"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -24079,15 +24129,15 @@ export const watchIdaSubscriptionApprovedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaSubscriptionDistributionClaimedEvent =
+export const watchIdaAgreementSubscriptionDistributionClaimedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'SubscriptionDistributionClaimed',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"SubscriptionRevoked"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"SubscriptionRevoked"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -24106,15 +24156,15 @@ export const watchIdaSubscriptionDistributionClaimedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaSubscriptionRevokedEvent =
+export const watchIdaAgreementSubscriptionRevokedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'SubscriptionRevoked',
   })
 
 /**
- * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAbi}__ and `eventName` set to `"SubscriptionUnitsUpdated"`
+ * Wraps __{@link watchContractEvent}__ with `abi` set to __{@link idaAgreementAbi}__ and `eventName` set to `"SubscriptionUnitsUpdated"`
  *
  * - [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0xbCF9cfA8Da20B591790dF27DE65C1254Bf91563d)
  * - [__View Contract on Op Mainnet Optimism Explorer__](https://optimistic.etherscan.io/address/0xc4ce5118C3B20950ee288f086cb7FC166d222D4c)
@@ -24133,10 +24183,10 @@ export const watchIdaSubscriptionRevokedEvent =
  * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x51BDA2C5F627d456E282257710F4A4b6Eb094A52)
  * - [__View Contract on Degen Degen Chain Explorer__](https://explorer.degen.tips/address/0xb19CE3e7DA9FbAf9De2526BD662A82f26421A53E)
  */
-export const watchIdaSubscriptionUnitsUpdatedEvent =
+export const watchIdaAgreementSubscriptionUnitsUpdatedEvent =
   /*#__PURE__*/ createWatchContractEvent({
-    abi: idaAbi,
-    address: idaAddress,
+    abi: idaAgreementAbi,
+    address: idaAgreementAddress,
     eventName: 'SubscriptionUnitsUpdated',
   })
 

@@ -110,7 +110,7 @@ export default defineConfig({
     },
     {
       abi: ConstantFlowAgreementV1.abi as Abi,
-      name: "cfa",
+      name: "cfaAgreement",
       address: getAddressesFromMetadata(network => network.contractsV1.cfaV1)
     },
     {
@@ -118,12 +118,12 @@ export default defineConfig({
         (CFAv1Forwarder.abi as Abi)
           .concat(cfaErrors)
       ),
-      name: "cfaForwarder",
+      name: "cfa",
       address: getAddressesFromMetadata(network => network.contractsV1.cfaV1Forwarder)
     },
     {
       abi: GeneralDistributionAgreementV1.abi as Abi,
-      name: "gda",
+      name: "gdaAgreement",
       address: getAddressesFromMetadata(network => network.contractsV1.gdaV1)
     },
     {
@@ -131,7 +131,7 @@ export default defineConfig({
         (GDAv1Forwarder.abi as Abi)
           .concat(gdaErrors)
       ),
-      name: "gdaForwarder",
+      name: "gda",
       address: getAddressesFromMetadata(network => network.contractsV1.gdaV1Forwarder)
     },
     {
@@ -140,7 +140,7 @@ export default defineConfig({
     },
     {
       abi: InstantDistributionAgreementV1.abi as Abi,
-      name: "ida",
+      name: "idaAgreement",
       address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
     },
     {
