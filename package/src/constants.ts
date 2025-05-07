@@ -1,0 +1,17 @@
+export const OPERATION_TYPE = {
+  UNSUPPORTED: 0,
+  ERC20_APPROVE: 1,
+  ERC20_TRANSFER_FROM: 2,
+  ERC777_SEND: 3,
+  ERC20_INCREASE_ALLOWANCE: 4,
+  ERC20_DECREASE_ALLOWANCE: 5,
+  SUPERTOKEN_UPGRADE: 101,
+  SUPERTOKEN_DOWNGRADE: 102,
+  SUPERFLUID_CALL_AGREEMENT: 201,
+  CALL_APP_ACTION: 202,
+  SIMPLE_FORWARD_CALL: 301,
+  ERC2771_FORWARD_CALL: 302,
+} as const;
+
+export const stripFunctionSelector = (callData: `0x${string}`) =>
+    "0x".concat(callData.slice(10)) as `0x${string}`;

@@ -116,6 +116,7 @@
   "exclude": [
     "node_modules",
     "dist",
-    "wagmi.config.ts"
+    "wagmi.config.ts",
+    "vitest.config.ts"
   ]
 }

@@ -1,4 +1,5 @@
 // TODO: add documentation
+
 export function calculateCurrentBalance({
     flowRate,
     balance,

@@ -2,8 +2,8 @@ import { type Config, defineConfig } from '@wagmi/cli'
 import { erc20Abi, type Abi } from 'viem'
 import { react, actions } from '@wagmi/cli/plugins'
 
+// # Core contracts
 import Host from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/Superfluid.sol/Superfluid.json" with { type: "json" }
-
 import ConstantFlowAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/ConstantFlowAgreementV1.sol/ConstantFlowAgreementV1.json" with { type: "json" }
 import CFAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
 import GeneralDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/GeneralDistributionAgreementV1.sol/GeneralDistributionAgreementV1.json" with { type: "json" }
@@ -17,8 +17,19 @@ import NativeAssetSuperToken from "@superfluid-finance/ethereum-contracts/build/
 import Governance from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/gov/SuperfluidGovernanceII.sol/SuperfluidGovernanceII.json" with { type: "json" }
 import TOGA from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/TOGA.sol/TOGA.json" with { type: "json" }
 import BatchLiquidator from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/BatchLiquidator.sol/BatchLiquidator.json" with { type: "json" }
+// ---
+
+// # Peripheral contracts
+import AutoWrapStrategy from "./abis/AutoWrapStrategy.json" with { type: "json" }
+import AutoWrapManager from "./abis/AutoWrapManager.json" with { type: "json" }
+import FlowScheduler from "./abis/FlowScheduler.json" with { type: "json" }
+import VestingSchedulerV1 from "./abis/VestingScheduler.json" with { type: "json" }
+import VestingSchedulerV2 from "./abis/VestingSchedulerV2.json" with { type: "json" }
+import VestingSchedulerV3 from "./abis/VestingSchedulerV3.json" with { type: "json" }
+// ---
 
 import superfluidMetadata from "@superfluid-finance/metadata"
+import { optimismSepolia, optimism, gnosis, polygon, arbitrum, avalanche, bsc, mainnet, base } from 'viem/chains'
 
 const type = process.env.TYPE
 
@@ -163,6 +174,47 @@ export default defineConfig({
     {
       abi: NativeAssetSuperToken.abi as Abi,
       name: "nativeAssetSuperToken"
+    },
+    {
+      abi: AutoWrapStrategy as Abi,
+      name: "autoWrapStrategy",
+      address: getAddressesFromMetadata(network => network.contractsV1.autowrap?.wrapStrategy)
+    },
+    {
+      abi: AutoWrapManager as Abi,
+      name: "autoWrapManager",
+      address: getAddressesFromMetadata(network => network.contractsV1.autowrap?.manager)
+    },
+    {
+      abi: FlowScheduler as Abi,
+      name: "flowScheduler",
+      address: getAddressesFromMetadata(network => network.contractsV1.flowScheduler)
+    },
+    {
+      abi: VestingSchedulerV1 as Abi,
+      name: "vestingSchedulerV1",
+      address: getAddressesFromMetadata(network => network.contractsV1.vestingScheduler)
+    },
+    {
+      abi: VestingSchedulerV2 as Abi,
+      name: "vestingSchedulerV2",
+      address: getAddressesFromMetadata(network => network.contractsV1.vestingSchedulerV2)
+    },
+    {
+      abi: VestingSchedulerV3 as Abi,
+      name: "vestingSchedulerV3",
+      // TODO: change to metadata when published
+      address: {
+        [optimismSepolia.id]: "0x4F4BC2ca9A7CA26AfcFabc6A2A381c104927D72C",
+        [optimism.id]: "0x5aB84e4B3a5F418c95B77DbdecFAF18D0Fd3b3E4",
+        [gnosis.id]: "0x625F04c9B91ECdfbeb7021271749212388F12c11",
+        [polygon.id]: "0x488913833474bbD9B11f844FdC2f0897FAc0Ca43",
+        [arbitrum.id]: "0xc3069bDE869912E3d9B965F35D7764Fc92BccE67",
+        [avalanche.id]: "0xB84C98d9B51D0e32114C60C500e17eA79dfd0dAf",
+        [bsc.id]: "0xa032265Ee9dE740D36Af6eb90cf18775577B1Ef3",
+        [mainnet.id]: "0xbeEDf563D41dcb3e1b7e0B0f7a86685Fd73Ce84C",
+        [base.id]: "0x6Bf35A170056eDf9aEba159dce4a640cfCef9312"
+      }
     }
   ]
 })
