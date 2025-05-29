@@ -1,16 +1,43 @@
 "use client"
 
+import { superfluidMainnets, superfluidMainnetTransports, superfluidTestnets, superfluidTestnetTransports } from 'sdk/config'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createConfig, WagmiProvider } from 'wagmi'
-import { superfluidMainnets, superfluidMainnetTransports, superfluidTestnets } from 'sdk/config'
+import { fallback, http } from 'viem';
+import { arbitrum, avalanche, base, bsc, celo, degen, gnosis, mainnet, optimism, polygon } from 'viem/chains';
+
+const chains = [
+    base,
+	arbitrum,
+	avalanche,
+	bsc,
+	celo,
+	degen,
+	gnosis,
+	mainnet,
+	optimism,
+	polygon,
+	scroll
+] as const;
+
+const transports = {
+    [mainnet.id]: fallback([
+        http(),
+    ])
+} as const;
 
 const config = createConfig({
-    chains: [...superfluidMainnets, ...superfluidTestnets],
-    transports: {
-        ...superfluidMainnetTransports,
-        ...allDefaultTestnetTransports
-    }
+    chains: superfluidMainnets,
+    transports: superfluidMainnetTransports
 })
+
+// const config = createConfig({
+//     chains: [...superfluidMainnets, ...superfluidTestnets],
+//     transports: {
+//         ...superfluidMainnetTransports,
+//         ...superfluidTestnetTransports
+//     }
+// })
 
 declare module 'wagmi' {
     interface Register {

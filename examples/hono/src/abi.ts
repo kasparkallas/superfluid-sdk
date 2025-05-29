@@ -1,4 +1,4 @@
-import { cfaV1Abi, cfaV1Address } from "sdk"
+import { cfaAbi, cfaAddress } from "sdk"
 import { createPublicClient } from 'viem'
 import { mainnet } from 'viem/chains'
 
@@ -12,8 +12,8 @@ const publicClient = createPublicClient({
 
 app.get('/abi', async (c) => {
   const maximumFlowRate = await publicClient.readContract({
-    address: cfaV1Address[mainnet.id],
-    abi: cfaV1Abi,
+    address: cfaAddress[mainnet.id],
+    abi: cfaAbi,
     functionName: "MAXIMUM_FLOW_RATE"
   })
   return c.text(maximumFlowRate.toString())

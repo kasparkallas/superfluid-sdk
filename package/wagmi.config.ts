@@ -11,9 +11,8 @@ import GDAForwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/c
 import SuperfluidPool from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/SuperfluidPool.sol/SuperfluidPool.json" with { type: "json" }
 import InstantDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/InstantDistributionAgreementV1.sol/InstantDistributionAgreementV1.json" with { type: "json" }
 import SuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperToken.sol/SuperToken.json" with { type: "json" }
-import PureSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/tokens/PureSuperToken.sol/PureSuperToken.json" with { type: "json" }
 import SuperTokenFactory from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperTokenFactory.sol/SuperTokenFactory.json" with { type: "json" }
-import NativeAssetSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/interfaces/tokens/ISETH.sol/ISETH.json" with { type: "json" }
+import NativeAssetSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/interfaces/tokens/ISETH.sol/ISETHCustom.json" with { type: "json" }
 import Governance from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/gov/SuperfluidGovernanceII.sol/SuperfluidGovernanceII.json" with { type: "json" }
 import TOGA from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/TOGA.sol/TOGA.json" with { type: "json" }
 import BatchLiquidator from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/BatchLiquidator.sol/BatchLiquidator.json" with { type: "json" }
@@ -63,15 +62,42 @@ const allErrors = uniqErrors(
 );
 // ---
 
+// # ABI manipulation
+
+// The contracts themselves don't include all the error codes that could happen down the line.
+// Adding the errors to the ABI will make wagmi/viem display the right error code.
+
+const HostWithAllErrors = uniqErrors(
+  (Host.abi as Abi)
+    .concat(allErrors)
+)
+
+const CfaForwarderWithCfaErrors = uniqErrors(
+  (CFAForwarder.abi as Abi)
+    .concat(cfaErrors)
+)
+
+const GdaForwarderWithGdaErrors = uniqErrors(
+  (GDAForwarder.abi as Abi)
+    .concat(gdaErrors)
+)
+
+// Combine Native Asset Super Token with Wrapper Super Token to enable a simpler SDK API.
+// The Pure Super Token is already included.
+
+const SuperTokenCombined = SuperToken.abi.concat(NativeAssetSuperToken.abi)
+
+// ---
+
 // # CLI config
 const out = function (): string {
   switch (type) {
     case "abi":
       return "src/abi/index.ts"
     case "wagmi":
-      return "src/wagmi/index.ts"
+      return "src/wagmi/generated.ts"
     case "actions":
-      return "src/actions/index.ts"
+      return "src/actions/generated.ts"
     default:
       throw new Error(`Invalid type [${type}], use "abi", "wagmi" or "actions".`)
   }
@@ -83,12 +109,26 @@ const plugins = function (): Plugins {
       return []
     case "wagmi":
       return [
-        react()
+        react({
+          getHookName: ({
+            contractName,
+            type,
+            itemName
+          }) => {
+            const actionName = getActionName({ contractName, type, itemName })
+            return `use${capitalizeFirstLetter(actionName)}`
+          }
+        })
       ]
     case "actions":
       return [
         actions({
-          overridePackageName: "@wagmi/core"
+          overridePackageName: "@wagmi/core",
+          getActionName: ({
+            contractName,
+            type,
+            itemName
+          }) => getActionName({ contractName, type, itemName })
         })
       ]
     default:
@@ -101,37 +141,28 @@ export default defineConfig({
   plugins,
   contracts: [
     {
-      abi: uniqErrors(
-        (Host.abi as Abi)
-          .concat(allErrors)
-      ),
+      abi: HostWithAllErrors,
       name: "host",
       address: getAddressesFromMetadata(network => network.contractsV1.host)
     },
     {
       abi: ConstantFlowAgreementV1.abi as Abi,
-      name: "cfaV1",
+      name: "cfa",
       address: getAddressesFromMetadata(network => network.contractsV1.cfaV1)
     },
     {
-      abi: uniqErrors(
-        (CFAForwarder.abi as Abi)
-          .concat(cfaErrors)
-      ),
-      name: "cfa",
+      abi: CfaForwarderWithCfaErrors,
+      name: "cfaForwarder",
       address: getAddressesFromMetadata(network => network.contractsV1.cfaV1Forwarder)
     },
     {
       abi: GeneralDistributionAgreementV1.abi as Abi,
-      name: "gdaV1",
+      name: "gda",
       address: getAddressesFromMetadata(network => network.contractsV1.gdaV1)
     },
     {
-      abi: uniqErrors(
-        (GDAForwarder.abi as Abi)
-          .concat(gdaErrors)
-      ),
-      name: "gda",
+      abi: GdaForwarderWithGdaErrors,
+      name: "gdaForwarder",
       address: getAddressesFromMetadata(network => network.contractsV1.gdaV1Forwarder)
     },
     {
@@ -140,18 +171,12 @@ export default defineConfig({
     },
     {
       abi: InstantDistributionAgreementV1.abi as Abi,
-      name: "idaV1",
+      name: "legacyIda",
       address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
     },
     {
-      abi: Governance.abi as Abi,
-      name: "governance",
-      address: getAddressesFromMetadata(network => network.contractsV1.governance)
-    },
-    {
-      abi: TOGA.abi as Abi,
-      name: "toga",
-      address: getAddressesFromMetadata(network => network.contractsV1.toga)
+      abi: SuperTokenCombined as Abi,
+      name: "superToken"
     },
     {
       abi: SuperTokenFactory.abi as Abi,
@@ -159,21 +184,19 @@ export default defineConfig({
       address: getAddressesFromMetadata(network => network.contractsV1.superTokenFactory)
     },
     {
+      abi: TOGA.abi as Abi,
+      name: "toga",
+      address: getAddressesFromMetadata(network => network.contractsV1.toga)
+    },
+    {
+      abi: Governance.abi as Abi,
+      name: "governance",
+      address: getAddressesFromMetadata(network => network.contractsV1.governance)
+    },
+    {
       abi: BatchLiquidator.abi as Abi,
       name: "batchLiquidator",
       address: getAddressesFromMetadata(network => network.contractsV1.superfluidLoader)
-    },
-    {
-      abi: SuperToken.abi as Abi,
-      name: "superToken"
-    },
-    {
-      abi: PureSuperToken.abi as Abi,
-      name: "pureSuperToken"
-    },
-    {
-      abi: NativeAssetSuperToken.abi as Abi,
-      name: "nativeAssetSuperToken"
     },
     {
       abi: AutoWrapStrategy as Abi,
@@ -192,12 +215,12 @@ export default defineConfig({
     },
     {
       abi: VestingSchedulerV1 as Abi,
-      name: "vestingSchedulerV1",
+      name: "legacyVestingSchedulerV1",
       address: getAddressesFromMetadata(network => network.contractsV1.vestingScheduler)
     },
     {
       abi: VestingSchedulerV2 as Abi,
-      name: "vestingSchedulerV2",
+      name: "legacyVestingSchedulerV2",
       address: getAddressesFromMetadata(network => network.contractsV1.vestingSchedulerV2)
     },
     {
@@ -247,5 +270,30 @@ function uniqErrors(abi: Abi): Abi {
     }
     return index === self.findIndex(e => e.type === "error" && e.name === item.name);
   }) as Abi;
+}
+
+function getActionName({
+  contractName,
+  itemName,
+  type
+}: {
+  contractName: string
+  itemName?: string | undefined
+  type: 'read' | 'simulate' | 'watch' | 'write'
+}) {
+  let actionName = `${type}${contractName}${itemName ?? ''}`
+
+  if (type === 'watch') actionName = `${actionName}Event`
+
+  actionName = actionName
+    .replace("CfaCfa", "Cfa")
+    .replace("IdaIda", "Ida")
+    .replace("GdaGda", "Gda")
+
+  return actionName
+}
+
+function capitalizeFirstLetter(val: string) {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
 }
 // ---

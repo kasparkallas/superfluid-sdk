@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "typecheck": "pnpm -r typecheck"
+    "typecheck": "pnpm -r typecheck",
+    "build": "pnpm build:sdk && pnpm build:examples",
+    "build:sdk": "pnpm --filter \"sdk\" build",
+    "build:examples": "pnpm --filter \"!sdk\" build"
   },
   "keywords": [],
   "author": "",

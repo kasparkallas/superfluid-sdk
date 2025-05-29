@@ -1,11 +1,12 @@
 "use client"
 
-import { useReadCfaV1MaximumFlowRate } from "sdk/wagmi"
+import { useReadCfa } from "sdk/wagmi"
 import { mainnet } from "wagmi/chains"
 
 export function Superfluid() {
-    const { data, isLoading, isError } = useReadCfaV1MaximumFlowRate({
-        chainId: mainnet.id
+    const { data, isLoading, isError } = useReadCfa({
+        chainId: mainnet.id,
+        functionName: "MAXIMUM_FLOW_RATE"
     })
 
     return (
