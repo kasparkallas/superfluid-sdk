@@ -2,23 +2,25 @@ import { type Config, defineConfig } from '@wagmi/cli'
 import { erc20Abi, type Abi } from 'viem'
 import { react, actions } from '@wagmi/cli/plugins'
 
-// # Core contracts
+// # Main contracts
+import CFAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
+import GDAv1Forwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/GDAv1Forwarder.sol/GDAv1Forwarder.json" with { type: "json" }
+import SuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperToken.sol/SuperToken.json" with { type: "json" }
+import NativeAssetSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/interfaces/tokens/ISETH.sol/ISETHCustom.json" with { type: "json" }
+
+// # Protocol contracts
 import Host from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/Superfluid.sol/Superfluid.json" with { type: "json" }
 import ConstantFlowAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/ConstantFlowAgreementV1.sol/ConstantFlowAgreementV1.json" with { type: "json" }
-import CFAForwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/CFAv1Forwarder.sol/CFAv1Forwarder.json" with { type: "json" }
 import GeneralDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/GeneralDistributionAgreementV1.sol/GeneralDistributionAgreementV1.json" with { type: "json" }
-import GDAForwarder from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/GDAv1Forwarder.sol/GDAv1Forwarder.json" with { type: "json" }
 import SuperfluidPool from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/gdav1/SuperfluidPool.sol/SuperfluidPool.json" with { type: "json" }
 import InstantDistributionAgreementV1 from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/agreements/InstantDistributionAgreementV1.sol/InstantDistributionAgreementV1.json" with { type: "json" }
-import SuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperToken.sol/SuperToken.json" with { type: "json" }
 import SuperTokenFactory from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/superfluid/SuperTokenFactory.sol/SuperTokenFactory.json" with { type: "json" }
-import NativeAssetSuperToken from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/interfaces/tokens/ISETH.sol/ISETHCustom.json" with { type: "json" }
-import Governance from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/gov/SuperfluidGovernanceII.sol/SuperfluidGovernanceII.json" with { type: "json" }
+import SuperfluidGovernanceII from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/gov/SuperfluidGovernanceII.sol/SuperfluidGovernanceII.json" with { type: "json" }
 import TOGA from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/TOGA.sol/TOGA.json" with { type: "json" }
 import BatchLiquidator from "@superfluid-finance/ethereum-contracts/build/hardhat/contracts/utils/BatchLiquidator.sol/BatchLiquidator.json" with { type: "json" }
 // ---
 
-// # Peripheral contracts
+// # Automation contracts
 import AutoWrapStrategy from "./abis/AutoWrapStrategy.json" with { type: "json" }
 import AutoWrapManager from "./abis/AutoWrapManager.json" with { type: "json" }
 import FlowScheduler from "./abis/FlowScheduler.json" with { type: "json" }
@@ -28,9 +30,9 @@ import VestingSchedulerV3 from "./abis/VestingSchedulerV3.json" with { type: "js
 // ---
 
 import superfluidMetadata from "@superfluid-finance/metadata"
-import { optimismSepolia, optimism, gnosis, polygon, arbitrum, avalanche, bsc, mainnet, base } from 'viem/chains'
 
-const type = process.env.TYPE
+const type = process.env.TYPE?.toLowerCase()
+const category = process.env.CATEGORY?.toLowerCase()
 
 // # Superfluid error codes
 const tokenErrors = uniqErrors(
@@ -73,12 +75,12 @@ const HostWithAllErrors = uniqErrors(
 )
 
 const CfaForwarderWithCfaErrors = uniqErrors(
-  (CFAForwarder.abi as Abi)
+  (CFAv1Forwarder.abi as Abi)
     .concat(cfaErrors)
 )
 
 const GdaForwarderWithGdaErrors = uniqErrors(
-  (GDAForwarder.abi as Abi)
+  (GDAv1Forwarder.abi as Abi)
     .concat(gdaErrors)
 )
 
@@ -93,11 +95,11 @@ const SuperTokenCombined = SuperToken.abi.concat(NativeAssetSuperToken.abi)
 const out = function (): string {
   switch (type) {
     case "abi":
-      return "src/abi/index.ts"
+      return `src/abi${category ? `/${category}` : ""}/index.ts`
     case "wagmi":
-      return "src/wagmi/generated.ts"
+      return `src/wagmi${category ? `/${category}` : ""}/generated.ts`
     case "actions":
-      return "src/actions/generated.ts"
+      return `src/actions${category ? `/${category}` : ""}/generated.ts`
     default:
       throw new Error(`Invalid type [${type}], use "abi", "wagmi" or "actions".`)
   }
@@ -140,105 +142,101 @@ export default defineConfig({
   out,
   plugins,
   contracts: [
-    {
-      abi: HostWithAllErrors,
-      name: "host",
-      address: getAddressesFromMetadata(network => network.contractsV1.host)
-    },
-    {
-      abi: ConstantFlowAgreementV1.abi as Abi,
-      name: "cfa",
-      address: getAddressesFromMetadata(network => network.contractsV1.cfaV1)
-    },
-    {
-      abi: CfaForwarderWithCfaErrors,
-      name: "cfaForwarder",
-      address: getAddressesFromMetadata(network => network.contractsV1.cfaV1Forwarder)
-    },
-    {
-      abi: GeneralDistributionAgreementV1.abi as Abi,
-      name: "gda",
-      address: getAddressesFromMetadata(network => network.contractsV1.gdaV1)
-    },
-    {
-      abi: GdaForwarderWithGdaErrors,
-      name: "gdaForwarder",
-      address: getAddressesFromMetadata(network => network.contractsV1.gdaV1Forwarder)
-    },
-    {
-      abi: SuperfluidPool.abi as Abi,
-      name: "gdaPool"
-    },
-    {
-      abi: InstantDistributionAgreementV1.abi as Abi,
-      name: "legacyIda",
-      address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
-    },
-    {
-      abi: SuperTokenCombined as Abi,
-      name: "superToken"
-    },
-    {
-      abi: SuperTokenFactory.abi as Abi,
-      name: "superTokenFactory",
-      address: getAddressesFromMetadata(network => network.contractsV1.superTokenFactory)
-    },
-    {
-      abi: TOGA.abi as Abi,
-      name: "toga",
-      address: getAddressesFromMetadata(network => network.contractsV1.toga)
-    },
-    {
-      abi: Governance.abi as Abi,
-      name: "governance",
-      address: getAddressesFromMetadata(network => network.contractsV1.governance)
-    },
-    {
-      abi: BatchLiquidator.abi as Abi,
-      name: "batchLiquidator",
-      address: getAddressesFromMetadata(network => network.contractsV1.superfluidLoader)
-    },
-    {
-      abi: AutoWrapStrategy as Abi,
-      name: "autoWrapStrategy",
-      address: getAddressesFromMetadata(network => network.contractsV1.autowrap?.wrapStrategy)
-    },
-    {
-      abi: AutoWrapManager as Abi,
-      name: "autoWrapManager",
-      address: getAddressesFromMetadata(network => network.contractsV1.autowrap?.manager)
-    },
-    {
-      abi: FlowScheduler as Abi,
-      name: "flowScheduler",
-      address: getAddressesFromMetadata(network => network.contractsV1.flowScheduler)
-    },
-    {
-      abi: VestingSchedulerV1 as Abi,
-      name: "legacyVestingSchedulerV1",
-      address: getAddressesFromMetadata(network => network.contractsV1.vestingScheduler)
-    },
-    {
-      abi: VestingSchedulerV2 as Abi,
-      name: "legacyVestingSchedulerV2",
-      address: getAddressesFromMetadata(network => network.contractsV1.vestingSchedulerV2)
-    },
-    {
-      abi: VestingSchedulerV3 as Abi,
-      name: "vestingSchedulerV3",
-      // TODO: change to metadata when published
-      address: {
-        [optimismSepolia.id]: "0x4F4BC2ca9A7CA26AfcFabc6A2A381c104927D72C",
-        [optimism.id]: "0x5aB84e4B3a5F418c95B77DbdecFAF18D0Fd3b3E4",
-        [gnosis.id]: "0x625F04c9B91ECdfbeb7021271749212388F12c11",
-        [polygon.id]: "0x488913833474bbD9B11f844FdC2f0897FAc0Ca43",
-        [arbitrum.id]: "0xc3069bDE869912E3d9B965F35D7764Fc92BccE67",
-        [avalanche.id]: "0xB84C98d9B51D0e32114C60C500e17eA79dfd0dAf",
-        [bsc.id]: "0xa032265Ee9dE740D36Af6eb90cf18775577B1Ef3",
-        [mainnet.id]: "0xbeEDf563D41dcb3e1b7e0B0f7a86685Fd73Ce84C",
-        [base.id]: "0x6Bf35A170056eDf9aEba159dce4a640cfCef9312"
+    ...(!category ? [
+      {
+        abi: SuperTokenCombined as Abi,
+        name: "superToken"
+      },
+      {
+        abi: CfaForwarderWithCfaErrors,
+        name: "cfaForwarder",
+        address: getAddressesFromMetadata(network => network.contractsV1.cfaV1Forwarder)
+      },
+      {
+        abi: GdaForwarderWithGdaErrors,
+        name: "gdaForwarder",
+        address: getAddressesFromMetadata(network => network.contractsV1.gdaV1Forwarder)
+      },
+      {
+        abi: SuperfluidPool.abi as Abi,
+        name: "gdaPool"
+      },
+    ] : []),
+    ...(category === "protocol" ? [
+      {
+        abi: HostWithAllErrors,
+        name: "host",
+        address: getAddressesFromMetadata(network => network.contractsV1.host)
+      },
+      {
+        abi: ConstantFlowAgreementV1.abi as Abi,
+        name: "cfa",
+        address: getAddressesFromMetadata(network => network.contractsV1.cfaV1)
+      },
+      {
+        abi: GeneralDistributionAgreementV1.abi as Abi,
+        name: "gda",
+        address: getAddressesFromMetadata(network => network.contractsV1.gdaV1)
+      },
+      {
+        abi: InstantDistributionAgreementV1.abi as Abi,
+        name: "ida",
+        address: getAddressesFromMetadata(network => network.contractsV1.idaV1)
+      },
+      {
+        abi: SuperTokenFactory.abi as Abi,
+        name: "superTokenFactory",
+        address: getAddressesFromMetadata(network => network.contractsV1.superTokenFactory)
+      },
+      {
+        abi: TOGA.abi as Abi,
+        name: "toga",
+        address: getAddressesFromMetadata(network => network.contractsV1.toga)
+      },
+      {
+        abi: SuperfluidGovernanceII.abi as Abi,
+        name: "governance",
+        address: getAddressesFromMetadata(network => network.contractsV1.governance)
+      },
+      {
+        abi: BatchLiquidator.abi as Abi,
+        name: "batchLiquidator",
+        address: getAddressesFromMetadata(network => network.contractsV1.superfluidLoader)
+      },
+    ] : []),
+    ...(category === "automation" ? [
+      {
+        abi: AutoWrapStrategy as Abi,
+        name: "autoWrapStrategy",
+        address: getAddressesFromMetadata(network => network.contractsV1.autowrap?.wrapStrategy)
+      },
+      {
+        abi: AutoWrapManager as Abi,
+        name: "autoWrapManager",
+        address: getAddressesFromMetadata(network => network.contractsV1.autowrap?.manager)
+      },
+      {
+        abi: FlowScheduler as Abi,
+        name: "flowScheduler",
+        address: getAddressesFromMetadata(network => network.contractsV1.flowScheduler)
+      },
+      {
+        abi: VestingSchedulerV1 as Abi,
+        name: "legacyVestingSchedulerV1",
+        address: getAddressesFromMetadata(network => network.contractsV1.vestingScheduler)
+      },
+      {
+        abi: VestingSchedulerV2 as Abi,
+        name: "legacyVestingSchedulerV2",
+        address: getAddressesFromMetadata(network => network.contractsV1.vestingSchedulerV2)
+      },
+      {
+        // TODO: Should any errors be added here?
+        abi: VestingSchedulerV3 as Abi,
+        name: "vestingSchedulerV3",
+        address: getAddressesFromMetadata(network => network.contractsV1.vestingSchedulerV3)
       }
-    }
+    ] : []),
   ]
 })
 // ---

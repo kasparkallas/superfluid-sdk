@@ -3,7 +3,9 @@ import { createWalletClient, encodeAbiParameters, encodeFunctionData, parseAbiPa
 import { privateKeyToAccount } from 'viem/accounts';
 import { optimismSepolia } from 'viem/chains';
 import { superfluidTestnetTransports } from '../src/config';
-import { hostAbi, superTokenAbi, hostAddress, cfaAddress, vestingSchedulerV2Abi, vestingSchedulerV2Address, vestingSchedulerV3Abi, vestingSchedulerV3Address, cfaV1Abi } from '../src/abi';
+import { superTokenAbi } from '../src/abi';
+import { hostAbi, hostAddress, cfaAddress, cfaAbi } from '../src/abi/protocol';
+import { legacyVestingSchedulerV2Abi, legacyVestingSchedulerV2Address, vestingSchedulerV3Abi, vestingSchedulerV3Address } from '../src/abi/automation';
 import { Operation, OPERATION_TYPE, prepareOperation, stripFunctionSelector } from '../src/constants';
 
 describe('Superfluid batch call tests', () => {
@@ -131,7 +133,7 @@ describe('Superfluid batch call tests', () => {
 
     // # SUPERFLUID_CALL_AGREEMENT
     const callAgreementCreateFlowInternal = encodeFunctionData({
-      abi: cfaV1Abi,
+      abi: cfaAbi,
       functionName: 'createFlow',
       args: [wrapperSuperTokenAddress, vitalikAddress, 1n, "0x"],
     });
@@ -151,14 +153,14 @@ describe('Superfluid batch call tests', () => {
 
     // # CALL_APP_ACTION
     const callAppActionCreateVestingSchedule = encodeFunctionData({
-      abi: vestingSchedulerV2Abi,
+      abi: legacyVestingSchedulerV2Abi,
       functionName: 'createVestingSchedule',
       args: [wrapperSuperTokenAddress, vitalikAddress, 1893448800, 0, 1n, 0n, 1924984800, "0x"],
     });
 
     const callAppActionCreateVestingScheduleOperation: Operation = {
       operationType: OPERATION_TYPE.CALL_APP_ACTION,
-      target: vestingSchedulerV2Address[chain.id],
+      target: legacyVestingSchedulerV2Address[chain.id],
       data: callAppActionCreateVestingSchedule
     };
     // ---
@@ -324,7 +326,7 @@ describe('Superfluid batch call tests', () => {
       operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT,
       target: cfaAddress[chain.id],
       data: encodeFunctionData({
-        abi: cfaV1Abi,
+        abi: cfaAbi,
         functionName: 'createFlow',
         args: [wrapperSuperTokenAddress, vitalikAddress, 1n, "0x"],
       }),
@@ -335,9 +337,9 @@ describe('Superfluid batch call tests', () => {
     // # CALL_APP_ACTION
     const callAppActionCreateVestingScheduleOperation = prepareOperation({
       operationType: OPERATION_TYPE.CALL_APP_ACTION,
-      target: vestingSchedulerV2Address[chain.id],
+      target: legacyVestingSchedulerV2Address[chain.id],
       data: encodeFunctionData({
-        abi: vestingSchedulerV2Abi,
+        abi: legacyVestingSchedulerV2Abi,
         functionName: 'createVestingSchedule',
         args: [wrapperSuperTokenAddress, vitalikAddress, 1893448800, 0, 1n, 0n, 1924984800, "0x"],
       })

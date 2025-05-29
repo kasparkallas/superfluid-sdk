@@ -10,7 +10,7 @@ export const config = createConfig({
     transports: {
         ...superfluidMainnetTransports,
         ...superfluidTestnetTransports
-    },
+    } as any,
 })
 
 export const queryClient = new QueryClient()
