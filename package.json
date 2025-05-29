@@ -8,7 +8,7 @@
     "build": "pnpm build:sdk && pnpm build:examples",
     "build:sdk": "pnpm --filter \"sdk\" build",
     "build:examples": "pnpm --filter \"!sdk\" build",
-    "install-claude-code": "npm install -g @anthropic/claude-cli"
+    "install-claude-code": "npm install -g @anthropic-ai/claude-code"
   },
   "keywords": [],
   "author": "",
