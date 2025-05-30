@@ -1,5 +1,7 @@
 // TODO: add documentation
 
+import { TimeUnit } from "./constants.js"
+
 export function calculateCurrentBalance({
     flowRate,
     balance,
@@ -14,4 +16,14 @@ export function calculateCurrentBalance({
     const timeElapsed = currentTimestamp - balanceTimestamp
     const amountFlowed = BigInt(timeElapsed) * flowRate
     return balance + amountFlowed
+}
+
+export function calculateFlowratePerSecond({
+    amountWei,
+    timeUnit
+}: {
+    amountWei: bigint,
+    timeUnit: TimeUnit
+}) {
+    return amountWei / BigInt(timeUnit)
 }
