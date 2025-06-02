@@ -5,7 +5,7 @@ import { McpServer } from "@/types";
 export const createListSuperfluidMetadataNetworksTool = (server: McpServer) => {
   server.tool(
     "list-superfluid-metadata-networks",
-    "List all available Superfluid networks with optional testnet filtering",
+    "List all available Superfluid networks with optional testnet filtering. `@superfluid-finance/metadata` NPM package is used as the source.",
     {
       includeTestnets: z.boolean().optional()
     },
@@ -35,7 +35,7 @@ export const createListSuperfluidMetadataNetworksTool = (server: McpServer) => {
 export const createGetSuperfluidNetworkMetadataTool = (server: McpServer) => {
   server.tool(
     "get-superfluid-network-metadata",
-    "Get full metadata (deployed contract addresses, subgraph and RPC URLs, etc) for specific Superfluid network(s) by chain ID",
+    "Get full metadata (deployed contract addresses, subgraph and RPC URLs, etc) for specific Superfluid network(s) by chain ID. `@superfluid-finance/metadata` NPM package is used as the source for the metadata.",
     {
       chainIds: z.array(z.number().int().positive()).min(1)
     },

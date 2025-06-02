@@ -165,7 +165,11 @@ export const createGetSuperfluidContractAbiTool = (server: McpServer) => {
       contractName: contractNamesSchema
     },
     async (args: { contractName: string }) => {
-      const contractInfo = Object.values(contractAbis).find(contract => contract.names.includes(args.contractName));
+      const contractInfo = Object.values(contractAbis)
+        .find(contract => contract.names
+          .map(name => name.toLowerCase())
+          .includes(args.contractName.toLowerCase())
+        );
     
       return {
         content: [

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { extendedSuperTokenList, fetchLatestExtendedSuperTokenList, type SuperTokenInfo, type TokenInfo } from "@superfluid-finance/tokenlist";
+import { extendedSuperTokenList, type SuperTokenInfo, type TokenInfo } from "@superfluid-finance/tokenlist";
 import Fuse from "fuse.js";
 import { McpServer } from "@/types";
 import { isAddress } from "viem";
@@ -18,7 +18,7 @@ type PartialTokenResult = {
 export const createGetSuperfluidTokenTool = (server: McpServer) => {
   server.tool(
     "get-superfluid-token",
-    "Get a specific Superfluid token by address and chain ID, including underlying token if applicable",
+    "Get a specific Superfluid token by address and chain ID, including underlying token if applicable. `@superfluid-finance/tokenlist` NPM package is used as the source.",
     {
       tokenAddress: z.string().trim().toLowerCase().refine(isAddress, { message: "Invalid token address" }),
       chainId: z.number().int().positive()
@@ -66,7 +66,7 @@ export const createGetSuperfluidTokenTool = (server: McpServer) => {
 export const createFindSuperfluidTokensTool = (server: McpServer) => {
   server.tool(
     "find-superfluid-tokens",
-    "Find Superfluid tokens by search term (symbol or fuzzy name match) with optional chain ID filtering",
+    "Find Superfluid tokens by search term (symbol or fuzzy name match) with optional chain ID filtering. `@superfluid-finance/tokenlist` NPM package is used as the source.",
     {
       searchTerm: z.string().min(2),
       chainIds: z.array(z.number().int().positive()).optional()
