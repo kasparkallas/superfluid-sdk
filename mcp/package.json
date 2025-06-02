@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:sdk": "pnpm --filter sdk build",
     "start": "next start",
     "lint": "next lint"
   },
