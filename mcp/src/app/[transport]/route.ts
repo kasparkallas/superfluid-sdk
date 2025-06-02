@@ -3,12 +3,28 @@ import {
   createListSuperfluidContractsTool,
   createGetSuperfluidContractAbiTool
 } from "../abi-tools";
+import {
+  createListSuperfluidMetadataNetworksTool,
+  createGetSuperfluidNetworkMetadataTool
+} from "../metadata-tools";
+import {
+  createGetSuperfluidTokenTool,
+  createFindSuperfluidTokensTool
+} from "../tokenlist-tools";
 
 const handler = createMcpHandler(
   (server) => {
-    // Tool to list available contract names
+    // ABI tools
     createListSuperfluidContractsTool(server);
     createGetSuperfluidContractAbiTool(server);
+    
+    // Metadata tools
+    createListSuperfluidMetadataNetworksTool(server);
+    createGetSuperfluidNetworkMetadataTool(server);
+    
+    // Token list tools
+    createGetSuperfluidTokenTool(server);
+    createFindSuperfluidTokensTool(server);
   },
   {
     capabilities: {
