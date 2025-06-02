@@ -1,29 +1,33 @@
 import { z } from "zod";
-import { extendedSuperTokenList, type SuperTokenInfo, type TokenInfo, fetchLatestExtendedSuperTokenList } from "@superfluid-finance/tokenlist";
+import { extendedSuperTokenList, fetchLatestExtendedSuperTokenList, type SuperTokenInfo, type TokenInfo } from "@superfluid-finance/tokenlist";
 import Fuse from "fuse.js";
 import { McpServer } from "@/types";
+import { isAddress } from "viem";
+
+type TokenResult = {
+  token: SuperTokenInfo | TokenInfo;
+  underlyingToken?: TokenInfo;
+};
+
+// Type for the result when token is not yet found.
+type PartialTokenResult = {
+  token?: SuperTokenInfo | TokenInfo;
+  underlyingToken?: TokenInfo;
+}
 
 export const createGetSuperfluidTokenTool = (server: McpServer) => {
   server.tool(
     "get-superfluid-token",
     "Get a specific Superfluid token by address and chain ID, including underlying token if applicable",
     {
-      tokenAddress: z.string().regex(/^0x[a-fA-F0-9]{40}$/),
+      tokenAddress: z.string().trim().toLowerCase().refine(isAddress, { message: "Invalid token address" }),
       chainId: z.number().int().positive()
     },
     async (args: { tokenAddress: string; chainId: number }) => {
-      let tokenList;
-      try {
-        tokenList = await fetchLatestExtendedSuperTokenList();
-      } catch {
-        tokenList = extendedSuperTokenList;
-      }
+      const tokenList = extendedSuperTokenList;
 
       const tokenAddressLower = args.tokenAddress.toLowerCase();
-      const result: {
-        token?: SuperTokenInfo | TokenInfo;
-        underlyingToken?: TokenInfo;
-      } = {};
+      const result: PartialTokenResult = {};
 
       for (const token of tokenList.tokens) {
         if (token.chainId === args.chainId && token.address.toLowerCase() === tokenAddressLower) {
@@ -64,16 +68,11 @@ export const createFindSuperfluidTokensTool = (server: McpServer) => {
     "find-superfluid-tokens",
     "Find Superfluid tokens by search term (symbol or fuzzy name match) with optional chain ID filtering",
     {
-      searchTerm: z.string().min(1),
+      searchTerm: z.string().min(2),
       chainIds: z.array(z.number().int().positive()).optional()
     },
     async (args: { searchTerm: string; chainIds?: number[] }) => {
-      let tokenList;
-      try {
-        tokenList = await fetchLatestExtendedSuperTokenList();
-      } catch {
-        tokenList = extendedSuperTokenList;
-      }
+      const tokenList = extendedSuperTokenList;
 
       let tokensToSearch = tokenList.tokens;
       if (args.chainIds && args.chainIds.length > 0) {
@@ -93,8 +92,8 @@ export const createFindSuperfluidTokensTool = (server: McpServer) => {
       }
 
       const fuse = new Fuse(otherTokens, {
-        keys: ['name', 'symbol'],
-        threshold: 0.4,
+        keys: ['name'],
+        threshold: 0.3,
         includeScore: true
       });
 
@@ -102,7 +101,7 @@ export const createFindSuperfluidTokensTool = (server: McpServer) => {
       const allResults = [...exactSymbolMatches, ...fuzzyResults.map(result => result.item)];
 
       const resultsWithUnderlying = allResults.map(token => {
-        const result: any = { token };
+        const result: TokenResult = { token };
         
         if ('extensions' in token && 
             token.extensions?.superTokenInfo && 

@@ -2,15 +2,15 @@ import { createMcpHandler } from "@vercel/mcp-adapter";
 import { 
   createListSuperfluidContractsTool,
   createGetSuperfluidContractAbiTool
-} from "../abi-tools";
+} from "./(tools)/abi-tools";
 import {
   createListSuperfluidMetadataNetworksTool,
   createGetSuperfluidNetworkMetadataTool
-} from "../metadata-tools";
+} from "./(tools)/metadata-tools";
 import {
   createGetSuperfluidTokenTool,
   createFindSuperfluidTokensTool
-} from "../tokenlist-tools";
+} from "./(tools)/tokenlist-tools";
 
 const handler = createMcpHandler(
   (server) => {

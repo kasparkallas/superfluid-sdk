@@ -35,7 +35,7 @@ export const createListSuperfluidMetadataNetworksTool = (server: McpServer) => {
 export const createGetSuperfluidNetworkMetadataTool = (server: McpServer) => {
   server.tool(
     "get-superfluid-network-metadata",
-    "Get full metadata for specific Superfluid network(s) by chain ID",
+    "Get full metadata (deployed contract addresses, subgraph and RPC URLs, etc) for specific Superfluid network(s) by chain ID",
     {
       chainIds: z.array(z.number().int().positive()).min(1)
     },
