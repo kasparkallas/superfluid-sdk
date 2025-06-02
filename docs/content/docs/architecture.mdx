@@ -1,0 +1,178 @@
+---
+title: Architecture
+description: Understanding how the Superfluid SDK is structured
+---
+
+# Architecture
+
+## SDK Structure
+
+The Superfluid SDK is organized into three main import paths, each serving a specific purpose:
+
+### 1. ABIs (`@superfluid-finance/sdk`)
+
+Raw contract ABIs with enhanced type information:
+
+```ts twoslash
+import { 
+  superTokenAbi,
+  cfaForwarderAbi,
+  gdaForwarderAbi,
+  superTokenAddress,
+  cfaForwarderAddress
+} from "@superfluid-finance/sdk"
+```
+
+Use ABIs when:
+- Working directly with viem
+- Building custom abstractions
+- Need maximum flexibility
+
+### 2. Actions (`@superfluid-finance/sdk/actions`)
+
+Core functions for non-React environments:
+
+```ts twoslash
+import { 
+  readSuperToken,
+  writeSuperToken,
+  readCfaForwarder,
+  writeCfaForwarder
+} from "@superfluid-finance/sdk/actions"
+```
+
+Use actions when:
+- Building server-side applications
+- Working in non-React frameworks
+- Need wagmi's conveniences without React
+
+### 3. Hooks (`@superfluid-finance/sdk/wagmi`)
+
+React hooks for seamless integration:
+
+```ts twoslash
+import { 
+  useReadSuperToken,
+  useWriteSuperToken,
+  useReadCfaForwarder,
+  useWriteCfaForwarder
+} from "@superfluid-finance/sdk/wagmi"
+```
+
+Use hooks when:
+- Building React applications
+- Need reactive data updates
+- Want built-in loading/error states
+
+## Import Path Organization
+
+Each import path has sub-paths for different contract categories:
+
+### Root Imports (Essential)
+Default imports contain the most commonly used contracts:
+- Super Token operations
+- CFA Forwarder (streaming)
+- GDA Forwarder (distributions)
+
+### Advanced Imports
+```ts
+import { hostAbi } from "@superfluid-finance/sdk/abi/protocol"
+import { readHost } from "@superfluid-finance/sdk/actions/protocol"
+import { useReadHost } from "@superfluid-finance/sdk/wagmi/protocol"
+```
+
+Protocol-level contracts for advanced use cases:
+- Host (core protocol)
+- CFA/GDA/IDA (agreement contracts)
+- TOGA (liquidations)
+
+### Automation Imports
+```ts
+import { vestingSchedulerAbi } from "@superfluid-finance/sdk/abi/automation"
+import { readVestingScheduler } from "@superfluid-finance/sdk/actions/automation"
+import { useReadVestingScheduler } from "@superfluid-finance/sdk/wagmi/automation"
+```
+
+Automation contracts for scheduled operations:
+- AutoWrap (automatic token wrapping)
+- VestingScheduler (token vesting)
+- FlowScheduler (scheduled streams)
+
+## Code Generation
+
+The SDK is generated using wagmi-cli based on:
+
+1. **Contract ABIs** from `@superfluid-finance/ethereum-contracts`
+2. **Network addresses** from `@superfluid-finance/metadata`
+3. **Type definitions** generated at build time
+
+The generation process:
+```bash
+# Generate ABIs
+TYPE=abi pnpm generate
+
+# Generate actions
+TYPE=actions pnpm generate
+
+# Generate hooks
+TYPE=wagmi pnpm generate
+```
+
+## Contract Naming Convention
+
+Contract names are transformed for consistency:
+- `CFAv1Forwarder` → `cfaForwarder`
+- `GeneralDistributionAgreementV1` → `gda`
+- `ISuperToken` → `superToken`
+
+## Type Safety Architecture
+
+The SDK leverages TypeScript's type system:
+
+1. **ABI Types**: Generated from Solidity function signatures
+2. **Address Types**: Network-specific contract addresses
+3. **Return Types**: Inferred from ABI definitions
+4. **Error Types**: Typed revert reasons
+
+Example of type flow:
+```ts twoslash
+// 1. Import typed ABI
+import { superTokenAbi } from "@superfluid-finance/sdk"
+
+// 2. Function names are typed
+type FunctionNames = typeof superTokenAbi[number]["name"]
+//   ^? "balanceOf" | "transfer" | "approve" | ...
+
+// 3. Arguments are typed based on function
+type BalanceOfArgs = Parameters<typeof superTokenAbi[0]["inputs"]>
+
+// 4. Return types are inferred
+type BalanceOfReturn = bigint // Automatically inferred
+```
+
+## Best Practices
+
+1. **Choose the right import path**:
+   - ABIs for direct viem usage
+   - Actions for server/non-React
+   - Hooks for React apps
+
+2. **Use specific imports**:
+   ```ts
+   // Good
+ } from "@superfluid-finance/sdk"
+   
+   // Avoid
+   import * as sdk from "@superfluid-finance/sdk"
+   ```
+
+3. **Leverage type safety**:
+   - Let TypeScript guide your implementation
+   - Use autocomplete for function names
+   - Trust the type errors
+
+## Next Steps
+
+- Review the [glossary](/docs/glossary) for terminology
+- Start building with [use-case guides](/docs/use-cases/wrap-unwrap)
+- Explore the [API reference](/docs/api/essential/super-token)
