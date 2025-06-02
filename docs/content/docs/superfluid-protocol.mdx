@@ -47,10 +47,11 @@ Flows are continuous streams of tokens from one account to another. Key characte
 
 ```ts twoslash
 import { calculateFlowrate } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 
 // Stream 100 tokens per month
 const flowrate = calculateFlowrate({
-  amountWei: "100", // Amount in token units
+  amountWei: parseEther("100"), // Amount in wei units
   timeUnit: "month"
 })
 ```
@@ -66,8 +67,10 @@ The GDA enables one-to-many token distributions through pools:
 
 ### Key Protocol Components
 
-- **Host**: Core protocol contract managing agreements
-- **Forwarders**: Simplified interfaces for common operations
+- **Forwarders**: Simplified interfaces for common operations (**recommended approach**)
+  - CFA Forwarder: For managing flows
+  - GDA Forwarder: For managing distributions
+- **Host**: Core protocol contract managing agreements (advanced usage)
 - **TOGA**: Trust-less liquidation system for insolvent flows
 
 ## Protocol Architecture
@@ -75,9 +78,11 @@ The GDA enables one-to-many token distributions through pools:
 The Superfluid Protocol uses a modular architecture:
 
 1. **Super Token contracts** handle token logic
-2. **Agreement contracts** (CFA, GDA) manage distribution rules
+2. **Agreement contracts** (CFA, GDA) manage distribution rules  
 3. **Host contract** coordinates all components
 4. **Forwarder contracts** provide user-friendly interfaces
+
+> **Important**: Agreement contracts (CFA, GDA, IDA) cannot be called directly. All operations must go through the Host contract using encoded calls. **This is why forwarders are recommended** - they handle this complexity automatically.
 
 ## Next Steps
 

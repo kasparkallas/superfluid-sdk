@@ -40,7 +40,7 @@ Here's how to create a batch call manually:
 <Tabs items={["ABI", "Actions", "Hooks"]}>
 <Tab value="ABI">
 ```ts twoslash
-import { hostAbi, hostAddress } from "@superfluid-finance/sdk/abi/protocol" // [!code focus]
+import { hostAbi, hostAddress, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol" // [!code focus]
 import { createWalletClient, http, encodeAbiParameters, encodeFunctionData } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
@@ -63,13 +63,7 @@ async function batchCall() {
       operationType: OPERATION_TYPE_SUPERTOKEN_UPGRADE,
       target: "0x...", // Super Token address
       data: encodeFunctionData({
-        abi: [{
-          name: "upgrade",
-          type: "function",
-          inputs: [{ name: "amount", type: "uint256" }],
-          outputs: [],
-          stateMutability: "nonpayable"
-        }],
+        abi: superTokenAbi,
         functionName: "upgrade",
         args: [1000000n] // Amount to upgrade
       })
@@ -79,19 +73,7 @@ async function batchCall() {
       operationType: OPERATION_TYPE_CFA_CREATE_FLOW,
       target: "0x...", // CFA Forwarder address
       data: encodeFunctionData({
-        abi: [{
-          name: "createFlow",
-          type: "function",
-          inputs: [
-            { name: "token", type: "address" },
-            { name: "sender", type: "address" },
-            { name: "receiver", type: "address" },
-            { name: "flowrate", type: "int96" },
-            { name: "userData", type: "bytes" }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        }],
+        abi: cfaForwarderAbi,
         functionName: "createFlow",
         args: ["0x...", account.address, "0x...", 1000n, "0x"]
       })
@@ -113,6 +95,7 @@ async function batchCall() {
 <Tab value="Actions">
 ```ts twoslash
 import { writeHost } from "@superfluid-finance/sdk/actions/protocol" // [!code focus]
+import { superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol"
 import { createConfig } from "@wagmi/core"
 import { createWalletClient, http, encodeFunctionData } from "viem"
 import { mainnet } from "viem/chains"
@@ -139,13 +122,7 @@ async function batchCall() {
       operationType: OPERATION_TYPE_SUPERTOKEN_UPGRADE,
       target: "0x...", // Super Token address
       data: encodeFunctionData({
-        abi: [{
-          name: "upgrade",
-          type: "function",
-          inputs: [{ name: "amount", type: "uint256" }],
-          outputs: [],
-          stateMutability: "nonpayable"
-        }],
+        abi: superTokenAbi,
         functionName: "upgrade",
         args: [1000000n]
       })
@@ -154,19 +131,7 @@ async function batchCall() {
       operationType: OPERATION_TYPE_CFA_CREATE_FLOW,
       target: "0x...", // CFA Forwarder address
       data: encodeFunctionData({
-        abi: [{
-          name: "createFlow",
-          type: "function",
-          inputs: [
-            { name: "token", type: "address" },
-            { name: "sender", type: "address" },
-            { name: "receiver", type: "address" },
-            { name: "flowrate", type: "int96" },
-            { name: "userData", type: "bytes" }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        }],
+        abi: cfaForwarderAbi,
         functionName: "createFlow",
         args: ["0x...", account.address, "0x...", 1000n, "0x"]
       })
@@ -187,6 +152,7 @@ async function batchCall() {
 <Tab value="Hooks">
 ```tsx twoslash
 import { useWriteHost } from "@superfluid-finance/sdk/wagmi/protocol" // [!code focus]
+import { superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol"
 import { encodeFunctionData } from "viem"
 import { useAccount } from "wagmi"
 
@@ -201,13 +167,7 @@ function BatchOperations() {
       operationType: OPERATION_TYPE_SUPERTOKEN_UPGRADE,
       target: "0x...", // Super Token address
       data: encodeFunctionData({
-        abi: [{
-          name: "upgrade",
-          type: "function",
-          inputs: [{ name: "amount", type: "uint256" }],
-          outputs: [],
-          stateMutability: "nonpayable"
-        }],
+        abi: superTokenAbi,
         functionName: "upgrade",
         args: [1000000n]
       })
@@ -216,19 +176,7 @@ function BatchOperations() {
       operationType: OPERATION_TYPE_CFA_CREATE_FLOW,
       target: "0x...", // CFA Forwarder address
       data: encodeFunctionData({
-        abi: [{
-          name: "createFlow",
-          type: "function",
-          inputs: [
-            { name: "token", type: "address" },
-            { name: "sender", type: "address" },
-            { name: "receiver", type: "address" },
-            { name: "flowrate", type: "int96" },
-            { name: "userData", type: "bytes" }
-          ],
-          outputs: [],
-          stateMutability: "nonpayable"
-        }],
+        abi: cfaForwarderAbi,
         functionName: "createFlow",
         args: ["0x...", address!, "0x...", 1000n, "0x"]
       })
@@ -300,7 +248,7 @@ async function batchWithHelper() {
         superToken,
         account.address,
         receiver,
-        calculateFlowrate({ amountWei: "10", timeUnit: "month" }),
+        calculateFlowrate({ amountWei: parseEther("10"), timeUnit: "month" }),
         "0x"
       ]
     })
@@ -324,65 +272,32 @@ async function batchWithHelper() {
 
 Wrap tokens and immediately start streaming:
 
-TODO: THIS IS WRONG. THE UNDERLYING TOKEN BALANCE CAN'T BE INCLUDED IN THE BATCH CALL.
+> **Note**: The underlying token approval cannot be included in the batch call because `msg.sender` changes when operations go through the Superfluid Host. Approve the underlying token separately before executing the batch.
 
 ```ts twoslash
-import { prepareOperation, calculateFlowrate } from "@superfluid-finance/sdk"
+import { prepareOperation, calculateFlowrate, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 
 const wrapAndStream = [
-  // 1. Approve underlying token
-  prepareOperation({
-    operationType: 1, // ERC20_APPROVE
-    target: "0x...", // Underlying token
-    abi: [{
-      name: "approve",
-      type: "function",
-      inputs: [
-        { name: "spender", type: "address" },
-        { name: "amount", type: "uint256" }
-      ],
-      outputs: [{ name: "", type: "bool" }],
-      stateMutability: "nonpayable"
-    }],
-    functionName: "approve",
-    args: ["0x...", 1000000n] // Super token address, amount
-  }),
-  
-  // 2. Upgrade to super token
+  // 1. Upgrade to super token
   prepareOperation({
     operationType: 101, // SUPERTOKEN_UPGRADE
     target: "0x...", // Super token
-    abi: [{
-      name: "upgrade",
-      type: "function",
-      inputs: [{ name: "amount", type: "uint256" }],
-      outputs: [],
-      stateMutability: "nonpayable"
-    }],
+    abi: superTokenAbi,
     functionName: "upgrade",
-    args: [1000000n]
+    args: [parseEther("100")]
   }),
   
-  // 3. Create flow
+  // 2. Create flow
   prepareOperation({
     operationType: 201, // CFA_CREATE_FLOW
     target: "0x...", // CFA Forwarder
-    abi: [{
-      name: "setFlowrate",
-      type: "function",
-      inputs: [
-        { name: "token", type: "address" },
-        { name: "receiver", type: "address" },
-        { name: "flowrate", type: "int96" }
-      ],
-      outputs: [],
-      stateMutability: "nonpayable"
-    }],
+    abi: cfaForwarderAbi,
     functionName: "setFlowrate",
     args: [
       "0x...", // Super token
       "0x...", // Receiver
-      calculateFlowrate({ amountWei: "100", timeUnit: "month" })
+      calculateFlowrate({ amountWei: parseEther("10"), timeUnit: "month" })
     ]
   })
 ]
@@ -393,7 +308,8 @@ const wrapAndStream = [
 Update multiple flows in one transaction:
 
 ```ts twoslash
-import { prepareOperation, calculateFlowrate } from "@superfluid-finance/sdk"
+import { prepareOperation, calculateFlowrate, cfaForwarderAbi } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 
 const receivers = [
   { address: "0x...", flowrate: "100" },
@@ -405,22 +321,12 @@ const multipleFlowUpdates = receivers.map(receiver =>
   prepareOperation({
     operationType: 202, // CFA_UPDATE_FLOW
     target: "0x...", // CFA Forwarder
-    abi: [{
-      name: "setFlowrate",
-      type: "function",
-      inputs: [
-        { name: "token", type: "address" },
-        { name: "receiver", type: "address" },
-        { name: "flowrate", type: "int96" }
-      ],
-      outputs: [],
-      stateMutability: "nonpayable"
-    }],
+    abi: cfaForwarderAbi,
     functionName: "setFlowrate",
     args: [
       "0x...", // Super token
       receiver.address,
-      calculateFlowrate({ amountWei: receiver.flowrate, timeUnit: "month" })
+      calculateFlowrate({ amountWei: parseEther(receiver.flowrate), timeUnit: "month" })
     ]
   })
 )
@@ -431,6 +337,12 @@ const multipleFlowUpdates = receivers.map(receiver =>
 Batch calls are atomic - if any operation fails, the entire batch reverts:
 
 ```ts twoslash
+import { hostAddress, hostAbi } from "@superfluid-finance/sdk/abi/protocol"
+import { mainnet } from "viem/chains"
+// @noErrors
+const walletClient = {} as any
+const operations = [] as any[]
+// ---cut---
 try {
   // Execute batch call
   const hash = await walletClient.writeContract({

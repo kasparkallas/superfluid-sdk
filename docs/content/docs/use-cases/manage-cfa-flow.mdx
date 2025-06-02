@@ -15,22 +15,23 @@ Flowrates are measured in tokens per second. The SDK provides a utility to calcu
 
 ```ts twoslash
 import { calculateFlowrate } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 
 // Stream 100 tokens per month
 const monthlyFlowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
 // Stream 1 token per day
 const dailyFlowrate = calculateFlowrate({
-  amountWei: "1",
+  amountWei: parseEther("1"),
   timeUnit: "day"
 })
 
 // Stream 0.1 tokens per hour
 const hourlyFlowrate = calculateFlowrate({
-  amountWei: "0.1",
+  amountWei: parseEther("0.1"),
   timeUnit: "hour"
 })
 ```
@@ -47,7 +48,7 @@ There are two ways to create a flow: `setFlowrate` (recommended) and `createFlow
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress, calculateFlowrate } from "@superfluid-finance/sdk" // [!code focus]
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -61,7 +62,7 @@ const walletClient = createWalletClient({
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const flowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
@@ -82,7 +83,7 @@ async function createFlow() {
 ```ts twoslash
 import { writeCfaForwarder, calculateFlowrate } from "@superfluid-finance/sdk/actions" // [!code focus]
 import { createConfig } from "@wagmi/core"
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -101,7 +102,7 @@ const wagmiConfig = createConfig({
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const flowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
@@ -121,11 +122,12 @@ async function createFlow() {
 ```tsx twoslash
 import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
 import { calculateFlowrate } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const flowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
@@ -153,7 +155,7 @@ function CreateFlow() {
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress, calculateFlowrate } from "@superfluid-finance/sdk" // [!code focus]
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -167,7 +169,7 @@ const walletClient = createWalletClient({
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const flowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
@@ -188,7 +190,7 @@ async function createNewFlow() {
 ```ts twoslash
 import { writeCfaForwarder, calculateFlowrate } from "@superfluid-finance/sdk/actions" // [!code focus]
 import { createConfig } from "@wagmi/core"
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -207,7 +209,7 @@ const wagmiConfig = createConfig({
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const flowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
@@ -227,12 +229,13 @@ async function createNewFlow() {
 ```tsx twoslash
 import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
 import { calculateFlowrate } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 import { useAccount } from "wagmi"
 
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const flowrate = calculateFlowrate({
-  amountWei: "100",
+  amountWei: parseEther("100"),
   timeUnit: "month"
 })
 
@@ -261,7 +264,7 @@ To change the flowrate of an existing flow:
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress, calculateFlowrate } from "@superfluid-finance/sdk" // [!code focus]
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -275,7 +278,7 @@ const walletClient = createWalletClient({
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const newFlowrate = calculateFlowrate({
-  amountWei: "200", // Increased to 200 tokens/month
+  amountWei: parseEther("200"), // Increased to 200 tokens/month
   timeUnit: "month"
 })
 
@@ -296,7 +299,7 @@ async function updateFlow() {
 ```ts twoslash
 import { writeCfaForwarder, calculateFlowrate } from "@superfluid-finance/sdk/actions" // [!code focus]
 import { createConfig } from "@wagmi/core"
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -315,7 +318,7 @@ const wagmiConfig = createConfig({
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const newFlowrate = calculateFlowrate({
-  amountWei: "200",
+  amountWei: parseEther("200"),
   timeUnit: "month"
 })
 
@@ -335,12 +338,13 @@ async function updateFlow() {
 ```tsx twoslash
 import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
 import { calculateFlowrate } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
 import { useAccount } from "wagmi"
 
 const superToken = "0x..." // USDCx address
 const receiver = "0x..." // Recipient address
 const newFlowrate = calculateFlowrate({
-  amountWei: "200",
+  amountWei: parseEther("200"),
   timeUnit: "month"
 })
 
@@ -369,7 +373,7 @@ To stop a flow completely:
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 
@@ -400,7 +404,7 @@ async function deleteFlow() {
 ```ts twoslash
 import { writeCfaForwarder } from "@superfluid-finance/sdk/actions" // [!code focus]
 import { createConfig } from "@wagmi/core"
-import { createWalletClient, http } from "viem"
+import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
 

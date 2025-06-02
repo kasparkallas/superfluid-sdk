@@ -1,146 +1,167 @@
 ---
-title: Tradeable Cashflow Agreement (TOGA)
-description: TOGA contract API reference for NFT-based cashflow management
+title: Transparent Ongoing Governance Agreement (TOGA)
+description: TOGA contract API reference for Superfluid protocol governance
 ---
 
 import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
 
-The Tradeable Ownership of General Agreement (TOGA) allows Superfluid cashflows to be wrapped as NFTs, making them tradeable and composable with other DeFi protocols. This enables new use cases like cashflow securitization and secondary markets.
+The Transparent Ongoing Governance Agreement (TOGA) is a governance mechanism that allows token holders to become the "Patrician In Charge" (PIC) by posting a bond. The PIC can set exit rates for the Super Token.
 
 ## Overview
 
 TOGA provides:
-- NFT wrapper for Superfluid streams and distributions
-- Tradeable cashflow ownership
-- Composability with NFT marketplaces
-- Cashflow splitting and bundling
+- Bond-based governance for Super Tokens
+- PIC (Patrician In Charge) system
+- Exit rate management
+- Minimum bond duration requirements
 
 ## Read Functions
 
-### getFlowNFTInfo
+### getCurrentPIC
 
-Returns information about a flow NFT.
+Returns the current Patrician In Charge for a Super Token.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
 <Tab value="ABI">
 ```ts
-import { toga } from '@superfluid-finance/sdk/abi';
+import { toga } from '@superfluid-finance/sdk/abi/protocol';
 
-const nftInfo = await client.readContract({
+const pic = await client.readContract({
   address: '0x...',
   abi: toga,
-  functionName: 'getFlowNFTInfo',
-  args: [tokenId],
+  functionName: 'getCurrentPIC',
+  args: [superToken],
 });
 ```
 </Tab>
 <Tab value="Actions">
 ```ts
-import { readToga } from '@superfluid-finance/sdk/actions';
+import { readToga } from '@superfluid-finance/sdk/actions/protocol';
 
-const nftInfo = await readToga(client, {
+const pic = await readToga(client, {
   address: '0x...',
-  functionName: 'getFlowNFTInfo',
-  args: [tokenId],
+  functionName: 'getCurrentPIC',
+  args: [superToken],
 });
 ```
 </Tab>
 <Tab value="Hooks">
 ```ts
-import { useReadToga } from '@superfluid-finance/sdk/wagmi';
+import { useReadToga } from '@superfluid-finance/sdk/wagmi/protocol';
 
-const { data: nftInfo } = useReadToga({
+const { data: pic } = useReadToga({
   address: '0x...',
-  functionName: 'getFlowNFTInfo',
-  args: [tokenId],
+  functionName: 'getCurrentPIC',
+  args: [superToken],
 });
 ```
 </Tab>
 </Tabs>
 
-### ownerOf
+### getCurrentPICInfo
 
-Returns the owner of a cashflow NFT.
-
-### balanceOf
-
-Returns the number of cashflow NFTs owned by an address.
-
-### tokenURI
-
-Returns the metadata URI for a cashflow NFT.
-
-## Write Functions
-
-### wrapFlow
-
-Wraps an existing Superfluid stream as an NFT.
+Returns detailed information about the current PIC including their bond and exit rate.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
 <Tab value="ABI">
 ```ts
-import { toga } from '@superfluid-finance/sdk/abi';
+import { toga } from '@superfluid-finance/sdk/abi/protocol';
 
-const hash = await client.writeContract({
+const { pic, bond, exitRate } = await client.readContract({
   address: '0x...',
   abi: toga,
-  functionName: 'wrapFlow',
-  args: [token, sender, receiver],
+  functionName: 'getCurrentPICInfo',
+  args: [superToken],
 });
 ```
 </Tab>
 <Tab value="Actions">
 ```ts
-import { writeToga } from '@superfluid-finance/sdk/actions';
+import { readToga } from '@superfluid-finance/sdk/actions/protocol';
 
-const hash = await writeToga(client, {
+const { pic, bond, exitRate } = await readToga(client, {
   address: '0x...',
-  functionName: 'wrapFlow',
-  args: [token, sender, receiver],
+  functionName: 'getCurrentPICInfo',
+  args: [superToken],
 });
 ```
 </Tab>
 <Tab value="Hooks">
 ```ts
-import { useWriteToga } from '@superfluid-finance/sdk/wagmi';
+import { useReadToga } from '@superfluid-finance/sdk/wagmi/protocol';
+
+const { data } = useReadToga({
+  address: '0x...',
+  functionName: 'getCurrentPICInfo',
+  args: [superToken],
+});
+// data = { pic, bond, exitRate }
+```
+</Tab>
+</Tabs>
+
+### getDefaultExitRateFor
+
+Calculates the default exit rate for a given bond amount.
+
+### getMaxExitRateFor
+
+Calculates the maximum allowed exit rate for a given bond amount.
+
+### minBondDuration
+
+Returns the minimum bond duration in seconds.
+
+## Write Functions
+
+### changeExitRate
+
+Allows the current PIC to change the exit rate of the Super Token.
+
+<Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="ABI">
+```ts
+import { toga } from '@superfluid-finance/sdk/abi/protocol';
+
+const hash = await client.writeContract({
+  address: '0x...',
+  abi: toga,
+  functionName: 'changeExitRate',
+  args: [superToken, newExitRate],
+});
+```
+</Tab>
+<Tab value="Actions">
+```ts
+import { writeToga } from '@superfluid-finance/sdk/actions/protocol';
+
+const hash = await writeToga(client, {
+  address: '0x...',
+  functionName: 'changeExitRate',
+  args: [superToken, newExitRate],
+});
+```
+</Tab>
+<Tab value="Hooks">
+```ts
+import { useWriteToga } from '@superfluid-finance/sdk/wagmi/protocol';
 
 const { writeContract } = useWriteToga();
 
 await writeContract({
   address: '0x...',
-  functionName: 'wrapFlow',
-  args: [token, sender, receiver],
+  functionName: 'changeExitRate',
+  args: [superToken, newExitRate],
 });
 ```
 </Tab>
 </Tabs>
 
-### unwrapFlow
+### tokensReceived
 
-Unwraps a cashflow NFT back to a regular stream.
-
-### transferFrom
-
-Transfers ownership of a cashflow NFT.
-
-### approve
-
-Approves another address to transfer a specific cashflow NFT.
-
-### setApprovalForAll
-
-Approves an operator to manage all cashflow NFTs.
-
-## Events
-
-- `FlowWrapped` - Emitted when a flow is wrapped as NFT
-- `FlowUnwrapped` - Emitted when an NFT is unwrapped
-- `Transfer` - Standard ERC721 transfer event
-- `Approval` - Standard ERC721 approval event
-- `ApprovalForAll` - Standard ERC721 operator approval event
+ERC777 token receiver hook that handles bond deposits to become the new PIC.
 
 ## Related
 
-- [CFA](/docs/api/advanced/cfa) - Create streams to wrap
-- [GDA](/docs/api/advanced/gda) - Create distributions to wrap
-- [Super Token](/docs/api/essential/super-token) - Tokens used in wrapped flows
+- [Super Token](/docs/api/essential/super-token) - The tokens governed by TOGA
+- [Host](/docs/api/advanced/host) - Core Superfluid protocol contract
