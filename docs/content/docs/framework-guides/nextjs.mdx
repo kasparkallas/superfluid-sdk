@@ -391,18 +391,24 @@ export function RealtimeBalance({ token }: { token: `0x${string}` }) {
 "use client"
 
 import { useWriteHost } from "@superfluid-finance/sdk/wagmi"
-import { encodeFunctionData } from "viem"
-import { cfaForwarderAbi, OPERATION_TYPE } from "@superfluid-finance/sdk"
+import { encodeFunctionData, parseUnits } from "viem"
+import { cfaForwarderAbi, cfaForwarderAddress, superTokenAbi, OPERATION_TYPE } from "@superfluid-finance/sdk"
 
 export function BatchOperations() {
   const { writeContract } = useWriteHost()
   
   const executeBatch = () => {
+    const superToken = "0x..." // Super Token address - replace with actual address
+    const token = "0x..." // Token address for flow
+    const sender = "0x..." // Sender address
+    const receiver = "0x..." // Receiver address
+    const flowRate = 1000n // Flow rate in wei/second
+    
     const operations = [
       // Wrap 100 tokens
       {
         operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
-        target: superTokenAddress,
+        target: superToken,
         data: encodeFunctionData({
           abi: superTokenAbi,
           functionName: "upgrade",

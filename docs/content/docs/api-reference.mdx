@@ -136,10 +136,15 @@ import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi"
 const { writeContract } = useWriteCfaForwarder()
 
 // Create a stream of 100 tokens per month
+const superToken = "0x..." // Super Token address
+const sender = "0x..." // Sender address
+const receiver = "0x..." // Receiver address
+const flowRate = 1000n // Flow rate in wei/second
+
 writeContract({
   functionName: "createFlow",
   args: [
-    superTokenAddress,
+    superToken,
     sender,
     receiver,
     flowRate, // tokens per second

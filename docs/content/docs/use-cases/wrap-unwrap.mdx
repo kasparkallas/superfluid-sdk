@@ -66,7 +66,7 @@ function WrapTokens() {
 
 <Tab value="ABI">
 ```ts twoslash
-import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
+import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
 import { erc20Abi, createWalletClient, http, parseUnits } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
@@ -79,7 +79,7 @@ const walletClient = createWalletClient({
 })
 
 const underlyingToken = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" // USDC
-const superToken = superTokenAddress[mainnet.id]["USDCx"]
+const superToken = "0x1234567890abcdef..." // USDCx address - replace with actual address
 const amount = parseUnits("100", 6) // 100 USDC (6 decimals)
 
 async function wrapTokens() {
@@ -184,7 +184,7 @@ function UnwrapTokens() {
 
 <Tab value="ABI">
 ```ts twoslash
-import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
+import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
 import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
@@ -196,7 +196,7 @@ const walletClient = createWalletClient({
   transport: http()
 })
 
-const superToken = superTokenAddress[mainnet.id]["USDCx"]
+const superToken = "0x1234567890abcdef..." // USDCx address - replace with actual address
 const amount = parseEther("100") // 100 Super Tokens (always 18 decimals)
 
 async function unwrapTokens() {
@@ -282,7 +282,7 @@ function WrapETH() {
 
 <Tab value="ABI">
 ```ts twoslash
-import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
+import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
 import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
@@ -294,7 +294,7 @@ const walletClient = createWalletClient({
   transport: http()
 })
 
-const ethx = superTokenAddress[mainnet.id]["ETHx"]
+const ethx = "0xabcdef1234567890..." // ETHx address - replace with actual address
 const amount = parseEther("1") // 1 ETH
 
 async function wrapETH() {
@@ -376,7 +376,7 @@ function UnwrapETH() {
 
 <Tab value="ABI">
 ```ts twoslash
-import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
+import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
 import { createWalletClient, http, parseEther } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
@@ -388,7 +388,7 @@ const walletClient = createWalletClient({
   transport: http()
 })
 
-const ethx = superTokenAddress[mainnet.id]["ETHx"]
+const ethx = "0xabcdef1234567890..." // ETHx address - replace with actual address
 const amount = parseEther("1") // 1 ETHx
 
 async function unwrapETH() {
