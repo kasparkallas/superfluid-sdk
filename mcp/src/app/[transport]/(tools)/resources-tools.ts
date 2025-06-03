@@ -201,7 +201,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
     url: "https://giveth.io",
     category: "app",
     description: "Zero-fee crypto donation platform with Superfluid-powered recurring donations. Donors can stream continuous support to charitable projects on Optimism",
-    keywords: ["giveth", "donations", "charity", "recurring", "philanthropy", "giving", "impact"],
+    keywords: ["giveth", "donations", "charity", "recurring", "philanthropy", "giving", "impact", "continuous", "charitable"],
     useCases: [
       "Set up recurring donations to projects",
       "Stream continuous funding to causes",
@@ -227,7 +227,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
     url: "https://flowstate.network/explore",
     category: "app",
     description: "Streaming funding platform and digital cooperative for impact work. Features streaming quadratic funding (SQF) and voting mechanisms powered by Superfluid",
-    keywords: ["flowstate", "quadratic-funding", "sqf", "public-goods", "impact", "funding", "cooperative"],
+    keywords: ["flowstate", "quadratic-funding", "sqf", "public-goods", "impact", "funding", "cooperative", "charity", "donation", "grants", "continuous-funding"],
     useCases: [
       "Participate in streaming quadratic funding rounds",
       "Fund public goods with continuous streams",
@@ -240,7 +240,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
     url: "https://www.gooddollar.org",
     category: "app",
     description: "Universal Basic Income (UBI) protocol using Superfluid for streaming G$ tokens daily to members worldwide. Active in 222+ countries with focus on financial inclusion",
-    keywords: ["gooddollar", "ubi", "universal-basic-income", "g$", "financial-inclusion", "global", "social-impact"],
+    keywords: ["gooddollar", "ubi", "universal-basic-income", "g$", "financial-inclusion", "global", "social-impact", "charity", "social", "daily-payments", "basic-income"],
     useCases: [
       "Claim daily UBI payments in G$ tokens",
       "Stream basic income to global recipients",
@@ -337,17 +337,17 @@ export const createGetSuperfluidResourcesTool = (server: McpServer) => {
 
       // Search if term provided
       if (args.searchTerm) {
-        // First try exact matches on keywords
         const searchLower = args.searchTerm.toLowerCase();
-        const exactMatches = resources.filter(r => 
+        
+        // First try exact keyword match with full search term
+        const exactKeywordMatches = resources.filter(r => 
           r.keywords.some(k => k.toLowerCase() === searchLower)
         );
         
-        // If we have exact keyword matches, use those
-        if (exactMatches.length > 0) {
-          resources = exactMatches;
+        if (exactKeywordMatches.length > 0) {
+          resources = exactKeywordMatches;
         } else {
-          // Otherwise use fuzzy search
+          // Try fuzzy search with full term
           const fuse = new Fuse(resources, {
             keys: [
               { name: 'name', weight: 2 },
@@ -360,7 +360,37 @@ export const createGetSuperfluidResourcesTool = (server: McpServer) => {
           });
           
           const results = fuse.search(args.searchTerm);
-          resources = results.map(r => r.item);
+          
+          if (results.length > 0) {
+            resources = results.map(r => r.item);
+          } else {
+            // No results with full term, try splitting words
+            const searchWords = searchLower.split(/\s+/).filter(word => word.length > 0);
+            
+            // Find resources where any keyword contains any search word
+            const keywordMatches = resources.filter(r => 
+              searchWords.some(word => 
+                r.keywords.some(k => k.toLowerCase().includes(word))
+              )
+            );
+            
+            if (keywordMatches.length > 0) {
+              // Use fuzzy search on keyword matches to rank them
+              const fuseSplit = new Fuse(keywordMatches, {
+                keys: [
+                  { name: 'name', weight: 2 },
+                  { name: 'description', weight: 1 },
+                  { name: 'keywords', weight: 1.5 },
+                  { name: 'useCases', weight: 0.5 }
+                ],
+                threshold: 0.5,
+                includeScore: true
+              });
+              
+              const splitResults = fuseSplit.search(args.searchTerm);
+              resources = splitResults.map(r => r.item);
+            }
+          }
         }
       }
 
