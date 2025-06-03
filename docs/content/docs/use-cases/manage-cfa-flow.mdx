@@ -4,10 +4,32 @@ description: Create, update, and delete continuous token streams
 ---
 
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Mermaid } from '@/components/mdx/mermaid';
 
 # How to manage a CFA flow
 
 Constant Flow Agreement (CFA) enables continuous token streams between accounts. When we talk about "streams" in Superfluid, we're referring to CFA flows.
+
+<Mermaid
+  chart={`stateDiagram-v2
+    [*] --> NoFlow: Initial State
+    NoFlow --> ActiveFlow: createFlow/setFlowrate
+    ActiveFlow --> UpdatedFlow: updateFlow/setFlowrate
+    UpdatedFlow --> ActiveFlow: Continue streaming
+    ActiveFlow --> Terminated: deleteFlow/setFlowrate(0)
+    UpdatedFlow --> Terminated: deleteFlow/setFlowrate(0)
+    Terminated --> [*]
+    
+    ActiveFlow --> Liquidated: Balance runs out
+    UpdatedFlow --> Liquidated: Balance runs out
+    Liquidated --> [*]
+    
+    note right of NoFlow: No flow exists between accounts
+    note right of ActiveFlow: Tokens streaming at constant rate
+    note right of UpdatedFlow: Flowrate changed, still streaming
+    note right of Terminated: Flow ended by sender
+    note right of Liquidated: Flow ended due to insufficient balance`}
+/>
 
 ## Understanding Flowrates
 

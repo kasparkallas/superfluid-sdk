@@ -3,6 +3,8 @@ title: Architecture
 description: Understanding how the Superfluid SDK is structured
 ---
 
+import { Mermaid } from '@/components/mdx/mermaid';
+
 # Architecture
 
 ## SDK Structure
@@ -10,6 +12,26 @@ description: Understanding how the Superfluid SDK is structured
 The Superfluid SDK is organized into three main import paths, each serving a specific purpose.
 
 > **Important**: The SDK primarily exposes **Forwarder contracts** (CFA Forwarder, GDA Forwarder) which are the **recommended way** to interact with Superfluid. These contracts handle the complexity of encoding calls and routing them through the Host contract.
+
+<Mermaid
+  chart={`
+graph LR
+    SDK[Superfluid SDK]
+
+    subgraph CoreExports [SDK Exports]
+        direction LR
+        ABIs["ABIs (/)"]
+        Hooks["Hooks (/hooks)"]
+        Actions["Actions (/actions)"]
+    end
+
+    SDK --> CoreExports
+
+    CoreExports --> Essentials["Essentials (/)"]
+    CoreExports --> Advanced["Advanced (/advanced)"]
+    CoreExports --> Automation["Automation (/automation)"]
+`}
+/>
 
 ### 1. ABIs (`@superfluid-finance/sdk`)
 
@@ -127,6 +149,24 @@ Contract names are transformed for consistency:
 
 ## Contract Interaction Patterns
 
+<Mermaid
+  chart={`sequenceDiagram
+    participant User
+    participant Forwarder
+    participant Host
+    participant Agreement
+    
+    Note over User,Agreement: Recommended Pattern (Using Forwarder)
+    User->>Forwarder: setFlowrate(token, receiver, rate)
+    Forwarder->>Forwarder: Encode agreement call
+    Forwarder->>Host: callAgreement(encoded)
+    Host->>Agreement: createFlow/updateFlow/deleteFlow
+    Agreement-->>Host: Success
+    Host-->>Forwarder: Success
+    Forwarder-->>User: Transaction complete
+`}
+/>
+
 ### Recommended Pattern: Use Forwarders
 
 ```ts twoslash
@@ -148,6 +188,21 @@ await walletClient.writeContract({
 ```
 
 ### Advanced Pattern: Direct Host Interaction
+
+<Mermaid
+  chart={`sequenceDiagram
+    participant User
+    participant Host
+    participant Agreement
+    
+    Note over User,Agreement: Advanced Pattern (Direct Host - Avoid)
+    User->>User: Manually encode agreement call
+    User->>Host: callAgreement(agreement, encoded, context)
+    Host->>Agreement: createFlow/updateFlow/deleteFlow
+    Agreement-->>Host: Success  
+    Host-->>User: Transaction complete
+    `}
+/>
 
 ```ts twoslash  
 // Complex and error-prone - avoid unless necessary

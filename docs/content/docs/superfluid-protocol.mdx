@@ -3,6 +3,8 @@ title: Superfluid Protocol
 description: Core concepts of the Superfluid Protocol
 ---
 
+import { Mermaid } from '@/components/mdx/mermaid';
+
 # Superfluid Protocol
 
 ## What is Superfluid?
@@ -81,6 +83,35 @@ The Superfluid Protocol uses a modular architecture:
 2. **Agreement contracts** (CFA, GDA) manage distribution rules  
 3. **Host contract** coordinates all components
 4. **Forwarder contracts** provide user-friendly interfaces
+
+<Mermaid
+  chart={`graph TB
+    subgraph "User Layer"
+        User[User/DApp]
+    end
+    
+    subgraph "Forwarder Layer"
+        CFAF[CFA Forwarder]
+        GDAF[GDA Forwarder]
+    end
+    
+    subgraph "Core Protocol"
+        Host[Host Contract]
+        CFA[CFA Agreement]
+        GDA[GDA Agreement]
+        IDA[IDA Agreement]
+    end
+    
+    User -->|Simple calls| CFAF
+    User -->|Simple calls| GDAF
+    User -.->|Complex calls| Host
+    CFAF -->|Encoded calls| Host
+    GDAF -->|Encoded calls| Host
+    Host -->|Routes to| CFA
+    Host -->|Routes to| GDA
+    Host -->|Routes to| IDA
+    `}
+/>
 
 > **Important**: Agreement contracts (CFA, GDA, IDA) cannot be called directly. All operations must go through the Host contract using encoded calls. **This is why forwarders are recommended** - they handle this complexity automatically.
 
