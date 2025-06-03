@@ -4,12 +4,15 @@ description: Understanding how the Superfluid SDK is structured
 ---
 
 import { Mermaid } from '@/components/mdx/mermaid';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 ## SDK Structure
 
 The Superfluid SDK is organized into three main import paths, each serving a specific purpose.
 
-> **Important**: The SDK primarily exposes **Forwarder contracts** (CFA Forwarder, GDA Forwarder) which are the **recommended way** to interact with Superfluid. These contracts handle the complexity of encoding calls and routing them through the Host contract.
+<Callout type="info">
+**Important**: The SDK primarily exposes **Forwarder contracts** (CFA Forwarder, GDA Forwarder) which are the **recommended way** to interact with Superfluid. These contracts handle the complexity of encoding calls and routing them through the Host contract.
+</Callout>
 
 <Mermaid
   chart={`
@@ -110,7 +113,9 @@ Protocol-level contracts for advanced use cases:
 - CFA/GDA/IDA (agreement contracts - *use forwarders instead when possible*)
 - TOGA (liquidations)
 
-> **Note**: Direct interaction with agreement contracts (CFA, GDA, IDA) requires encoding calls through the Host. Use the forwarders instead for a simpler interface.
+<Callout type="note">
+**Note**: Direct interaction with agreement contracts (CFA, GDA, IDA) requires encoding calls through the Host. Use the forwarders instead for a simpler interface.
+</Callout>
 
 ### Automation Imports
 ```ts

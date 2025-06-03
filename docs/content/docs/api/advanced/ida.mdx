@@ -4,6 +4,7 @@ description: IDA contract API reference for instant token distributions
 ---
 
 import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 The Instant Distribution Agreement (IDA) enables instant, gas-efficient token distributions to multiple recipients. It uses a publish-subscribe model where publishers can distribute tokens to subscribers based on their subscription units.
 
@@ -15,7 +16,9 @@ The IDA contract provides:
 - Gas-efficient multi-recipient transfers
 - Subscription approval mechanisms
 
-> **Note**: IDA is being superseded by GDA (General Distribution Agreement) which offers more features including streaming distributions. Consider using GDA for new implementations.
+<Callout type="note">
+**Note**: IDA is being superseded by GDA (General Distribution Agreement) which offers more features including streaming distributions. Consider using GDA for new implementations.
+</Callout>
 
 ## Read Functions
 

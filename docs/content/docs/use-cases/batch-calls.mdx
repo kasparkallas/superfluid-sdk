@@ -4,6 +4,7 @@ description: Execute multiple Superfluid operations in a single transaction
 ---
 
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 Superfluid Protocol supports batch calls, allowing you to execute multiple operations in a single transaction. This is useful for complex workflows and gas optimization.
 
@@ -266,7 +267,9 @@ async function batchWithHelper() {
 
 Wrap tokens and immediately start streaming:
 
-> **Note**: The underlying token approval cannot be included in the batch call because `msg.sender` changes when operations go through the Superfluid Host. Approve the underlying token separately before executing the batch.
+<Callout type="warning">
+**Note**: The underlying token approval cannot be included in the batch call because `msg.sender` changes when operations go through the Superfluid Host. Approve the underlying token separately before executing the batch.
+</Callout>
 
 ```ts twoslash
 import { prepareOperation, OPERATION_TYPE, calculateFlowrate, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk"

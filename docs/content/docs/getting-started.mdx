@@ -19,6 +19,7 @@ Before you begin, ensure you have:
 Install the Superfluid SDK using your preferred package manager:
 
 import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 <Tabs groupId="pkg-mgr" items={['npm', 'pnpm', 'yarn', 'bun']} persist>
   <Tab value="npm">
@@ -89,7 +90,9 @@ async function startStream() {
 }
 ```
 
-> **Why Forwarders?** The CFA and GDA Forwarders are the recommended way to interact with Superfluid. They handle the complexity of encoding agreement calls and routing them through the Host contract.
+<Callout type="info">
+**Why Forwarders?** The CFA and GDA Forwarders are the recommended way to interact with Superfluid. They handle the complexity of encoding agreement calls and routing them through the Host contract.
+</Callout>
 
 ## Package Structure
 

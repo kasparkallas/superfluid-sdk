@@ -4,6 +4,7 @@ description: Core concepts of the Superfluid Protocol
 ---
 
 import { Mermaid } from '@/components/mdx/mermaid';
+import { Callout } from 'fumadocs-ui/components/callout';
 
 ## What is Superfluid?
 
@@ -111,7 +112,9 @@ The Superfluid Protocol uses a modular architecture:
     `}
 />
 
-> **Important**: Agreement contracts (CFA, GDA, IDA) cannot be called directly. All operations must go through the Host contract using encoded calls. **This is why forwarders are recommended** - they handle this complexity automatically.
+<Callout type="warning">
+**Important**: Agreement contracts (CFA, GDA, IDA) cannot be called directly. All operations must go through the Host contract using encoded calls. **This is why forwarders are recommended** - they handle this complexity automatically.
+</Callout>
 
 ## Next Steps
 

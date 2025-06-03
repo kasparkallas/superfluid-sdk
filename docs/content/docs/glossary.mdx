@@ -3,25 +3,25 @@ title: Glossary
 description: Key terms and concepts in the Superfluid ecosystem
 ---
 
+import { Callout } from 'fumadocs-ui/components/callout';
+
 ## Core Protocol Terms
 
 ### CFA (Constant Flow Agreement)
 The agreement type that enables continuous token streams between accounts. Flows are measured in tokens per second and continue until explicitly stopped or liquidation occurs.
 
-> **Important**: CFA functions cannot be called directly on the agreement contract. All CFA operations must go through the Host contract using encoded calls or preferably through the CFA Forwarder.
-
 ### GDA (General Distribution Agreement)
 An agreement type for one-to-many token distributions. Enables efficient distribution to multiple recipients through pools with proportional unit-based allocations.
-
-> **Important**: GDA functions cannot be called directly on the agreement contract. All GDA operations must go through the Host contract using encoded calls or preferably through the GDA Forwarder.
 
 ### IDA (Instant Distribution Agreement)
 Legacy distribution agreement superseded by GDA. Still supported for backward compatibility but new implementations should use GDA.
 
-> **Important**: IDA functions cannot be called directly on the agreement contract. All IDA operations must go through the Host contract using encoded calls.
-
 ### Host
 The core Superfluid contract that manages all agreements and protocol operations. Acts as the central coordinator for all Superfluid functionality. All agreement functions (CFA, GDA, IDA) must be called through the Host using `callAgreement` or `batchCall` functions.
+
+<Callout type="warning">
+**Important**: Agreement contracts (CFA, GDA, IDA) cannot be called directly. All agreement operations must go through the Host contract using encoded calls. For simpler interactions, use the Forwarder contracts (CFA Forwarder for flows, GDA Forwarder for distributions) which handle the encoding and Host interactions automatically.
+</Callout>
 
 ### Forwarder
 Simplified contract interfaces that make common Superfluid operations easier. These are the **recommended way** to interact with Superfluid as they handle the encoding and Host interactions automatically. The SDK primarily uses:
