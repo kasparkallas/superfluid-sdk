@@ -7,7 +7,8 @@
     "build": "next build",
     "build:sdk": "pnpm --filter sdk build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",

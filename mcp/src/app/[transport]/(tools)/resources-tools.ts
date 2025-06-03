@@ -5,7 +5,7 @@ import { McpServer } from "@/types";
 type ResourceCategory = 
   | "documentation"
   | "sdk"
-  | "tool"
+  | "app"
   | "community"
   | "code";
 
@@ -76,9 +76,9 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "Superfluid Dashboard",
     url: "https://app.superfluid.org",
-    category: "tool",
+    category: "app",
     description: "Official Superfluid dashboard for managing streams and viewing analytics",
-    keywords: ["dashboard", "app", "streams", "manage", "ui"],
+    keywords: ["dashboard", "app", "super tokens", "streams", "manage", "ui", "vesting", "auto-wrap"],
     useCases: [
       "Create and manage money streams",
       "View stream analytics",
@@ -89,8 +89,8 @@ const SUPERFLUID_RESOURCES: Resource[] = [
 
   {
     name: "Superfluid Explorer",
-    url: "https://explorer.superfluid.finance",
-    category: "tool",
+    url: "https://explorer.superfluid.org",
+    category: "app",
     description: "Developer explorer for testing and debugging Superfluid operations. Previously called Superfluid Console.",
     keywords: ["explorer", "debug", "test", "developer", "tool"],
     useCases: [
@@ -157,7 +157,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "SUP Token Claim",
     url: "https://claim.superfluid.org",
-    category: "tool",
+    category: "app",
     description: "Official portal for claiming SUP governance tokens",
     keywords: ["sup", "token", "claim", "governance", "airdrop"],
     useCases: [
@@ -171,9 +171,9 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "SuperBoring",
     url: "https://app.superboring.xyz",
-    category: "tool",
+    category: "app",
     description: "The most powerful onchain DCA (Dollar Cost Averaging) platform. Swap tokens every second using Superfluid streams for gas-efficient, automated trading",
-    keywords: ["superboring", "dca", "dollar-cost-averaging", "streaming-dex", "swap", "trading", "automated"],
+    keywords: ["superboring", "dca", "dollar-cost-averaging", "token-cost-averaging", "streaming-dex", "swap", "trading", "automated"],
     useCases: [
       "Automate dollar cost averaging strategies",
       "Stream swaps between any two tokens",
@@ -184,7 +184,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "AlfaFrens",
     url: "https://www.alfafrens.com",
-    category: "tool",
+    category: "app",
     description: "SocialFi app on Farcaster for gated alpha chat subscriptions. Content creators receive streaming payments in real-time from their subscribers using Superfluid",
     keywords: ["alfafrens", "socialfi", "farcaster", "subscriptions", "creator-economy", "degen", "social"],
     useCases: [
@@ -199,7 +199,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "Giveth",
     url: "https://giveth.io",
-    category: "tool",
+    category: "app",
     description: "Zero-fee crypto donation platform with Superfluid-powered recurring donations. Donors can stream continuous support to charitable projects on Optimism",
     keywords: ["giveth", "donations", "charity", "recurring", "philanthropy", "giving", "impact"],
     useCases: [
@@ -212,7 +212,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "Streme.fun",
     url: "https://www.streme.fun",
-    category: "tool",
+    category: "app",
     description: "AI agent token launcher that deploys streamable tokens with built-in staking rewards. Tokens have native Superfluid streaming powers without wrapping",
     keywords: ["streme", "token-launcher", "ai-agent", "staking", "pure-super-tokens", "defi"],
     useCases: [
@@ -225,7 +225,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "FlowState",
     url: "https://flowstate.network/explore",
-    category: "tool",
+    category: "app",
     description: "Streaming funding platform and digital cooperative for impact work. Features streaming quadratic funding (SQF) and voting mechanisms powered by Superfluid",
     keywords: ["flowstate", "quadratic-funding", "sqf", "public-goods", "impact", "funding", "cooperative"],
     useCases: [
@@ -238,7 +238,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   {
     name: "GoodDollar",
     url: "https://www.gooddollar.org",
-    category: "tool",
+    category: "app",
     description: "Universal Basic Income (UBI) protocol using Superfluid for streaming G$ tokens daily to members worldwide. Active in 222+ countries with focus on financial inclusion",
     keywords: ["gooddollar", "ubi", "universal-basic-income", "g$", "financial-inclusion", "global", "social-impact"],
     useCases: [
@@ -254,7 +254,7 @@ const SUPERFLUID_RESOURCES: Resource[] = [
     name: "Superfluid Website",
     url: "https://www.superfluid.org",
     category: "documentation", 
-    description: "Official Superfluid website with overview and resources",
+    description: "Official Superfluid Foundation website with overview and resources",
     keywords: ["website", "home", "overview", "main", "official"],
     useCases: [
       "Learn about Superfluid",
@@ -264,9 +264,9 @@ const SUPERFLUID_RESOURCES: Resource[] = [
     ]
   },
   {
-    name: "Token List",
+    name: "Superfluid Token List",
     url: "https://www.npmjs.com/package/@superfluid-finance/tokenlist",
-    category: "code",
+    category: "sdk",
     description: "Curated list of Super Tokens across all networks (NPM: @superfluid-finance/tokenlist, GitHub: superfluid-finance/tokenlist)",
     keywords: ["tokens", "tokenlist", "addresses", "registry", "npm", "github"],
     useCases: [
@@ -275,9 +275,8 @@ const SUPERFLUID_RESOURCES: Resource[] = [
       "Build token selectors"
     ]
   },
-
   {
-    name: "Metadata Package",
+    name: "Superfluid Metadata Package",
     url: "https://www.npmjs.com/package/@superfluid-finance/metadata",
     category: "sdk",
     description: "NPM package with Superfluid contract addresses and network metadata (NPM: @superfluid-finance/metadata, GitHub: superfluid-finance/metadata)",
@@ -291,15 +290,38 @@ const SUPERFLUID_RESOURCES: Resource[] = [
   }
 ];
 
+// Generate description with resource names programmatically
+const getToolDescription = () => {
+  const resourcesByCategory = SUPERFLUID_RESOURCES.reduce((acc, resource) => {
+    if (!acc[resource.category]) acc[resource.category] = [];
+    acc[resource.category].push(resource.name);
+    return acc;
+  }, {} as Record<ResourceCategory, string[]>);
+  
+  const categoryDescriptions = {
+    documentation: "Documentation",
+    sdk: "SDKs", 
+    app: "Apps",
+    community: "Community",
+    code: "Code/Libraries"
+  };
+  
+  const descriptions = Object.entries(resourcesByCategory)
+    .map(([category, names]) => `${categoryDescriptions[category as ResourceCategory]}: ${names.join(", ")}`)
+    .join("; ");
+  
+  return `Find Superfluid ecosystem resources. Available resources - ${descriptions}. Filter by category or search by keywords.`;
+};
+
 export const createGetSuperfluidResourcesTool = (server: McpServer) => {
   server.tool(
-    "get-superfluid-resources",
-    "Get Superfluid ecosystem resources including documentation, SDKs, tools, and community links. Optionally filter by category or search for specific resources.",
+    "find-ecosystem-resources",
+    getToolDescription(),
     {
       category: z.enum([
         "documentation",
         "sdk",
-        "tool",
+        "app",
         "community",
         "code"
       ]).optional().describe("Filter resources by category"),
