@@ -11,6 +11,9 @@ import {
   createGetSuperfluidTokenTool,
   createFindSuperfluidTokensTool
 } from "./(tools)/tokenlist-tools";
+import {
+  createGetSuperfluidResourcesTool
+} from "./(tools)/resources-tools";
 
 const handler = createMcpHandler(
   (server) => {
@@ -25,6 +28,9 @@ const handler = createMcpHandler(
     // Token list tools
     createGetSuperfluidTokenTool(server);
     createFindSuperfluidTokensTool(server);
+    
+    // Resources tools
+    createGetSuperfluidResourcesTool(server);
   },
   {
     capabilities: {
