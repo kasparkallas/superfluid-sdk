@@ -13,7 +13,33 @@ As a pool member, you need to connect to a GDA pool to start receiving distribut
 
 First, check if you're already a member and your current units:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { useAccount } from "wagmi"
+
+const poolAddress = "0x..." // Pool address
+
+function MembershipStatus() {
+  const { address } = useAccount()
+  const { data: units } = useReadGdaPool({ // [!code focus]
+    address: poolAddress, // [!code focus]
+    functionName: "getUnits", // [!code focus]
+    args: [address!] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <div>
+      {units && units > 0n 
+        ? `You have ${units} units in this pool`
+        : "You are not a member of this pool"}
+    </div>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -70,39 +96,34 @@ async function checkMembership() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { useAccount } from "wagmi"
-
-const poolAddress = "0x..." // Pool address
-
-function MembershipStatus() {
-  const { address } = useAccount()
-  const { data: units } = useReadGdaPool({ // [!code focus]
-    address: poolAddress, // [!code focus]
-    functionName: "getUnits", // [!code focus]
-    args: [address!] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <div>
-      {units && units > 0n 
-        ? `You have ${units} units in this pool`
-        : "You are not a member of this pool"}
-    </div>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Connect to Pool
 
 Connect to the pool to enable automatic distribution claims:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const poolAddress = "0x..." // Pool address
+
+function ConnectToPool() {
+  const { writeContract: connect } = useWriteGdaForwarder({ // [!code focus]
+    functionName: "connectPool", // [!code focus]
+    args: [poolAddress, "0x"] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => connect?.()}>
+      Connect to Pool
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaForwarderAbi, gdaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -165,34 +186,38 @@ async function connectToPool() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const poolAddress = "0x..." // Pool address
-
-function ConnectToPool() {
-  const { writeContract: connect } = useWriteGdaForwarder({ // [!code focus]
-    functionName: "connectPool", // [!code focus]
-    args: [poolAddress, "0x"] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => connect?.()}>
-      Connect to Pool
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Check Claimable Balance
 
 Check how many tokens you can claim from the pool:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { useAccount } from "wagmi"
+import { formatEther } from "viem"
+
+const poolAddress = "0x..." // Pool address
+
+function ClaimableBalance() {
+  const { address } = useAccount()
+  const { data: claimable } = useReadGdaPool({ // [!code focus]
+    address: poolAddress, // [!code focus]
+    functionName: "getClaimableNow", // [!code focus]
+    args: [address!] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <div>
+      Claimable: {claimable ? formatEther(claimable) : "0"} tokens
+    </div>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -249,38 +274,34 @@ async function getClaimableBalance() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { useAccount } from "wagmi"
-import { formatEther } from "viem"
-
-const poolAddress = "0x..." // Pool address
-
-function ClaimableBalance() {
-  const { address } = useAccount()
-  const { data: claimable } = useReadGdaPool({ // [!code focus]
-    address: poolAddress, // [!code focus]
-    functionName: "getClaimableNow", // [!code focus]
-    args: [address!] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <div>
-      Claimable: {claimable ? formatEther(claimable) : "0"} tokens
-    </div>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Claim Tokens
 
 Manually claim accumulated tokens from the pool:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const poolAddress = "0x..." // Pool address
+
+function ClaimTokens() {
+  const { writeContract: claim } = useWriteGdaPool({ // [!code focus]
+    address: poolAddress, // [!code focus]
+    functionName: "claimAll", // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => claim?.()}>
+      Claim All Tokens
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -342,34 +363,34 @@ async function claimFromPool() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const poolAddress = "0x..." // Pool address
-
-function ClaimTokens() {
-  const { writeContract: claim } = useWriteGdaPool({ // [!code focus]
-    address: poolAddress, // [!code focus]
-    functionName: "claimAll", // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => claim?.()}>
-      Claim All Tokens
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Disconnect from Pool
 
 Stop receiving distributions from a pool:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const poolAddress = "0x..." // Pool address
+
+function DisconnectFromPool() {
+  const { writeContract: disconnect } = useWriteGdaForwarder({ // [!code focus]
+    functionName: "disconnectPool", // [!code focus]
+    args: [poolAddress, "0x"] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => disconnect?.()}>
+      Disconnect from Pool
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaForwarderAbi, gdaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -429,27 +450,6 @@ async function disconnectFromPool() {
   }) // [!code focus]
   
   return hash
-}
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const poolAddress = "0x..." // Pool address
-
-function DisconnectFromPool() {
-  const { writeContract: disconnect } = useWriteGdaForwarder({ // [!code focus]
-    functionName: "disconnectPool", // [!code focus]
-    args: [poolAddress, "0x"] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => disconnect?.()}>
-      Disconnect from Pool
-    </button>
-  )
 }
 ```
 </Tab>

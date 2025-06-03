@@ -22,6 +22,16 @@ The Host contract serves as:
 Returns the current governance address.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadHost } from '@superfluid-finance/sdk/wagmi';
+
+const { data: governance } = useReadHost({
+  address: '0x...',
+  functionName: 'getGovernance',
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { host } from '@superfluid-finance/sdk/abi';
@@ -38,16 +48,6 @@ const governance = await client.readContract({
 import { readHost } from '@superfluid-finance/sdk/actions';
 
 const governance = await readHost(client, {
-  address: '0x...',
-  functionName: 'getGovernance',
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useReadHost } from '@superfluid-finance/sdk/wagmi';
-
-const { data: governance } = useReadHost({
   address: '0x...',
   functionName: 'getGovernance',
 });
@@ -70,6 +70,19 @@ Returns the address of a registered agreement by type.
 Executes an agreement operation through the host.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteHost } from '@superfluid-finance/sdk/wagmi';
+
+const { writeContract } = useWriteHost();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'callAgreement',
+  args: [agreementAddress, callData, userData],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { host } from '@superfluid-finance/sdk/abi';
@@ -87,19 +100,6 @@ const hash = await client.writeContract({
 import { writeHost } from '@superfluid-finance/sdk/actions';
 
 const hash = await writeHost(client, {
-  address: '0x...',
-  functionName: 'callAgreement',
-  args: [agreementAddress, callData, userData],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteHost } from '@superfluid-finance/sdk/wagmi';
-
-const { writeContract } = useWriteHost();
-
-await writeContract({
   address: '0x...',
   functionName: 'callAgreement',
   args: [agreementAddress, callData, userData],

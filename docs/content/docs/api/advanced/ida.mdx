@@ -24,6 +24,17 @@ The IDA contract provides:
 Returns information about a distribution index.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadInstantDistributionAgreementV1 } from '@superfluid-finance/sdk/wagmi';
+
+const { data: index } = useReadInstantDistributionAgreementV1({
+  address: '0x...',
+  functionName: 'getIndex',
+  args: [token, publisher, indexId],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { instantDistributionAgreementV1 } from '@superfluid-finance/sdk/abi';
@@ -41,17 +52,6 @@ const index = await client.readContract({
 import { readInstantDistributionAgreementV1 } from '@superfluid-finance/sdk/actions';
 
 const index = await readInstantDistributionAgreementV1(client, {
-  address: '0x...',
-  functionName: 'getIndex',
-  args: [token, publisher, indexId],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useReadInstantDistributionAgreementV1 } from '@superfluid-finance/sdk/wagmi';
-
-const { data: index } = useReadInstantDistributionAgreementV1({
   address: '0x...',
   functionName: 'getIndex',
   args: [token, publisher, indexId],
@@ -79,6 +79,19 @@ Returns all subscriptions for a subscriber.
 Creates a new distribution index through the Host contract.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteIdaForwarder } from '@superfluid-finance/sdk/wagmi';
+
+const { writeContract } = useWriteIdaForwarder();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'createIndex',
+  args: [token, indexId],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { instantDistributionAgreementV1 } from '@superfluid-finance/sdk/abi';
@@ -97,19 +110,6 @@ const callData = encodeFunctionData({
 import { writeIdaForwarder } from '@superfluid-finance/sdk/actions';
 
 const hash = await writeIdaForwarder(client, {
-  address: '0x...',
-  functionName: 'createIndex',
-  args: [token, indexId],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteIdaForwarder } from '@superfluid-finance/sdk/wagmi';
-
-const { writeContract } = useWriteIdaForwarder();
-
-await writeContract({
   address: '0x...',
   functionName: 'createIndex',
   args: [token, indexId],

@@ -22,6 +22,17 @@ TOGA provides:
 Returns the current Patrician In Charge for a Super Token.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadToga } from '@superfluid-finance/sdk/wagmi/protocol';
+
+const { data: pic } = useReadToga({
+  address: '0x...',
+  functionName: 'getCurrentPIC',
+  args: [superToken],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { toga } from '@superfluid-finance/sdk/abi/protocol';
@@ -45,17 +56,6 @@ const pic = await readToga(client, {
 });
 ```
 </Tab>
-<Tab value="Hooks">
-```ts
-import { useReadToga } from '@superfluid-finance/sdk/wagmi/protocol';
-
-const { data: pic } = useReadToga({
-  address: '0x...',
-  functionName: 'getCurrentPIC',
-  args: [superToken],
-});
-```
-</Tab>
 </Tabs>
 
 ### getCurrentPICInfo
@@ -63,6 +63,18 @@ const { data: pic } = useReadToga({
 Returns detailed information about the current PIC including their bond and exit rate.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadToga } from '@superfluid-finance/sdk/wagmi/protocol';
+
+const { data } = useReadToga({
+  address: '0x...',
+  functionName: 'getCurrentPICInfo',
+  args: [superToken],
+});
+// data = { pic, bond, exitRate }
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { toga } from '@superfluid-finance/sdk/abi/protocol';
@@ -86,18 +98,6 @@ const { pic, bond, exitRate } = await readToga(client, {
 });
 ```
 </Tab>
-<Tab value="Hooks">
-```ts
-import { useReadToga } from '@superfluid-finance/sdk/wagmi/protocol';
-
-const { data } = useReadToga({
-  address: '0x...',
-  functionName: 'getCurrentPICInfo',
-  args: [superToken],
-});
-// data = { pic, bond, exitRate }
-```
-</Tab>
 </Tabs>
 
 ### getDefaultExitRateFor
@@ -119,6 +119,19 @@ Returns the minimum bond duration in seconds.
 Allows the current PIC to change the exit rate of the Super Token.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteToga } from '@superfluid-finance/sdk/wagmi/protocol';
+
+const { writeContract } = useWriteToga();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'changeExitRate',
+  args: [superToken, newExitRate],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { toga } from '@superfluid-finance/sdk/abi/protocol';
@@ -136,19 +149,6 @@ const hash = await client.writeContract({
 import { writeToga } from '@superfluid-finance/sdk/actions/protocol';
 
 const hash = await writeToga(client, {
-  address: '0x...',
-  functionName: 'changeExitRate',
-  args: [superToken, newExitRate],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteToga } from '@superfluid-finance/sdk/wagmi/protocol';
-
-const { writeContract } = useWriteToga();
-
-await writeContract({
   address: '0x...',
   functionName: 'changeExitRate',
   args: [superToken, newExitRate],

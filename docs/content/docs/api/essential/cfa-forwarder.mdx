@@ -25,7 +25,18 @@ const forwarderAddress = cfaForwarderAddress[mainnet.id]
 
 Get the current flowrate between a sender and receiver.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: flowrate } = useReadCfaForwarder({ // [!code focus]
+  functionName: "getFlowrate", // [!code focus]
+  args: ["0x...", "0x...", "0x..."] // Token, sender, receiver // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -69,24 +80,24 @@ const flowrate = await readCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: flowrate } = useReadCfaForwarder({ // [!code focus]
-  functionName: "getFlowrate", // [!code focus]
-  args: ["0x...", "0x...", "0x..."] // Token, sender, receiver // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### getAccountFlowrate
 
 Get the net flowrate for an account (total inflow - total outflow).
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: netFlowrate } = useReadCfaForwarder({ // [!code focus]
+  functionName: "getAccountFlowrate", // [!code focus]
+  args: ["0x...", "0x..."] // Token, account // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -129,24 +140,24 @@ const netFlowrate = await readCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: netFlowrate } = useReadCfaForwarder({ // [!code focus]
-  functionName: "getAccountFlowrate", // [!code focus]
-  args: ["0x...", "0x..."] // Token, account // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### getBufferAmountByFlowrate
 
 Calculate the required buffer (deposit) for a given flowrate.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: bufferAmount } = useReadCfaForwarder({ // [!code focus]
+  functionName: "getBufferAmountByFlowrate", // [!code focus]
+  args: ["0x...", 1000n] // Token, flowrate // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -189,17 +200,6 @@ const bufferAmount = await readCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: bufferAmount } = useReadCfaForwarder({ // [!code focus]
-  functionName: "getBufferAmountByFlowrate", // [!code focus]
-  args: ["0x...", 1000n] // Token, flowrate // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ## Write Functions
@@ -208,7 +208,25 @@ const { data: bufferAmount } = useReadCfaForwarder({ // [!code focus]
 
 Create or update a flow. This is the recommended function for flow management.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { calculateFlowrate } from "@superfluid-finance/sdk"
+import { parseEther } from "viem"
+
+const flowrate = calculateFlowrate({
+  amountWei: parseEther("100"),
+  timeUnit: "month"
+})
+
+const { writeContract: setFlowrate } = useWriteCfaForwarder({ // [!code focus]
+  functionName: "setFlowrate", // [!code focus]
+  args: ["0x...", "0x...", flowrate] // Token, receiver, flowrate // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress, calculateFlowrate } from "@superfluid-finance/sdk" // [!code focus]
@@ -269,31 +287,27 @@ const hash = await writeCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { calculateFlowrate } from "@superfluid-finance/sdk"
-import { parseEther } from "viem"
-
-const flowrate = calculateFlowrate({
-  amountWei: parseEther("100"),
-  timeUnit: "month"
-})
-
-const { writeContract: setFlowrate } = useWriteCfaForwarder({ // [!code focus]
-  functionName: "setFlowrate", // [!code focus]
-  args: ["0x...", "0x...", flowrate] // Token, receiver, flowrate // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### createFlow
 
 Create a new flow (fails if flow already exists).
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { useAccount } from "wagmi"
+
+const { address } = useAccount()
+
+const { writeContract: createFlow } = useWriteCfaForwarder({ // [!code focus]
+  functionName: "createFlow", // [!code focus]
+  args: ["0x...", address!, "0x...", 1000n, "0x"] // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -346,7 +360,13 @@ const hash = await writeCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
+</Tabs>
 
+### updateFlow
+
+Update an existing flow's flowrate.
+
+<Tabs items={["Hooks", "ABI", "Actions"]}>
 <Tab value="Hooks">
 ```tsx twoslash
 import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
@@ -354,19 +374,13 @@ import { useAccount } from "wagmi"
 
 const { address } = useAccount()
 
-const { writeContract: createFlow } = useWriteCfaForwarder({ // [!code focus]
-  functionName: "createFlow", // [!code focus]
-  args: ["0x...", address!, "0x...", 1000n, "0x"] // [!code focus]
+const { writeContract: updateFlow } = useWriteCfaForwarder({ // [!code focus]
+  functionName: "updateFlow", // [!code focus]
+  args: ["0x...", address!, "0x...", 2000n, "0x"] // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-</Tabs>
 
-### updateFlow
-
-Update an existing flow's flowrate.
-
-<Tabs items={["ABI", "Actions", "Hooks"]}>
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -419,7 +433,13 @@ const hash = await writeCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
+</Tabs>
 
+### deleteFlow
+
+Stop a flow completely.
+
+<Tabs items={["Hooks", "ABI", "Actions"]}>
 <Tab value="Hooks">
 ```tsx twoslash
 import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
@@ -427,19 +447,13 @@ import { useAccount } from "wagmi"
 
 const { address } = useAccount()
 
-const { writeContract: updateFlow } = useWriteCfaForwarder({ // [!code focus]
-  functionName: "updateFlow", // [!code focus]
-  args: ["0x...", address!, "0x...", 2000n, "0x"] // [!code focus]
+const { writeContract: deleteFlow } = useWriteCfaForwarder({ // [!code focus]
+  functionName: "deleteFlow", // [!code focus]
+  args: ["0x...", address!, "0x...", "0x"] // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-</Tabs>
 
-### deleteFlow
-
-Stop a flow completely.
-
-<Tabs items={["ABI", "Actions", "Hooks"]}>
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -491,20 +505,6 @@ const hash = await writeCfaForwarder(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { useAccount } from "wagmi"
-
-const { address } = useAccount()
-
-const { writeContract: deleteFlow } = useWriteCfaForwarder({ // [!code focus]
-  functionName: "deleteFlow", // [!code focus]
-  args: ["0x...", address!, "0x...", "0x"] // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ## Flow Permissions
@@ -513,7 +513,18 @@ const { writeContract: deleteFlow } = useWriteCfaForwarder({ // [!code focus]
 
 Grant another account permission to manage your flows.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { writeContract: grantPermissions } = useWriteCfaForwarder({ // [!code focus]
+  functionName: "grantPermissions", // [!code focus]
+  args: ["0x...", "0x..."] // Token, operator // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { cfaForwarderAbi, cfaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -558,17 +569,6 @@ const config = createConfig({
 
 const hash = await writeCfaForwarder(config, { // [!code focus]
   chainId: mainnet.id, // [!code focus]
-  functionName: "grantPermissions", // [!code focus]
-  args: ["0x...", "0x..."] // Token, operator // [!code focus]
-}) // [!code focus]
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteCfaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { writeContract: grantPermissions } = useWriteCfaForwarder({ // [!code focus]
   functionName: "grantPermissions", // [!code focus]
   args: ["0x...", "0x..."] // Token, operator // [!code focus]
 }) // [!code focus]

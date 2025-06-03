@@ -22,25 +22,74 @@ Batch calls let you combine multiple Superfluid operations like:
 Each operation in a batch call requires an operation type identifier:
 
 ```ts twoslash
-// Common operation types
-const OPERATION_TYPE_ERC20_APPROVE = 1
-const OPERATION_TYPE_SUPERTOKEN_UPGRADE = 101
-const OPERATION_TYPE_SUPERTOKEN_DOWNGRADE = 102
-const OPERATION_TYPE_CFA_CREATE_FLOW = 201
-const OPERATION_TYPE_CFA_UPDATE_FLOW = 202
-const OPERATION_TYPE_CFA_DELETE_FLOW = 203
-const OPERATION_TYPE_GDA_CREATE_POOL = 301
-const OPERATION_TYPE_GDA_DISTRIBUTE = 302
+import { OPERATION_TYPE } from "@superfluid-finance/sdk"
+
+// Available operation types:
+// OPERATION_TYPE.ERC20_APPROVE
+// OPERATION_TYPE.SUPERTOKEN_UPGRADE
+// OPERATION_TYPE.SUPERTOKEN_DOWNGRADE
+// OPERATION_TYPE.CFA_CREATE_FLOW
+// OPERATION_TYPE.CFA_UPDATE_FLOW
+// OPERATION_TYPE.CFA_DELETE_FLOW
+// OPERATION_TYPE.GDA_CREATE_POOL
+// OPERATION_TYPE.GDA_DISTRIBUTE
 ```
 
 ## Example Without Helper
 
 Here's how to create a batch call manually:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteHost } from "@superfluid-finance/sdk/wagmi/protocol" // [!code focus]
+import { OPERATION_TYPE } from "@superfluid-finance/sdk" // [!code focus]
+import { superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol"
+import { encodeFunctionData } from "viem"
+import { useAccount } from "wagmi"
+
+function BatchOperations() {
+  const { address } = useAccount()
+  
+  const operations = [
+    {
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
+      target: "0x...", // Super Token address
+      data: encodeFunctionData({
+        abi: superTokenAbi,
+        functionName: "upgrade",
+        args: [1000000n]
+      })
+    },
+    {
+      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
+      target: "0x...", // CFA Forwarder address
+      data: encodeFunctionData({
+        abi: cfaForwarderAbi,
+        functionName: "createFlow",
+        args: ["0x...", address!, "0x...", 1000n, "0x"]
+      })
+    }
+  ]
+  
+  const { writeContract: batchCall } = useWriteHost({ // [!code focus]
+    functionName: "batchCall", // [!code focus]
+    args: [operations] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => batchCall?.()}>
+      Execute Batch Operations
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { hostAbi, hostAddress, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol" // [!code focus]
+import { OPERATION_TYPE } from "@superfluid-finance/sdk" // [!code focus]
 import { createWalletClient, http, encodeAbiParameters, encodeFunctionData } from "viem"
 import { mainnet } from "viem/chains"
 import { privateKeyToAccount } from "viem/accounts"
@@ -52,15 +101,11 @@ const walletClient = createWalletClient({
   transport: http()
 })
 
-// Operation types
-const OPERATION_TYPE_SUPERTOKEN_UPGRADE = 101
-const OPERATION_TYPE_CFA_CREATE_FLOW = 201
-
 async function batchCall() {
   const operations = [
     // Operation 1: Upgrade tokens
     {
-      operationType: OPERATION_TYPE_SUPERTOKEN_UPGRADE,
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
       target: "0x...", // Super Token address
       data: encodeFunctionData({
         abi: superTokenAbi,
@@ -70,7 +115,7 @@ async function batchCall() {
     },
     // Operation 2: Create flow
     {
-      operationType: OPERATION_TYPE_CFA_CREATE_FLOW,
+      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
       target: "0x...", // CFA Forwarder address
       data: encodeFunctionData({
         abi: cfaForwarderAbi,
@@ -95,6 +140,7 @@ async function batchCall() {
 <Tab value="Actions">
 ```ts twoslash
 import { writeHost } from "@superfluid-finance/sdk/actions/protocol" // [!code focus]
+import { OPERATION_TYPE } from "@superfluid-finance/sdk" // [!code focus]
 import { superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol"
 import { createConfig } from "@wagmi/core"
 import { createWalletClient, http, encodeFunctionData } from "viem"
@@ -113,13 +159,10 @@ const wagmiConfig = createConfig({
   },
 })
 
-const OPERATION_TYPE_SUPERTOKEN_UPGRADE = 101
-const OPERATION_TYPE_CFA_CREATE_FLOW = 201
-
 async function batchCall() {
   const operations = [
     {
-      operationType: OPERATION_TYPE_SUPERTOKEN_UPGRADE,
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
       target: "0x...", // Super Token address
       data: encodeFunctionData({
         abi: superTokenAbi,
@@ -128,7 +171,7 @@ async function batchCall() {
       })
     },
     {
-      operationType: OPERATION_TYPE_CFA_CREATE_FLOW,
+      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
       target: "0x...", // CFA Forwarder address
       data: encodeFunctionData({
         abi: cfaForwarderAbi,
@@ -148,54 +191,6 @@ async function batchCall() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteHost } from "@superfluid-finance/sdk/wagmi/protocol" // [!code focus]
-import { superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk/abi/protocol"
-import { encodeFunctionData } from "viem"
-import { useAccount } from "wagmi"
-
-const OPERATION_TYPE_SUPERTOKEN_UPGRADE = 101
-const OPERATION_TYPE_CFA_CREATE_FLOW = 201
-
-function BatchOperations() {
-  const { address } = useAccount()
-  
-  const operations = [
-    {
-      operationType: OPERATION_TYPE_SUPERTOKEN_UPGRADE,
-      target: "0x...", // Super Token address
-      data: encodeFunctionData({
-        abi: superTokenAbi,
-        functionName: "upgrade",
-        args: [1000000n]
-      })
-    },
-    {
-      operationType: OPERATION_TYPE_CFA_CREATE_FLOW,
-      target: "0x...", // CFA Forwarder address
-      data: encodeFunctionData({
-        abi: cfaForwarderAbi,
-        functionName: "createFlow",
-        args: ["0x...", address!, "0x...", 1000n, "0x"]
-      })
-    }
-  ]
-  
-  const { writeContract: batchCall } = useWriteHost({ // [!code focus]
-    functionName: "batchCall", // [!code focus]
-    args: [operations] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => batchCall?.()}>
-      Execute Batch Operations
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Example With Helper
@@ -205,6 +200,7 @@ The SDK provides a `prepareOperation` helper to simplify batch call creation:
 ```ts twoslash
 import { 
   prepareOperation,
+  OPERATION_TYPE,
   hostAbi,
   hostAddress,
   superTokenAbi,
@@ -231,7 +227,7 @@ async function batchWithHelper() {
   const operations = [
     // Upgrade 100 tokens
     prepareOperation({
-      operationType: 101, // SUPERTOKEN_UPGRADE
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
       target: superToken,
       abi: superTokenAbi,
       functionName: "upgrade",
@@ -240,7 +236,7 @@ async function batchWithHelper() {
     
     // Create a flow of 10 tokens per month
     prepareOperation({
-      operationType: 201, // CFA_CREATE_FLOW
+      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
       target: cfaForwarderAddress[mainnet.id],
       abi: cfaForwarderAbi,
       functionName: "createFlow",
@@ -275,13 +271,13 @@ Wrap tokens and immediately start streaming:
 > **Note**: The underlying token approval cannot be included in the batch call because `msg.sender` changes when operations go through the Superfluid Host. Approve the underlying token separately before executing the batch.
 
 ```ts twoslash
-import { prepareOperation, calculateFlowrate, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk"
+import { prepareOperation, OPERATION_TYPE, calculateFlowrate, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk"
 import { parseEther } from "viem"
 
 const wrapAndStream = [
   // 1. Upgrade to super token
   prepareOperation({
-    operationType: 101, // SUPERTOKEN_UPGRADE
+    operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
     target: "0x...", // Super token
     abi: superTokenAbi,
     functionName: "upgrade",
@@ -290,7 +286,7 @@ const wrapAndStream = [
   
   // 2. Create flow
   prepareOperation({
-    operationType: 201, // CFA_CREATE_FLOW
+    operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
     target: "0x...", // CFA Forwarder
     abi: cfaForwarderAbi,
     functionName: "setFlowrate",
@@ -308,7 +304,7 @@ const wrapAndStream = [
 Update multiple flows in one transaction:
 
 ```ts twoslash
-import { prepareOperation, calculateFlowrate, cfaForwarderAbi } from "@superfluid-finance/sdk"
+import { prepareOperation, OPERATION_TYPE, calculateFlowrate, cfaForwarderAbi } from "@superfluid-finance/sdk"
 import { parseEther } from "viem"
 
 const receivers = [
@@ -319,7 +315,7 @@ const receivers = [
 
 const multipleFlowUpdates = receivers.map(receiver =>
   prepareOperation({
-    operationType: 202, // CFA_UPDATE_FLOW
+    operationType: OPERATION_TYPE.CFA_UPDATE_FLOW,
     target: "0x...", // CFA Forwarder
     abi: cfaForwarderAbi,
     functionName: "setFlowrate",

@@ -27,7 +27,19 @@ const ethx = superTokenAddress[mainnet.id]["ETHx"]
 
 Get the Super Token balance of an account.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: balance } = useReadSuperToken({ // [!code focus]
+  address: "0x...", // Super Token address // [!code focus]
+  functionName: "balanceOf", // [!code focus]
+  args: ["0x..."] // Account address // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -68,25 +80,25 @@ const balance = await readSuperToken(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: balance } = useReadSuperToken({ // [!code focus]
-  address: "0x...", // Super Token address // [!code focus]
-  functionName: "balanceOf", // [!code focus]
-  args: ["0x..."] // Account address // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### realtimeBalanceOfNow
 
 Get the real-time balance including accumulated streams.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data } = useReadSuperToken({ // [!code focus]
+  address: "0x...", // [!code focus]
+  functionName: "realtimeBalanceOfNow", // [!code focus]
+  args: ["0x..."] // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -130,25 +142,24 @@ const result = await readSuperToken(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data } = useReadSuperToken({ // [!code focus]
-  address: "0x...", // [!code focus]
-  functionName: "realtimeBalanceOfNow", // [!code focus]
-  args: ["0x..."] // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### getUnderlyingToken
 
 Get the underlying ERC-20 token address (for wrapper Super Tokens).
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: underlyingToken } = useReadSuperToken({ // [!code focus]
+  address: "0x...", // [!code focus]
+  functionName: "getUnderlyingToken" // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -187,17 +198,6 @@ const underlyingToken = await readSuperToken(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: underlyingToken } = useReadSuperToken({ // [!code focus]
-  address: "0x...", // [!code focus]
-  functionName: "getUnderlyingToken" // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ## Write Functions
@@ -206,7 +206,20 @@ const { data: underlyingToken } = useReadSuperToken({ // [!code focus]
 
 Wrap underlying tokens to Super Tokens.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { parseUnits } from "viem"
+
+const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
+  address: "0x...", // [!code focus]
+  functionName: "upgrade", // [!code focus]
+  args: [parseUnits("100", 6)] // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -254,26 +267,26 @@ const hash = await writeSuperToken(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { parseUnits } from "viem"
-
-const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
-  address: "0x...", // [!code focus]
-  functionName: "upgrade", // [!code focus]
-  args: [parseUnits("100", 6)] // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### downgrade
 
 Unwrap Super Tokens back to underlying tokens.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { parseEther } from "viem"
+
+const { writeContract: downgrade } = useWriteSuperToken({ // [!code focus]
+  address: "0x...", // [!code focus]
+  functionName: "downgrade", // [!code focus]
+  args: [parseEther("100")] // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -321,26 +334,26 @@ const hash = await writeSuperToken(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { parseEther } from "viem"
-
-const { writeContract: downgrade } = useWriteSuperToken({ // [!code focus]
-  address: "0x...", // [!code focus]
-  functionName: "downgrade", // [!code focus]
-  args: [parseEther("100")] // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### upgradeByETH
 
 Wrap native assets (ETH, MATIC, etc.) to Super Tokens.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { parseEther } from "viem"
+
+const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
+  address: "0x...", // ETHx address // [!code focus]
+  functionName: "upgradeByETH", // [!code focus]
+  value: parseEther("1") // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -388,26 +401,26 @@ const hash = await writeSuperToken(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { parseEther } from "viem"
-
-const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
-  address: "0x...", // ETHx address // [!code focus]
-  functionName: "upgradeByETH", // [!code focus]
-  value: parseEther("1") // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### transfer
 
 Transfer Super Tokens (standard ERC-20 transfer).
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { parseEther } from "viem"
+
+const { writeContract: transfer } = useWriteSuperToken({ // [!code focus]
+  address: "0x...", // [!code focus]
+  functionName: "transfer", // [!code focus]
+  args: ["0x...", parseEther("10")] // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -449,19 +462,6 @@ const config = createConfig({
 
 const hash = await writeSuperToken(config, { // [!code focus]
   chainId: mainnet.id, // [!code focus]
-  address: "0x...", // [!code focus]
-  functionName: "transfer", // [!code focus]
-  args: ["0x...", parseEther("10")] // [!code focus]
-}) // [!code focus]
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { parseEther } from "viem"
-
-const { writeContract: transfer } = useWriteSuperToken({ // [!code focus]
   address: "0x...", // [!code focus]
   functionName: "transfer", // [!code focus]
   args: ["0x...", parseEther("10")] // [!code focus]

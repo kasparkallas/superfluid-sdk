@@ -23,6 +23,17 @@ Flow Scheduler provides:
 Returns details of a scheduled flow.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadFlowScheduler } from '@superfluid-finance/sdk/wagmi/automation';
+
+const { data: schedule } = useReadFlowScheduler({
+  address: '0x...',
+  functionName: 'getFlowSchedule',
+  args: [superToken, sender, receiver],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { flowScheduler } from '@superfluid-finance/sdk/abi/automation';
@@ -46,17 +57,6 @@ const schedule = await readFlowScheduler(client, {
 });
 ```
 </Tab>
-<Tab value="Hooks">
-```ts
-import { useReadFlowScheduler } from '@superfluid-finance/sdk/wagmi/automation';
-
-const { data: schedule } = useReadFlowScheduler({
-  address: '0x...',
-  functionName: 'getFlowSchedule',
-  args: [superToken, sender, receiver],
-});
-```
-</Tab>
 </Tabs>
 
 ### canExecuteSchedule
@@ -74,6 +74,26 @@ Returns comprehensive information about a flow schedule.
 Creates a new scheduled flow with start and optional end time.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteFlowScheduler } from '@superfluid-finance/sdk/wagmi/automation';
+
+const { writeContract } = useWriteFlowScheduler();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'createFlowSchedule',
+  args: [
+    superToken,
+    receiver,
+    flowRate,
+    startDate,
+    endDate,
+    userData
+  ],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { flowScheduler } from '@superfluid-finance/sdk/abi/automation';
@@ -98,26 +118,6 @@ const hash = await client.writeContract({
 import { writeFlowScheduler } from '@superfluid-finance/sdk/actions/automation';
 
 const hash = await writeFlowScheduler(client, {
-  address: '0x...',
-  functionName: 'createFlowSchedule',
-  args: [
-    superToken,
-    receiver,
-    flowRate,
-    startDate,
-    endDate,
-    userData
-  ],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteFlowScheduler } from '@superfluid-finance/sdk/wagmi/automation';
-
-const { writeContract } = useWriteFlowScheduler();
-
-await writeContract({
   address: '0x...',
   functionName: 'createFlowSchedule',
   args: [

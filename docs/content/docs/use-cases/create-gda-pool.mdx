@@ -13,7 +13,30 @@ The General Distribution Agreement (GDA) enables efficient one-to-many token dis
 
 First, create a new GDA pool:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { useAccount } from "wagmi"
+
+const superToken = "0x..." // USDCx address
+
+function CreatePool() {
+  const { address } = useAccount()
+  const { writeContract: createPool } = useWriteGdaForwarder({ // [!code focus]
+    functionName: "createPool", // [!code focus]
+    args: [superToken, address!, "0x"] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => createPool?.()}>
+      Create Distribution Pool
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaForwarderAbi, gdaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -78,36 +101,37 @@ async function createPool() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { useAccount } from "wagmi"
-
-const superToken = "0x..." // USDCx address
-
-function CreatePool() {
-  const { address } = useAccount()
-  const { writeContract: createPool } = useWriteGdaForwarder({ // [!code focus]
-    functionName: "createPool", // [!code focus]
-    args: [superToken, address!, "0x"] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => createPool?.()}>
-      Create Distribution Pool
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Get Pool Address
 
 After creating a pool, you need to get its address:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { keccak256, toHex } from "viem"
+
+const superToken = "0x..." // USDCx address
+const poolAdmin = "0x..." // Pool admin address
+const poolId = keccak256(toHex("mypool"))
+
+function PoolAddress() {
+  const { data: poolAddress } = useReadGdaForwarder({ // [!code focus]
+    functionName: "getPool", // [!code focus]
+    args: [superToken, poolAdmin, poolId] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <div>
+      Pool Address: {poolAddress}
+    </div>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaForwarderAbi, gdaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -165,37 +189,37 @@ async function getPoolAddress() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { keccak256, toHex } from "viem"
-
-const superToken = "0x..." // USDCx address
-const poolAdmin = "0x..." // Pool admin address
-const poolId = keccak256(toHex("mypool"))
-
-function PoolAddress() {
-  const { data: poolAddress } = useReadGdaForwarder({ // [!code focus]
-    functionName: "getPool", // [!code focus]
-    args: [superToken, poolAdmin, poolId] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <div>
-      Pool Address: {poolAddress}
-    </div>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Give Units to Pool Members
 
 Allocate units to members to determine their share of distributions:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const poolAddress = "0x..." // Your pool address
+const member = "0x..." // Member address
+const units = 100n // Number of units
+
+function GiveUnits() {
+  const { writeContract: updateUnits } = useWriteGdaPool({ // [!code focus]
+    address: poolAddress, // [!code focus]
+    functionName: "updateMemberUnits", // [!code focus]
+    args: [member, units, "0x"] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => updateUnits?.()}>
+      Give 100 units to member
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -263,37 +287,39 @@ async function giveUnits() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const poolAddress = "0x..." // Your pool address
-const member = "0x..." // Member address
-const units = 100n // Number of units
-
-function GiveUnits() {
-  const { writeContract: updateUnits } = useWriteGdaPool({ // [!code focus]
-    address: poolAddress, // [!code focus]
-    functionName: "updateMemberUnits", // [!code focus]
-    args: [member, units, "0x"] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => updateUnits?.()}>
-      Give 100 units to member
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Distribute Tokens
 
 Once members have units, distribute tokens to all members proportionally:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { useAccount } from "wagmi"
+import { parseEther } from "viem"
+
+const superToken = "0x..." // USDCx address
+const poolAddress = "0x..." // Your pool address
+const amount = parseEther("1000") // 1000 tokens
+
+function DistributeTokens() {
+  const { address } = useAccount()
+  const { writeContract: distribute } = useWriteGdaForwarder({ // [!code focus]
+    functionName: "distribute", // [!code focus]
+    args: [superToken, address!, poolAddress, amount, "0x"] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => distribute?.()}>
+      Distribute 1000 tokens to pool
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaForwarderAbi, gdaForwarderAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -357,32 +383,6 @@ async function distributeToPool() {
   }) // [!code focus]
   
   return hash
-}
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaForwarder } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { useAccount } from "wagmi"
-import { parseEther } from "viem"
-
-const superToken = "0x..." // USDCx address
-const poolAddress = "0x..." // Your pool address
-const amount = parseEther("1000") // 1000 tokens
-
-function DistributeTokens() {
-  const { address } = useAccount()
-  const { writeContract: distribute } = useWriteGdaForwarder({ // [!code focus]
-    functionName: "distribute", // [!code focus]
-    args: [superToken, address!, poolAddress, amount, "0x"] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => distribute?.()}>
-      Distribute 1000 tokens to pool
-    </button>
-  )
 }
 ```
 </Tab>

@@ -21,7 +21,51 @@ Most Super Tokens are created by wrapping existing ERC-20 tokens.
 
 To wrap tokens, you first need to approve the Super Token contract to spend your underlying tokens:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { useWriteContract } from "wagmi"
+import { erc20Abi } from "viem"
+import { parseUnits } from "viem"
+
+const underlyingToken = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" // USDC
+const superToken = "0x..." // USDCx address
+const amount = parseUnits("100", 6) // 100 USDC
+
+function WrapTokens() {
+  // Step 1: Approve hook
+  const { writeContract: approve } = useWriteContract()
+  
+  // Step 2: Upgrade hook
+  const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
+    address: superToken, // [!code focus]
+    functionName: "upgrade", // [!code focus]
+    args: [amount] // [!code focus]
+  }) // [!code focus]
+  
+  const handleWrap = async () => {
+    // First approve
+    await approve({
+      address: underlyingToken,
+      abi: erc20Abi,
+      functionName: "approve",
+      args: [superToken, amount]
+    })
+    
+    // Then upgrade
+    await upgrade?.()
+  }
+  
+  return (
+    <button onClick={handleWrap}>
+      Wrap 100 USDC to USDCx
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { erc20Abi } from "viem"
@@ -110,57 +154,37 @@ async function wrapTokens() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { useWriteContract } from "wagmi"
-import { erc20Abi } from "viem"
-import { parseUnits } from "viem"
-
-const underlyingToken = "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" // USDC
-const superToken = "0x..." // USDCx address
-const amount = parseUnits("100", 6) // 100 USDC
-
-function WrapTokens() {
-  // Step 1: Approve hook
-  const { writeContract: approve } = useWriteContract()
-  
-  // Step 2: Upgrade hook
-  const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
-    address: superToken, // [!code focus]
-    functionName: "upgrade", // [!code focus]
-    args: [amount] // [!code focus]
-  }) // [!code focus]
-  
-  const handleWrap = async () => {
-    // First approve
-    await approve({
-      address: underlyingToken,
-      abi: erc20Abi,
-      functionName: "approve",
-      args: [superToken, amount]
-    })
-    
-    // Then upgrade
-    await upgrade?.()
-  }
-  
-  return (
-    <button onClick={handleWrap}>
-      Wrap 100 USDC to USDCx
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ### Unwrapping (Downgrade)
 
 Converting Super Tokens back to regular tokens:
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { parseEther } from "viem"
+
+const superToken = "0x..." // USDCx address
+const amount = parseEther("100") // 100 Super Tokens
+
+function UnwrapTokens() {
+  const { writeContract: downgrade } = useWriteSuperToken({ // [!code focus]
+    address: superToken, // [!code focus]
+    functionName: "downgrade", // [!code focus]
+    args: [amount] // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => downgrade?.()}>
+      Unwrap 100 USDCx to USDC
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -226,30 +250,6 @@ async function unwrapTokens() {
 }
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { parseEther } from "viem"
-
-const superToken = "0x..." // USDCx address
-const amount = parseEther("100") // 100 Super Tokens
-
-function UnwrapTokens() {
-  const { writeContract: downgrade } = useWriteSuperToken({ // [!code focus]
-    address: superToken, // [!code focus]
-    functionName: "downgrade", // [!code focus]
-    args: [amount] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => downgrade?.()}>
-      Unwrap 100 USDCx to USDC
-    </button>
-  )
-}
-```
-</Tab>
 </Tabs>
 
 ## Native Asset Super Tokens
@@ -258,7 +258,31 @@ Native Super Tokens (like ETHx) have special functions for wrapping/unwrapping:
 
 ### Wrapping Native Assets
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+import { parseEther } from "viem"
+
+const ethx = "0x..." // ETHx address
+const amount = parseEther("1") // 1 ETH
+
+function WrapETH() {
+  const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
+    address: ethx, // [!code focus]
+    functionName: "upgradeByETH", // [!code focus]
+    value: amount // [!code focus]
+  }) // [!code focus]
+  
+  return (
+    <button onClick={() => upgrade?.()}>
+      Wrap 1 ETH to ETHx
+    </button>
+  )
+}
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -324,35 +348,35 @@ async function wrapETH() {
 }
 ```
 </Tab>
+</Tabs>
 
+### Unwrapping Native Assets
+
+<Tabs items={["Hooks", "ABI", "Actions"]}>
 <Tab value="Hooks">
 ```tsx twoslash
 import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
 import { parseEther } from "viem"
 
 const ethx = "0x..." // ETHx address
-const amount = parseEther("1") // 1 ETH
+const amount = parseEther("1") // 1 ETHx
 
-function WrapETH() {
-  const { writeContract: upgrade } = useWriteSuperToken({ // [!code focus]
+function UnwrapETH() {
+  const { writeContract: downgrade } = useWriteSuperToken({ // [!code focus]
     address: ethx, // [!code focus]
-    functionName: "upgradeByETH", // [!code focus]
-    value: amount // [!code focus]
+    functionName: "downgradeByETH", // [!code focus]
+    args: [amount] // [!code focus]
   }) // [!code focus]
   
   return (
-    <button onClick={() => upgrade?.()}>
-      Wrap 1 ETH to ETHx
+    <button onClick={() => downgrade?.()}>
+      Unwrap 1 ETHx to ETH
     </button>
   )
 }
 ```
 </Tab>
-</Tabs>
 
-### Unwrapping Native Assets
-
-<Tabs items={["ABI", "Actions", "Hooks"]}>
 <Tab value="ABI">
 ```ts twoslash
 import { superTokenAbi, superTokenAddress } from "@superfluid-finance/sdk" // [!code focus]
@@ -415,30 +439,6 @@ async function unwrapETH() {
   }) // [!code focus]
   
   return hash
-}
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteSuperToken } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-import { parseEther } from "viem"
-
-const ethx = "0x..." // ETHx address
-const amount = parseEther("1") // 1 ETHx
-
-function UnwrapETH() {
-  const { writeContract: downgrade } = useWriteSuperToken({ // [!code focus]
-    address: ethx, // [!code focus]
-    functionName: "downgradeByETH", // [!code focus]
-    args: [amount] // [!code focus]
-  }) // [!code focus]
-  
-  return (
-    <button onClick={() => downgrade?.()}>
-      Unwrap 1 ETHx to ETH
-    </button>
-  )
 }
 ```
 </Tab>

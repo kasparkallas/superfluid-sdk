@@ -22,6 +22,17 @@ Auto Wrap provides:
 Returns the auto-wrap strategy for an account.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadAutoWrap } from '@superfluid-finance/sdk/wagmi/automation';
+
+const { data: strategy } = useReadAutoWrap({
+  address: '0x...',
+  functionName: 'getStrategy',
+  args: [account, superToken],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { autoWrap } from '@superfluid-finance/sdk/abi/automation';
@@ -45,17 +56,6 @@ const strategy = await readAutoWrap(client, {
 });
 ```
 </Tab>
-<Tab value="Hooks">
-```ts
-import { useReadAutoWrap } from '@superfluid-finance/sdk/wagmi/automation';
-
-const { data: strategy } = useReadAutoWrap({
-  address: '0x...',
-  functionName: 'getStrategy',
-  args: [account, superToken],
-});
-```
-</Tab>
 </Tabs>
 
 ### canWrap
@@ -73,6 +73,26 @@ Calculates the amount to be wrapped based on the strategy.
 Configures the auto-wrap strategy for your account.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteAutoWrap } from '@superfluid-finance/sdk/wagmi/automation';
+
+const { writeContract } = useWriteAutoWrap();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'setStrategy',
+  args: [
+    superToken,
+    {
+      lowerThreshold: parseEther('10'),
+      upperThreshold: parseEther('100'),
+      expiry: BigInt(Math.floor(Date.now() / 1000) + 86400 * 30)
+    }
+  ],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { autoWrap } from '@superfluid-finance/sdk/abi/automation';
@@ -97,26 +117,6 @@ const hash = await client.writeContract({
 import { writeAutoWrap } from '@superfluid-finance/sdk/actions/automation';
 
 const hash = await writeAutoWrap(client, {
-  address: '0x...',
-  functionName: 'setStrategy',
-  args: [
-    superToken,
-    {
-      lowerThreshold: parseEther('10'),
-      upperThreshold: parseEther('100'),
-      expiry: BigInt(Math.floor(Date.now() / 1000) + 86400 * 30)
-    }
-  ],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteAutoWrap } from '@superfluid-finance/sdk/wagmi/automation';
-
-const { writeContract } = useWriteAutoWrap();
-
-await writeContract({
   address: '0x...',
   functionName: 'setStrategy',
   args: [

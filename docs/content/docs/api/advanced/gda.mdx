@@ -22,6 +22,17 @@ The GDA contract provides:
 Returns information about a distribution pool.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadGeneralDistributionAgreementV1 } from '@superfluid-finance/sdk/wagmi';
+
+const { data: pool } = useReadGeneralDistributionAgreementV1({
+  address: '0x...',
+  functionName: 'getPool',
+  args: [token, poolAddress],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { generalDistributionAgreementV1 } from '@superfluid-finance/sdk/abi';
@@ -39,17 +50,6 @@ const pool = await client.readContract({
 import { readGeneralDistributionAgreementV1 } from '@superfluid-finance/sdk/actions';
 
 const pool = await readGeneralDistributionAgreementV1(client, {
-  address: '0x...',
-  functionName: 'getPool',
-  args: [token, poolAddress],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useReadGeneralDistributionAgreementV1 } from '@superfluid-finance/sdk/wagmi';
-
-const { data: pool } = useReadGeneralDistributionAgreementV1({
   address: '0x...',
   functionName: 'getPool',
   args: [token, poolAddress],
@@ -77,6 +77,19 @@ Checks if an address is a registered pool.
 Creates a new distribution pool through the Host contract.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteGdaForwarder } from '@superfluid-finance/sdk/wagmi';
+
+const { writeContract } = useWriteGdaForwarder();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'createPool',
+  args: [token, admin, poolConfig],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { generalDistributionAgreementV1 } from '@superfluid-finance/sdk/abi';
@@ -95,19 +108,6 @@ const callData = encodeFunctionData({
 import { writeGdaForwarder } from '@superfluid-finance/sdk/actions';
 
 const hash = await writeGdaForwarder(client, {
-  address: '0x...',
-  functionName: 'createPool',
-  args: [token, admin, poolConfig],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteGdaForwarder } from '@superfluid-finance/sdk/wagmi';
-
-const { writeContract } = useWriteGdaForwarder();
-
-await writeContract({
   address: '0x...',
   functionName: 'createPool',
   args: [token, admin, poolConfig],

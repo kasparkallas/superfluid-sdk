@@ -20,9 +20,30 @@ Before you begin, ensure you have:
 
 Install the Superfluid SDK using your preferred package manager:
 
-```bash npm2yarn
+import { Tab, Tabs } from 'fumadocs-ui/components/tabs';
+
+<Tabs groupId="pkg-mgr" items={['npm', 'pnpm', 'yarn', 'bun']} persist>
+  <Tab value="npm">
+```bash
 npm install @superfluid-finance/sdk viem wagmi
 ```
+  </Tab>
+  <Tab value="pnpm">
+```bash
+pnpm add @superfluid-finance/sdk viem wagmi
+```
+  </Tab>
+  <Tab value="yarn">
+```bash
+yarn add @superfluid-finance/sdk viem wagmi
+```
+  </Tab>
+  <Tab value="bun">
+```bash
+bun add @superfluid-finance/sdk viem wagmi
+```
+  </Tab>
+</Tabs>
 
 The SDK has peer dependencies on `viem` and `wagmi` which provide the underlying Ethereum interaction capabilities.
 

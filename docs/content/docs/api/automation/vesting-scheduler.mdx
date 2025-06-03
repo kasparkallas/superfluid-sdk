@@ -23,6 +23,17 @@ Vesting Scheduler provides:
 Returns details of a vesting schedule.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadVestingScheduler } from '@superfluid-finance/sdk/wagmi/automation';
+
+const { data: schedule } = useReadVestingScheduler({
+  address: '0x...',
+  functionName: 'getVestingSchedule',
+  args: [superToken, sender, receiver],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { vestingScheduler } from '@superfluid-finance/sdk/abi/automation';
@@ -46,17 +57,6 @@ const schedule = await readVestingScheduler(client, {
 });
 ```
 </Tab>
-<Tab value="Hooks">
-```ts
-import { useReadVestingScheduler } from '@superfluid-finance/sdk/wagmi/automation';
-
-const { data: schedule } = useReadVestingScheduler({
-  address: '0x...',
-  functionName: 'getVestingSchedule',
-  args: [superToken, sender, receiver],
-});
-```
-</Tab>
 </Tabs>
 
 ### getMaxVestingDuration
@@ -74,6 +74,28 @@ Calculates the remaining amount to be vested.
 Creates a new vesting schedule with cliff and vesting periods.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteVestingScheduler } from '@superfluid-finance/sdk/wagmi/automation';
+
+const { writeContract } = useWriteVestingScheduler();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'createVestingSchedule',
+  args: [
+    superToken,
+    receiver,
+    startDate,
+    cliffDate,
+    flowRate,
+    cliffAmount,
+    endDate,
+    userData
+  ],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { vestingScheduler } from '@superfluid-finance/sdk/abi/automation';
@@ -100,28 +122,6 @@ const hash = await client.writeContract({
 import { writeVestingScheduler } from '@superfluid-finance/sdk/actions/automation';
 
 const hash = await writeVestingScheduler(client, {
-  address: '0x...',
-  functionName: 'createVestingSchedule',
-  args: [
-    superToken,
-    receiver,
-    startDate,
-    cliffDate,
-    flowRate,
-    cliffAmount,
-    endDate,
-    userData
-  ],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteVestingScheduler } from '@superfluid-finance/sdk/wagmi/automation';
-
-const { writeContract } = useWriteVestingScheduler();
-
-await writeContract({
   address: '0x...',
   functionName: 'createVestingSchedule',
   args: [

@@ -22,6 +22,17 @@ The CFA contract handles:
 Returns flow information between a sender and receiver.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useReadConstantFlowAgreementV1 } from '@superfluid-finance/sdk/wagmi';
+
+const { data: flow } = useReadConstantFlowAgreementV1({
+  address: '0x...',
+  functionName: 'getFlow',
+  args: [token, sender, receiver],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { constantFlowAgreementV1 } from '@superfluid-finance/sdk/abi';
@@ -39,17 +50,6 @@ const flow = await client.readContract({
 import { readConstantFlowAgreementV1 } from '@superfluid-finance/sdk/actions';
 
 const flow = await readConstantFlowAgreementV1(client, {
-  address: '0x...',
-  functionName: 'getFlow',
-  args: [token, sender, receiver],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useReadConstantFlowAgreementV1 } from '@superfluid-finance/sdk/wagmi';
-
-const { data: flow } = useReadConstantFlowAgreementV1({
   address: '0x...',
   functionName: 'getFlow',
   args: [token, sender, receiver],
@@ -77,6 +77,19 @@ Returns operator permissions for a flow.
 Creates a new payment stream through the Host contract.
 
 <Tabs items={['ABI', 'Actions', 'Hooks']}>
+<Tab value="Hooks">
+```ts
+import { useWriteCfaForwarder } from '@superfluid-finance/sdk/wagmi';
+
+const { writeContract } = useWriteCfaForwarder();
+
+await writeContract({
+  address: '0x...',
+  functionName: 'createFlow',
+  args: [token, sender, receiver, flowRate, userData],
+});
+```
+</Tab>
 <Tab value="ABI">
 ```ts
 import { constantFlowAgreementV1 } from '@superfluid-finance/sdk/abi';
@@ -95,19 +108,6 @@ const callData = encodeFunctionData({
 import { writeCfaForwarder } from '@superfluid-finance/sdk/actions';
 
 const hash = await writeCfaForwarder(client, {
-  address: '0x...',
-  functionName: 'createFlow',
-  args: [token, sender, receiver, flowRate, userData],
-});
-```
-</Tab>
-<Tab value="Hooks">
-```ts
-import { useWriteCfaForwarder } from '@superfluid-finance/sdk/wagmi';
-
-const { writeContract } = useWriteCfaForwarder();
-
-await writeContract({
   address: '0x...',
   functionName: 'createFlow',
   args: [token, sender, receiver, flowRate, userData],

@@ -15,7 +15,19 @@ The GDA Pool contract represents a distribution pool where tokens can be distrib
 
 Get the number of units allocated to a specific member.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: units } = useReadGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "getUnits", // [!code focus]
+  args: ["0x..."] // Member address // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -56,25 +68,24 @@ const units = await readGdaPool(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: units } = useReadGdaPool({ // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "getUnits", // [!code focus]
-  args: ["0x..."] // Member address // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### getTotalUnits
 
 Get the total number of units in the pool.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: totalUnits } = useReadGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "getTotalUnits" // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -113,24 +124,25 @@ const totalUnits = await readGdaPool(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: totalUnits } = useReadGdaPool({ // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "getTotalUnits" // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### getClaimableNow
 
 Get the amount of tokens claimable by a member at the current moment.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: claimable } = useReadGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "getClaimableNow", // [!code focus]
+  args: ["0x..."] // Member address // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -171,25 +183,24 @@ const claimable = await readGdaPool(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: claimable } = useReadGdaPool({ // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "getClaimableNow", // [!code focus]
-  args: ["0x..."] // Member address // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### admin
 
 Get the admin address of the pool.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { data: admin } = useReadGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "admin" // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -228,17 +239,6 @@ const admin = await readGdaPool(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useReadGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { data: admin } = useReadGdaPool({ // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "admin" // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ## Write Functions
@@ -247,7 +247,19 @@ const { data: admin } = useReadGdaPool({ // [!code focus]
 
 Update the units allocated to a pool member (admin only).
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { writeContract: updateUnits } = useWriteGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "updateMemberUnits", // [!code focus]
+  args: ["0x...", 100n, "0x"] // Member, units, user data // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -299,25 +311,24 @@ const hash = await writeGdaPool(config, { // [!code focus]
 }) // [!code focus]
 ```
 </Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { writeContract: updateUnits } = useWriteGdaPool({ // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "updateMemberUnits", // [!code focus]
-  args: ["0x...", 100n, "0x"] // Member, units, user data // [!code focus]
-}) // [!code focus]
-```
-</Tab>
 </Tabs>
 
 ### claimAll
 
 Claim all available tokens for the calling member.
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { writeContract: claimAll } = useWriteGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "claimAll" // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -358,17 +369,6 @@ const config = createConfig({
 
 const hash = await writeGdaPool(config, { // [!code focus]
   chainId: mainnet.id, // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "claimAll" // [!code focus]
-}) // [!code focus]
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { writeContract: claimAll } = useWriteGdaPool({ // [!code focus]
   address: "0x...", // Pool address // [!code focus]
   functionName: "claimAll" // [!code focus]
 }) // [!code focus]
@@ -380,7 +380,19 @@ const { writeContract: claimAll } = useWriteGdaPool({ // [!code focus]
 
 Transfer admin rights to another address (admin only).
 
-<Tabs items={["ABI", "Actions", "Hooks"]}>
+<Tabs items={["Hooks", "ABI", "Actions"]}>
+<Tab value="Hooks">
+```tsx twoslash
+import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
+
+const { writeContract: transferAdmin } = useWriteGdaPool({ // [!code focus]
+  address: "0x...", // Pool address // [!code focus]
+  functionName: "transferAdmin", // [!code focus]
+  args: ["0x..."] // New admin address // [!code focus]
+}) // [!code focus]
+```
+</Tab>
+
 <Tab value="ABI">
 ```ts twoslash
 import { gdaPoolAbi } from "@superfluid-finance/sdk" // [!code focus]
@@ -422,18 +434,6 @@ const config = createConfig({
 
 const hash = await writeGdaPool(config, { // [!code focus]
   chainId: mainnet.id, // [!code focus]
-  address: "0x...", // Pool address // [!code focus]
-  functionName: "transferAdmin", // [!code focus]
-  args: ["0x..."] // New admin address // [!code focus]
-}) // [!code focus]
-```
-</Tab>
-
-<Tab value="Hooks">
-```tsx twoslash
-import { useWriteGdaPool } from "@superfluid-finance/sdk/wagmi" // [!code focus]
-
-const { writeContract: transferAdmin } = useWriteGdaPool({ // [!code focus]
   address: "0x...", // Pool address // [!code focus]
   functionName: "transferAdmin", // [!code focus]
   args: ["0x..."] // New admin address // [!code focus]
