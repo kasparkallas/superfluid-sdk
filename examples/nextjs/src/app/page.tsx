@@ -1,6 +1,6 @@
 "use client"
 
-import { useReadCfa } from "sdk/wagmi"
+import { useReadCfa } from "sdk/wagmi/protocol"
 import { mainnet } from "wagmi/chains";
 
 export default function Home() {

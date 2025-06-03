@@ -6,7 +6,7 @@ import { superfluidMainnets, superfluidTestnets, superfluidMainnetTransports, su
 import { Chain } from 'viem/chains';
 
 export const config = createConfig({
-    chains: [...superfluidMainnets, ...superfluidTestnets] as [Chain, ...Chain[]],
+    chains: [...superfluidMainnets, ...superfluidTestnets] as any,
     transports: {
         ...superfluidMainnetTransports,
         ...superfluidTestnetTransports

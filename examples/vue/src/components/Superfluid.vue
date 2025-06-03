@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { cfaAbi, cfaAddress } from "sdk"
+import { cfaAbi, cfaAddress } from "sdk/protocol"
 import { useAccount, useReadContract } from "@wagmi/vue"
 import { computed } from "vue"
 

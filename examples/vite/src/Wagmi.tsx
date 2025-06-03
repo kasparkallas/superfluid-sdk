@@ -27,8 +27,8 @@ const transports = {
 } as const;
 
 const config = createConfig({
-    chains: superfluidMainnets,
-    transports: superfluidMainnetTransports
+    chains: superfluidMainnets as any,
+    transports: superfluidMainnetTransports as any
 })
 
 // const config = createConfig({
