@@ -27,11 +27,9 @@ import { OPERATION_TYPE } from "@superfluid-finance/sdk"
 // OPERATION_TYPE.ERC20_APPROVE
 // OPERATION_TYPE.SUPERTOKEN_UPGRADE
 // OPERATION_TYPE.SUPERTOKEN_DOWNGRADE
-// OPERATION_TYPE.CFA_CREATE_FLOW
-// OPERATION_TYPE.CFA_UPDATE_FLOW
-// OPERATION_TYPE.CFA_DELETE_FLOW
-// OPERATION_TYPE.GDA_CREATE_POOL
-// OPERATION_TYPE.GDA_DISTRIBUTE
+// OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT // For all agreement calls (createFlow, updateFlow, deleteFlow, createPool, distribute, etc.)
+// OPERATION_TYPE.CALL_APP_ACTION
+// OPERATION_TYPE.SIMPLE_FORWARD_CALL
 ```
 
 ## Example Without Helper
@@ -50,26 +48,26 @@ import { useAccount } from "wagmi"
 function BatchOperations() {
   const { address } = useAccount()
   
-  const operations = [
-    {
-      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
-      target: "0x...", // Super Token address
-      data: encodeFunctionData({
-        abi: superTokenAbi,
-        functionName: "upgrade",
-        args: [1000000n]
-      })
-    },
-    {
-      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
-      target: "0x...", // CFA Forwarder address
-      data: encodeFunctionData({
-        abi: cfaForwarderAbi,
-        functionName: "createFlow",
-        args: ["0x...", address!, "0x...", 1000n, "0x"]
-      })
-    }
-  ]
+  const operations = [ // [!code focus]
+    { // [!code focus]
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE, // [!code focus]
+      target: "0x...", // Super Token address // [!code focus]
+      data: encodeFunctionData({ // [!code focus]
+        abi: superTokenAbi, // [!code focus]
+        functionName: "upgrade", // [!code focus]
+        args: [1000000n] // [!code focus]
+      }) // [!code focus]
+    }, // [!code focus]
+    { // [!code focus]
+      operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT, // [!code focus]
+      target: "0x...", // CFA Forwarder address // [!code focus]
+      data: encodeFunctionData({ // [!code focus]
+        abi: cfaForwarderAbi, // [!code focus]
+        functionName: "createFlow", // [!code focus]
+        args: ["0x...", address!, "0x...", 1000n, "0x"] // [!code focus]
+      }) // [!code focus]
+    } // [!code focus]
+  ] // [!code focus]
   
   const { writeContract: batchCall } = useWriteHost({ // [!code focus]
     functionName: "batchCall", // [!code focus]
@@ -101,28 +99,28 @@ const walletClient = createWalletClient({
 })
 
 async function batchCall() {
-  const operations = [
-    // Operation 1: Upgrade tokens
-    {
-      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
-      target: "0x...", // Super Token address
-      data: encodeFunctionData({
-        abi: superTokenAbi,
-        functionName: "upgrade",
-        args: [1000000n] // Amount to upgrade
-      })
-    },
-    // Operation 2: Create flow
-    {
-      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
-      target: "0x...", // CFA Forwarder address
-      data: encodeFunctionData({
-        abi: cfaForwarderAbi,
-        functionName: "createFlow",
-        args: ["0x...", account.address, "0x...", 1000n, "0x"]
-      })
-    }
-  ]
+  const operations = [ // [!code focus]
+    // Operation 1: Upgrade tokens // [!code focus]
+    { // [!code focus]
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE, // [!code focus]
+      target: "0x...", // Super Token address // [!code focus]
+      data: encodeFunctionData({ // [!code focus]
+        abi: superTokenAbi, // [!code focus]
+        functionName: "upgrade", // [!code focus]
+        args: [1000000n] // Amount to upgrade // [!code focus]
+      }) // [!code focus]
+    }, // [!code focus]
+    // Operation 2: Create flow // [!code focus]
+    { // [!code focus]
+      operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT, // [!code focus]
+      target: "0x...", // CFA Forwarder address // [!code focus]
+      data: encodeFunctionData({ // [!code focus]
+        abi: cfaForwarderAbi, // [!code focus]
+        functionName: "createFlow", // [!code focus]
+        args: ["0x...", account.address, "0x...", 1000n, "0x"] // [!code focus]
+      }) // [!code focus]
+    } // [!code focus]
+  ] // [!code focus]
   
   const hash = await walletClient.writeContract({ // [!code focus]
     address: hostAddress[mainnet.id], // [!code focus]
@@ -159,26 +157,26 @@ const wagmiConfig = createConfig({
 })
 
 async function batchCall() {
-  const operations = [
-    {
-      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
-      target: "0x...", // Super Token address
-      data: encodeFunctionData({
-        abi: superTokenAbi,
-        functionName: "upgrade",
-        args: [1000000n]
-      })
-    },
-    {
-      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
-      target: "0x...", // CFA Forwarder address
-      data: encodeFunctionData({
-        abi: cfaForwarderAbi,
-        functionName: "createFlow",
-        args: ["0x...", account.address, "0x...", 1000n, "0x"]
-      })
-    }
-  ]
+  const operations = [ // [!code focus]
+    { // [!code focus]
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE, // [!code focus]
+      target: "0x...", // Super Token address // [!code focus]
+      data: encodeFunctionData({ // [!code focus]
+        abi: superTokenAbi, // [!code focus]
+        functionName: "upgrade", // [!code focus]
+        args: [1000000n] // [!code focus]
+      }) // [!code focus]
+    }, // [!code focus]
+    { // [!code focus]
+      operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT, // [!code focus]
+      target: "0x...", // CFA Forwarder address // [!code focus]
+      data: encodeFunctionData({ // [!code focus]
+        abi: cfaForwarderAbi, // [!code focus]
+        functionName: "createFlow", // [!code focus]
+        args: ["0x...", account.address, "0x...", 1000n, "0x"] // [!code focus]
+      }) // [!code focus]
+    } // [!code focus]
+  ] // [!code focus]
   
   const hash = await writeHost(wagmiConfig, { // [!code focus]
     chainId: mainnet.id, // [!code focus]
@@ -223,31 +221,31 @@ const receiver = "0x..." // Recipient address
 
 async function batchWithHelper() {
   // Prepare operations using the helper
-  const operations = [
-    // Upgrade 100 tokens
-    prepareOperation({
-      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
-      target: superToken,
-      abi: superTokenAbi,
-      functionName: "upgrade",
-      args: [parseEther("100")]
-    }),
-    
-    // Create a flow of 10 tokens per month
-    prepareOperation({
-      operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
-      target: cfaForwarderAddress[mainnet.id],
-      abi: cfaForwarderAbi,
-      functionName: "createFlow",
-      args: [
-        superToken,
-        account.address,
-        receiver,
-        calculateFlowrate({ amountWei: parseEther("10"), timeUnit: "month" }),
-        "0x"
-      ]
-    })
-  ]
+  const operations = [ // [!code focus]
+    // Upgrade 100 tokens // [!code focus]
+    prepareOperation({ // [!code focus]
+      operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE, // [!code focus]
+      target: superToken, // [!code focus]
+      abi: superTokenAbi, // [!code focus]
+      functionName: "upgrade", // [!code focus]
+      args: [parseEther("100")] // [!code focus]
+    }), // [!code focus]
+     // [!code focus]
+    // Create a flow of 10 tokens per month // [!code focus]
+    prepareOperation({ // [!code focus]
+      operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT, // [!code focus]
+      target: cfaForwarderAddress[mainnet.id], // [!code focus]
+      abi: cfaForwarderAbi, // [!code focus]
+      functionName: "createFlow", // [!code focus]
+      args: [ // [!code focus]
+        superToken, // [!code focus]
+        account.address, // [!code focus]
+        receiver, // [!code focus]
+        calculateFlowrate({ amountWei: parseEther("10"), timeUnit: "month" }), // [!code focus]
+        "0x" // [!code focus]
+      ] // [!code focus]
+    }) // [!code focus]
+  ] // [!code focus]
   
   // Execute batch call
   const hash = await walletClient.writeContract({
@@ -275,29 +273,29 @@ Wrap tokens and immediately start streaming:
 import { prepareOperation, OPERATION_TYPE, calculateFlowrate, superTokenAbi, cfaForwarderAbi } from "@superfluid-finance/sdk"
 import { parseEther } from "viem"
 
-const wrapAndStream = [
-  // 1. Upgrade to super token
-  prepareOperation({
-    operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE,
-    target: "0x...", // Super token
-    abi: superTokenAbi,
-    functionName: "upgrade",
-    args: [parseEther("100")]
-  }),
-  
-  // 2. Create flow
-  prepareOperation({
-    operationType: OPERATION_TYPE.CFA_CREATE_FLOW,
-    target: "0x...", // CFA Forwarder
-    abi: cfaForwarderAbi,
-    functionName: "setFlowrate",
-    args: [
-      "0x...", // Super token
-      "0x...", // Receiver
-      calculateFlowrate({ amountWei: parseEther("10"), timeUnit: "month" })
-    ]
-  })
-]
+const wrapAndStream = [ // [!code focus]
+  // 1. Upgrade to super token // [!code focus]
+  prepareOperation({ // [!code focus]
+    operationType: OPERATION_TYPE.SUPERTOKEN_UPGRADE, // [!code focus]
+    target: "0x...", // Super token // [!code focus]
+    abi: superTokenAbi, // [!code focus]
+    functionName: "upgrade", // [!code focus]
+    args: [parseEther("100")] // [!code focus]
+  }), // [!code focus]
+   // [!code focus]
+  // 2. Create flow // [!code focus]
+  prepareOperation({ // [!code focus]
+    operationType: OPERATION_TYPE.CFA_CREATE_FLOW, // [!code focus]
+    target: "0x...", // CFA Forwarder // [!code focus]
+    abi: cfaForwarderAbi, // [!code focus]
+    functionName: "setFlowrate", // [!code focus]
+    args: [ // [!code focus]
+      "0x...", // Super token // [!code focus]
+      "0x...", // Receiver // [!code focus]
+      calculateFlowrate({ amountWei: parseEther("10"), timeUnit: "month" }) // [!code focus]
+    ] // [!code focus]
+  }) // [!code focus]
+] // [!code focus]
 ```
 
 ### Multiple Flow Updates
@@ -314,19 +312,19 @@ const receivers = [
   { address: "0x...", flowrate: "150" }
 ]
 
-const multipleFlowUpdates = receivers.map(receiver =>
-  prepareOperation({
-    operationType: OPERATION_TYPE.CFA_UPDATE_FLOW,
-    target: "0x...", // CFA Forwarder
-    abi: cfaForwarderAbi,
-    functionName: "setFlowrate",
-    args: [
-      "0x...", // Super token
-      receiver.address,
-      calculateFlowrate({ amountWei: parseEther(receiver.flowrate), timeUnit: "month" })
-    ]
-  })
-)
+const multipleFlowUpdates = receivers.map(receiver => // [!code focus]
+  prepareOperation({ // [!code focus]
+    operationType: OPERATION_TYPE.SUPERFLUID_CALL_AGREEMENT, // [!code focus]
+    target: "0x...", // CFA Forwarder // [!code focus]
+    abi: cfaForwarderAbi, // [!code focus]
+    functionName: "setFlowrate", // [!code focus]
+    args: [ // [!code focus]
+      "0x...", // Super token // [!code focus]
+      receiver.address, // [!code focus]
+      calculateFlowrate({ amountWei: parseEther(receiver.flowrate), timeUnit: "month" }) // [!code focus]
+    ] // [!code focus]
+  }) // [!code focus]
+) // [!code focus]
 ```
 
 ## Error Handling

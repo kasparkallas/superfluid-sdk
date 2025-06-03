@@ -172,7 +172,7 @@ batchApp.post('/prepare', async (c) => {
   const encodedOps = operations.map((op: any) => {
     if (op.type === 'createFlow') {
       return {
-        operationType: 201, // CFA_CREATE_FLOW
+        operationType: 201, // SUPERFLUID_CALL_AGREEMENT
         target: op.forwarder,
         data: encodeFunctionData({
           abi: cfaForwarderAbi,

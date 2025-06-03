@@ -48,7 +48,7 @@ import { Pre, CodeBlock } from 'fumadocs-ui/components/codeblock';
 ### A. Pure ABIs (no extra deps)
 
 ```ts
-import { cfaV1ForwarderAbi } from "@superfluid-finance/sdk/abi";
+import { cfaV1ForwarderAbi } from "@superfluid-finance/sdk/abi"; // [!code focus]
 ```
 
 ### B. Typed viem or @wagmi/core actions
@@ -77,19 +77,19 @@ import { cfaV1ForwarderAbi } from "@superfluid-finance/sdk/abi";
 </Tabs>
 
 ```ts
+import { readCfaForwarderGetFlowInfo } from "@superfluid-finance/sdk/actions"; // [!code focus]
 import { createPublicClient, http, mainnet } from "viem";
-import { readCfaForwarderGetFlowInfo } from "@superfluid-finance/sdk/actions";
 
 const publicClient = createPublicClient({
   chain:  mainnet,
   transport: http(),
 });
 
-const { flowrate } = await readCfaForwarderGetFlowInfo(publicClient, {
-  token:      "0xSUPER",
-  sender:     "0xSENDER",
-  receiver:   "0xRECEIVER"
-});
+const { flowrate } = await readCfaForwarderGetFlowInfo(publicClient, { // [!code focus]
+  token:      "0xSUPER", // [!code focus]
+  sender:     "0xSENDER", // [!code focus]
+  receiver:   "0xRECEIVER" // [!code focus]
+}); // [!code focus]
 ```
 
 ### C. wagmi React hooks
@@ -118,9 +118,9 @@ const { flowrate } = await readCfaForwarderGetFlowInfo(publicClient, {
 </Tabs>
 
 ```tsx
+import { readCfaForwarderGetFlowInfo } from "@superfluid-finance/sdk/wagmi"; // [!code focus]
 import { WagmiProvider, http, createConfig, mainnet } from "wagmi";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { readCfaForwarderGetFlowInfo } from "@superfluid-finance/sdk/wagmi";
 
 const wagmiConfig = createConfig({
   chains: [mainnet],
@@ -140,11 +140,11 @@ function App() {
 }
 
 function FlowInfo() {
-  const { data, isLoading } = readCfaForwarderGetFlowInfo({
-    superToken: "0xSUPER",
-    sender:     "0xSENDER",
-    receiver:   "0xRECEIVER",
-  });
+  const { data, isLoading } = readCfaForwarderGetFlowInfo({ // [!code focus]
+    superToken: "0xSUPER", // [!code focus]
+    sender:     "0xSENDER", // [!code focus]
+    receiver:   "0xRECEIVER", // [!code focus]
+  }); // [!code focus]
 
   if (isLoading) return <>Loading…</>;
   return <>Flow rate: {data?.flowRate.toString()}</>;
