@@ -1,45 +1,45 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import mermaid from 'mermaid';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 
-interface MermaidProps {
-  chart: string;
-}
-
-export function Mermaid({ chart }: MermaidProps) {
-  const { theme } = useTheme();
-  const ref = useRef<HTMLDivElement>(null);
+export function Mermaid({ chart }: { chart: string }) {
+  const id = useId();
+  const [svg, setSvg] = useState('');
+  const containerRef = useRef<HTMLDivElement>(null);
+  const currentChartRef = useRef<string>(null);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
-    if (!ref.current) return;
+    const container = containerRef.current;
+    if (currentChartRef.current === chart || !container) return;
+    currentChartRef.current = chart;
 
-    // Initialize mermaid with theme
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: theme === 'dark' ? 'dark' : 'default',
-      securityLevel: 'loose',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-    });
+    async function renderChart() {
+      const { default: mermaid } = await import('mermaid');
 
-    // Clear previous content
-    ref.current.innerHTML = '';
+      try {
+        mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          fontFamily: 'inherit',
+          themeCSS: 'margin: 1.5rem auto 0;',
+          theme: resolvedTheme === 'dark' ? 'dark' : 'default',
+        });
+        const { svg, bindFunctions } = await mermaid.render(
+          id,
+          chart.replaceAll('\\n', '\n'),
+        );
 
-    // Create a unique ID for this chart
-    const id = `mermaid-${Math.random().toString(36).substr(2, 9)}`;
-    const element = document.createElement('div');
-    element.id = id;
-    element.innerHTML = chart;
-    ref.current.appendChild(element);
+        bindFunctions?.(container!);
+        setSvg(svg);
+      } catch (error) {
+        console.error('Error while rendering mermaid', error);
+      }
+    }
 
-    // Render the chart
-    mermaid.run({ nodes: [element] });
-  }, [chart, theme]);
+    void renderChart();
+  }, [chart, id, resolvedTheme]);
 
-  return (
-    <div className="mermaid-container my-6 overflow-x-auto">
-      <div ref={ref} className="mermaid" />
-    </div>
-  );
+  return <div ref={containerRef} dangerouslySetInnerHTML={{ __html: svg }} />;
 }
